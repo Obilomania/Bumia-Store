@@ -1,10 +1,11 @@
 import React from 'react'
+import SectionOne from './Landing/SectionOne'
 
 const Home = () => {
   return (
-    <div>
-      <div className="text-danger">HOME PAGE</div>
-    </div>
+    <>
+      <SectionOne/>
+    </>
   )
 }
 
