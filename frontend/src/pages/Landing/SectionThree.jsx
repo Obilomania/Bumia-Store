@@ -88,33 +88,35 @@ const ThirdSection = styled.div`
     background: white;
     box-shadow: 0 0 10px #0000001a;
     padding: 1rem;
-    img{
-        width:110px;
-        height:110px;
+    border-radius: 1rem;
+
+    img {
+      width: 110px;
+      height: 110px;
     }
-    p{
-        font-size:.8rem;
+    p {
+      font-size: 0.8rem;
     }
   }
-  .categories>div{
-    width:23%;
+  .categories > div {
+    width: 23%;
   }
-  .categories>div:nth-child(1),
-  .categories>div:nth-child(2),
-  .categories>div:nth-child(3),
-  .categories>div:nth-child(4){
-    border-bottom:1px solid var(--border-stroke);
+  .categories > div:nth-child(1),
+  .categories > div:nth-child(2),
+  .categories > div:nth-child(3),
+  .categories > div:nth-child(4) {
+    border-bottom: 1px solid var(--border-stroke);
     /* padding:0rem .5rem; */
   }
-  .categories>div:nth-child(1),
-  .categories>div:nth-child(2),
-  .categories>div:nth-child(3),
-  .categories>div:nth-child(6),
-  .categories>div:nth-child(7),
-  .categories>div:nth-child(5){
-    border-right:1px solid var(--border-stroke);
-    border-right:1px solid var(--border-stroke);
-    padding:0rem .5rem;
+  .categories > div:nth-child(1),
+  .categories > div:nth-child(2),
+  .categories > div:nth-child(3),
+  .categories > div:nth-child(6),
+  .categories > div:nth-child(7),
+  .categories > div:nth-child(5) {
+    border-right: 1px solid var(--border-stroke);
+    border-right: 1px solid var(--border-stroke);
+    padding: 0rem 0.5rem;
   }
 `;
 export default SectionThree;

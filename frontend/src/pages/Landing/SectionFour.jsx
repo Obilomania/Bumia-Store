@@ -18,7 +18,7 @@ const SectionFour = () => {
           <div className="row">
             <div className="col-12">
               <div className="marquee-inner-wrapper card-wrapper">
-                <Marquee className="d-flex align-items-center gap-3">
+                <Marquee className="d-flex align-items-center">
                  <div className="mx-4 w-25"><img src={brandOne} alt="brandLogo" /></div>
                  <div className="mx-4 w-25"><img src={brandTwo} alt="brandLogo" /></div>
                  <div className="mx-4 w-25"><img src={brandThree} alt="brandLogo" /></div>
@@ -44,7 +44,7 @@ const ForthSection = styled.div`
     background: white;
     box-shadow: 0 0 10px #0000001a;
     padding: 1rem;
-    
+    border-radius:1rem;
   }
 `;
 export default SectionFour;
