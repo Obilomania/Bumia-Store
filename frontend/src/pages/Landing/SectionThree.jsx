@@ -86,7 +86,7 @@ const ThirdSection = styled.div`
   background: var(--bg-grey);
   .categories {
     background: white;
-    box-shadow: 0 0 10 #0000001a;
+    box-shadow: 0 0 10px #0000001a;
     padding: 1rem;
     img{
         width:110px;
