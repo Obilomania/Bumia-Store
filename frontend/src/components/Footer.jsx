@@ -149,7 +149,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-12 d-flex align-items-center justify-content-between">
               <p className="text-center text-white with-love mb-0">
-                Built with <span className="text-danger ">&#9829;</span> by
+                Designed with <span className="text-danger ">&#9829;</span> by
                 <Link
                   to={"https://www.obilomania.com"}
                   target="_blank"

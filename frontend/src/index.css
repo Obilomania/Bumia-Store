@@ -8,8 +8,10 @@
   --bg-one: #131921;
   --bg-two: #3b4149;
   --bg-three: #232f3e;
+  --bg-grey:rgba(245, 241, 241,.5);
   --bg-logo: #febd69;
   --bg-logo2: #bf4800;
+  --border-stroke:#ededed;
   --transition:400ms all ease;
 }
 ::-webkit-scrollbar {

@@ -45,8 +45,7 @@ const SectionOne = () => {
                     <h2>Computers</h2>
                     <p>
                       {" "}
-                      From &#x20A6;200,000, <br />
-                      Payment In Installments
+                      From &#x20A6;200,000, <br />@ &#x20A6;30,000/month
                     </p>
                     {/* <Link to={"/"}>BUY NOW</Link> */}
                   </div>
@@ -62,8 +61,7 @@ const SectionOne = () => {
                     <h2>Watches</h2>
                     <p>
                       {" "}
-                      From &#x20A6;200,000, <br />
-                      Payment In Installments
+                      From &#x20A6;200,000, <br />@ &#x20A6;30,000/month
                     </p>
                     {/* <Link to={"/"}>BUY NOW</Link> */}
                   </div>
@@ -79,8 +77,7 @@ const SectionOne = () => {
                     <h2>iPads/Tablets</h2>
                     <p>
                       {" "}
-                      From &#x20A6;200,000, <br />
-                      Payment In Installments
+                      From &#x20A6;200,000, <br />@ &#x20A6;30,000/month
                     </p>
                     {/* <Link to={"/"}>BUY NOW</Link> */}
                   </div>
@@ -96,8 +93,7 @@ const SectionOne = () => {
                     <h2>AirPod Max</h2>
                     <p>
                       {" "}
-                      From &#x20A6;200,000, <br />
-                      Payment In Installments
+                      From &#x20A6;200,000, <br />@ &#x20A6;30,000/month
                     </p>
                     {/* <Link to={"/"}>BUY NOW</Link> */}
                   </div>
@@ -154,29 +150,18 @@ const FirstSection = styled.div`
     left: 10%;
     h6 {
       color: var(--bg-logo2);
+      font-size:.8rem;
     }
     h2 {
       font-weight: 600;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       color: var(--bg-three);
     }
     p {
-      font-size: .9rem;
+      font-size: .8rem;
       font-weight: 500;
       line-height: 1rem;
       color: var(--bg-three);
-    }
-    a {
-      color: white;
-      background: var(--bg-one);
-      font-size: 0.8rem;
-      padding: 0.5rem 1.5rem;
-      border-radius: 1rem;
-      transition: var(--transition);
-      &:hover {
-        background: var(--bg-two);
-        transition: var(--transition);
-      }
     }
   }
 `;
