@@ -68,6 +68,9 @@ const SixthSection = styled.div`
         font-size: 1rem;
         transition: var(--transition);
       }
+      &:active{
+        background:var(--bg-logo);
+      }
     }
   }
   .featured-cards {
