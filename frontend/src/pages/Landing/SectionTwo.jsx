@@ -62,15 +62,17 @@ const SecondSection = styled.div`
   width: 100%;
   height: 100%;
   background: var(--bg-grey);
-  .one-service{
-    img{
-      width:1.8rem;
+  .services-container{
+    padding:0 1rem;
+  } .one-service {
+    img {
+      width: 1.8rem;
     }
-    h6{
-      font-size:.8rem;
+    h6 {
+      font-size: 0.8rem;
     }
-    p{
-      font-size:.8rem;
+    p {
+      font-size: 0.8rem;
     }
   }
 `;

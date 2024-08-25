@@ -40,11 +40,12 @@ const SectionFour = () => {
 const ForthSection = styled.div`
   width: 100%;
   height: 100%;
+  background: var(--bg-grey);
   .card-wrapper {
     background: white;
     box-shadow: 0 0 10px #0000001a;
     padding: 1rem;
-    border-radius:1rem;
+    border-radius: 1rem;
   }
 `;
 export default SectionFour;
