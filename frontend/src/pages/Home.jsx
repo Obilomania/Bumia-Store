@@ -16,9 +16,9 @@ const Home = () => {
       <SectionThree />
       <SectionFour />
       <SectionSix/>
-      <SectionFive />
       <SectionSeven />
       <SectionEight/>
+      <SectionFive />
     </>
   )
 }
