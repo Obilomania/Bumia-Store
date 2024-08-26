@@ -88,7 +88,7 @@ const ThirdSection = styled.div`
     background: white;
     box-shadow: 0 0 10px #0000001a;
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: .8rem;
 
     img {
       width: 110px;

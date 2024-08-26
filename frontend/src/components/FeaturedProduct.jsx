@@ -51,7 +51,7 @@ const FeaturedProduct = ({ product }) => {
 const FeaturedProductCard = styled.div`
   width: 16%;
   background-color: white;
-  border-radius: 0.8rem;
+  border-radius: 0.5rem;
   padding: 0;
   box-shadow: 0 0 10px #0000001a;
   position: relative;
@@ -113,8 +113,6 @@ const FeaturedProductCard = styled.div`
     }
     img {
       width: 100%;
-      border-top-right-radius: 0.8rem;
-      border-top-left-radius: 0.8rem;
     }
   }
   .product-price {

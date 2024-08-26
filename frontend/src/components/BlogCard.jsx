@@ -27,9 +27,10 @@ const BlogCard = () => {
 const BCard = styled.div`
   width: 24%;
   background-color: white;
-  border-radius: 0.8rem;
+  border-radius: 0.5rem;
   padding: 0;
   box-shadow: 0 0 10px #0000001a;
+  overflow:hidden;
   .card-image {
     width: 100%;
     height: 100%;
@@ -37,8 +38,6 @@ const BCard = styled.div`
   }
   .blog-card img {
     width: 100%;
-    border-top-right-radius: 0.8rem;
-    border-top-left-radius: 0.8rem;
   }
   .blog-card-content {
     padding: 1rem;

@@ -45,7 +45,7 @@ const ForthSection = styled.div`
     background: white;
     box-shadow: 0 0 10px #0000001a;
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: .5rem;
   }
 `;
 export default SectionFour;

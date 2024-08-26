@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import { useState } from "react";
-import { featuredProducts } from "../../assets/dummyData";
+import { featuredProducts, specialProducts } from "../../assets/dummyData";
+import SpecialProductCard from "../../components/SpecialProductCard";
 
 const SectionSeven = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -19,19 +20,23 @@ const SectionSeven = () => {
       <section className="blog-wrapper py-5 home-wrapper-2">
         <div className="container-xxl">
           <div className="row">
-            <div className="col-12 d-flex align-items-center justify-content-between">
-              <h3 className="section-heading">Special  Products</h3>
-              <div className="featured-arrows d-flex align-items-center gap-4">
+            <div className="col-12 d-flex align-items-center justify-content-between mb-3">
+              <h3 className="section-heading">Special Products</h3>
+              <div className="special-product-arrows d-flex align-items-center gap-4 ">
                 <span onClick={handlePrev}>
                   <FaArrowLeftLong />
                 </span>
                 <span onClick={handleNext}>
                   <FaArrowRightLong />
                 </span>
-                          </div>
-                          <div className="featured-cards">
-                              
-                          </div>
+              </div>
+            </div>
+            <div className="special-product-cards">
+              {specialProducts
+                .slice(currentSlide, currentSlide + 6)
+                .map((product) => (
+                  <SpecialProductCard product={product} key={product.id} />
+                ))}
             </div>
           </div>
         </div>
@@ -44,7 +49,7 @@ const SeventhSection = styled.div`
   width: 100%;
   height: 100%;
   background: var(--bg-grey);
-  .featured-arrows {
+  .special-product-arrows {
     span {
       color: var(--bg-two);
       opacity: 0.5;
@@ -63,10 +68,12 @@ const SeventhSection = styled.div`
       }
     }
   }
-  .featured-cards {
+  .special-product-cards {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap:wrap;
+    gap: 1.3rem;
   }
 `;
 export default SectionSeven;
