@@ -6,6 +6,7 @@ import SectionFour from './Landing/SectionFour'
 import SectionFive from './Landing/SectionFive'
 import SectionSix from './Landing/SectionSix'
 import SectionSeven from './Landing/SectionSeven'
+import SectionEight from './Landing/SectionEight'
 
 const Home = () => {
   return (
@@ -16,7 +17,8 @@ const Home = () => {
       <SectionFour />
       <SectionSix/>
       <SectionFive />
-      <SectionSeven/>
+      <SectionSeven />
+      <SectionEight/>
     </>
   )
 }

@@ -44,8 +44,8 @@ const SpecialProductCard = ({ product }) => {
 
         {/* ****************RIGHT CARD****************** */}
         <div className="right-card">
-          <p className="brand">Sony</p>
-          <h6 className="card-heading">Camera Phone</h6>
+                  <p className="brand">{product.brand}</p>
+                  <h6 className="card-heading">{product.name}</h6>
           <div className="star-rating d-flex align-items-center gap-1">
             <FaStar />
             <FaStar />
@@ -54,7 +54,7 @@ const SpecialProductCard = ({ product }) => {
             <FaRegStar />
           </div>
           <p className="special-price">
-            &#x20A6; 230,000 <s>&#x20A6; 300,000</s>
+            &#x20A6; {product.price} &nbsp; <s>&#x20A6; 300,000</s>
           </p>
           <p className="special-days">
             <b>212</b> Days &nbsp; <span>05</span> &nbsp; <span>15</span> &nbsp;{" "}
@@ -73,7 +73,7 @@ const SpecialProductCard = ({ product }) => {
               />
             </span>
           </div>
-          <button>OPTION</button>
+          <button>ADD TO CART</button>
         </div>
       </div>
     </SpecialProduct>
@@ -84,7 +84,8 @@ const SpecialProduct = styled.div`
   width: calc(100% / 3.1);
   position: relative;
   .special-product-card {
-    height: 35vh;
+    min-height:36vh;
+    height: fit-content;
     background-color: white;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -149,18 +150,19 @@ const SpecialProduct = styled.div`
         width: 100%;
         height: 100%;
         object-fit: contain;
-        object-position: bottom;
+        object-position: center;
       }
     }
     .sub-image {
       display: flex;
       width: 100%;
+      height:7rem;
       align-items: center;
       justify-content: space-between;
       overflow: hidden;
       .s-image {
-        width: 48%;
-        height: 48%;
+        width: 100%;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -171,7 +173,7 @@ const SpecialProduct = styled.div`
           width: 100%;
           height: 100%;
           object-fit: contain;
-          object-position: bottom;
+          object-position: center;
         }
       }
     }
@@ -202,7 +204,7 @@ const SpecialProduct = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap: 1rem;
+    gap: 1.2rem;
     .brand {
       color: var(--bg-logo2);
       font-size: 0.8rem;
