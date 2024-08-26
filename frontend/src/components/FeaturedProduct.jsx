@@ -3,12 +3,14 @@ import styled from "styled-components";
 import productIMG from "../assets/images/tab.jpg";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
+import { FaRegEye } from "react-icons/fa6";
+import { LiaShoppingBagSolid } from "react-icons/lia";
+import { IoIosShuffle } from "react-icons/io";
 
-
-const FeaturedProduct = ({product}) => {
+const FeaturedProduct = ({ product }) => {
   return (
     <FeaturedProductCard>
-      <div key={product.id}>
+      <div key={product.id} className="main-card-content">
         <div className="product-image">
           {" "}
           <img src={productIMG} alt="" />
@@ -31,6 +33,17 @@ const FeaturedProduct = ({product}) => {
             <FiHeart />
           </p>
         </div>
+        <div className="add-to-cart">
+          <p className="one">
+            <IoIosShuffle />
+          </p>
+          <p className="two">
+            <FaRegEye />
+          </p>
+          <p className="three">
+            <LiaShoppingBagSolid />
+          </p>
+        </div>
       </div>
     </FeaturedProductCard>
   );
@@ -43,6 +56,50 @@ const FeaturedProductCard = styled.div`
   padding: 0;
   box-shadow: 0 0 10px #0000001a;
   position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  .main-card-content {
+    .add-to-cart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      gap: 1rem;
+      right: -5rem;
+      top: 3rem;
+      .one,
+      .two,
+      .three {
+        font-size: 1rem;
+        margin-bottom: 0;
+        padding: 0.2rem  0.2rem;
+        cursor: pointer;
+        transition: var(--transition);
+        &:hover {
+          font-size: 1rem;
+          margin-bottom: 0;
+          cursor: pointer;
+          background: var(--bg-logo);
+          border-radius: 100%;
+          padding: 0.2rem  0.2rem;
+          transition: var(--transition);
+        }
+      }
+    }
+
+    &:hover {
+      .add-to-cart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        gap: 1rem;
+        right: 1rem;
+        top: 3rem;
+        transition: var(--transition);
+      }
+    }
+  }
   .product-brand {
     font-size: 0.7rem;
     margin-bottom: 0.5rem;
@@ -60,13 +117,15 @@ const FeaturedProductCard = styled.div`
       border-top-left-radius: 0.8rem;
     }
   }
-  .product-price{
-    font-size:.8rem;
-  } .card-content {
+  .product-price {
+    font-size: 0.8rem;
+  }
+  .card-content {
     padding: 0 1rem;
     .star-rating {
       font-size: 0.8rem;
       margin-bottom: 0.6rem;
+      color: gold;
     }
   }
   .discount-favourite {
