@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import productIMG from "../assets/images/tab.jpg";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { FaRegEye } from "react-icons/fa6";
@@ -13,10 +12,10 @@ const FeaturedProduct = ({ product }) => {
       <div key={product.id} className="main-card-content">
         <div className="product-image">
           {" "}
-          <img src={productIMG} alt="" />
+          <img src={product.image} alt="" />
         </div>
         <div className="card-content">
-          <p className="product-brand">Sony</p>
+          <p className="product-brand">{product.brand}</p>
           <h6 className="product-title">{product?.name}</h6>
           <div className="star-rating d-flex align-items-center gap-1">
             <FaStar />
@@ -25,7 +24,7 @@ const FeaturedProduct = ({ product }) => {
             <FaStarHalfAlt />
             <FaRegStar />
           </div>
-          <p className="product-price">&#x20A6;180,000</p>
+          <p className="product-price">&#x20A6;{product.price}</p>
         </div>
         <div className="discount-favourite ">
           <p className="percentage">-50%</p>
@@ -50,7 +49,7 @@ const FeaturedProduct = ({ product }) => {
 };
 
 const FeaturedProductCard = styled.div`
-  width: 19%;
+  width: 16%;
   background-color: white;
   border-radius: 0.8rem;
   padding: 0;
@@ -101,8 +100,9 @@ const FeaturedProductCard = styled.div`
     }
   }
   .product-brand {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     margin-bottom: 0.5rem;
+    color:var(--bg-logo2);
   }
   .product-image {
     width: 100%;
