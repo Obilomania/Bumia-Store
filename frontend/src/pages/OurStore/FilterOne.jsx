@@ -45,7 +45,19 @@ const FilterOne = () => {
           <div className="pink"></div>
           <div className="yellow"></div>
           <div className="others">Others</div>
-        </div>
+        </div>{" "}
+        <br />
+        <div className="filter-sizes">
+          <p className="m-0 filter-head">Sizes</p>
+          <div className="sizeit ">
+            <input type="checkbox" name="" id="" />
+            <p>Medum</p>
+          </div>
+          <div className="sizeit ">
+            <input type="checkbox" name="" id="" />
+            <p>Small</p>
+          </div>
+        </div>{" "}
       </div>
     </FirstFilter>
   );
@@ -175,6 +187,24 @@ const FirstFilter = styled.div`
           transition: var(--transition);
           cursor: pointer;
         }
+      }
+    }
+  }
+  .filter-sizes {
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    flex-direction: column;
+    gap: 0.5rem;
+    .sizeit {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      p {
+        margin-bottom: 0;
+        opacity: 0.7;
       }
     }
   }
