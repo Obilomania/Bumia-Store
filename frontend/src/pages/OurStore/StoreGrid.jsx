@@ -6,9 +6,9 @@ import { FaRegEye } from "react-icons/fa6";
 import { LiaShoppingBagSolid } from "react-icons/lia";
 import { IoIosShuffle } from "react-icons/io";
 
-const FeaturedProduct = ({ product }) => {
+const StoreGrid = ({product}) => {
   return (
-    <FeaturedProductCard>
+    <StoreGridCard>
       <div key={product.id} className="main-card-content">
         <div className="product-image">
           {" "}
@@ -44,13 +44,14 @@ const FeaturedProduct = ({ product }) => {
           </p>
         </div>
       </div>
-    </FeaturedProductCard>
+    </StoreGridCard>
   );
 };
 
-const FeaturedProductCard = styled.div`
-  width: 16%;
-  min-height:18rem;
+
+const StoreGridCard = styled.div`
+  width: 23.5%;
+  min-height: 18rem;
   background-color: white;
   border-radius: 0.5rem;
   padding: 0;
@@ -72,7 +73,7 @@ const FeaturedProductCard = styled.div`
       .three {
         font-size: 1rem;
         margin-bottom: 0;
-        padding: 0.2rem  0.2rem;
+        padding: 0.2rem 0.2rem;
         cursor: pointer;
         transition: var(--transition);
         &:hover {
@@ -81,7 +82,7 @@ const FeaturedProductCard = styled.div`
           cursor: pointer;
           background: var(--bg-logo);
           border-radius: 100%;
-          padding: 0.2rem  0.2rem;
+          padding: 0.2rem 0.2rem;
           transition: var(--transition);
         }
       }
@@ -103,7 +104,7 @@ const FeaturedProductCard = styled.div`
   .product-brand {
     font-size: 0.8rem;
     margin-bottom: 0.5rem;
-    color:var(--bg-logo2);
+    color: var(--bg-logo2);
   }
   .product-image {
     width: 100%;
@@ -127,8 +128,8 @@ const FeaturedProductCard = styled.div`
       color: gold;
     }
   }
-  .product-title{
-    min-height:3rem;
+  .product-title {
+    min-height: 3rem;
   }
   .discount-favourite {
     width: 100%;
@@ -151,4 +152,4 @@ const FeaturedProductCard = styled.div`
     }
   }
 `;
-export default FeaturedProduct;
+export default StoreGrid;
