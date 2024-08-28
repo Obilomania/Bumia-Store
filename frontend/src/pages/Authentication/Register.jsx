@@ -4,27 +4,28 @@ import styled from "styled-components";
 import BreadCrumb from "../../components/BreadCrumb";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   return (
     <LoginUser>
       <Helmet>
-        <title>Login</title>
+        <title>Sign Up</title>
         <meta name="description" content="Our Store" />
       </Helmet>
-      <BreadCrumb title="Login" />
+      <BreadCrumb title="Sign Up" />
       <form action="" className="login-form">
-        <h5 className="form-heading text-center">Login</h5>
+        <h5 className="form-heading text-center">Sign Up</h5>
         <br />
         <div className="inputs">
           <div className="inp">
+            <input type="text" placeholder="Full Name *" />
             <input type="text" placeholder="Email Address *" />
             <input type="password" placeholder="Password *" />
+            <input type="password" placeholder="Confirm Password *" />
           </div>
-          <Link to={"/forgot-password"}>Forgot Your Password?</Link>
         </div>
-        <div className="form-bottons">
-          <button type="submit">Login</button>
-          <Link to={"/register"}>Sign Up</Link>
+        <div className="form-bottons mt-4">
+          <button type="submit">Register</button>
+          <Link to={"/login"}>Login</Link>
         </div>
       </form>
     </LoginUser>
@@ -76,10 +77,10 @@ const LoginUser = styled.div`
     }
     a {
       font-size: 0.8rem;
-      margin:1rem 0.5rem;
-      font-weight:500;
-      text-decoration:none;
-      color:var(--bg-one);
+      margin: 1rem 0.5rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--bg-one);
     }
   }
   form .form-bottons {
@@ -119,4 +120,4 @@ const LoginUser = styled.div`
     }
   }
 `;
-export default Login;
+export default Register;

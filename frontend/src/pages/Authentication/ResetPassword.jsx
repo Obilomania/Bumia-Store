@@ -1,37 +1,40 @@
-import React from "react";
-import { Helmet } from "react-helmet";
-import styled from "styled-components";
-import BreadCrumb from "../../components/BreadCrumb";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Helmet } from 'react-helmet';
+import BreadCrumb from '../../components/BreadCrumb';
+import styled from 'styled-components';
 
-const Login = () => {
+const ResetPassword = () => {
   return (
-    <LoginUser>
+    <ResetP>
       <Helmet>
-        <title>Login</title>
+        <title>Reset Password</title>
         <meta name="description" content="Our Store" />
       </Helmet>
-      <BreadCrumb title="Login" />
+      <BreadCrumb title="Reset Password" />
+
       <form action="" className="login-form">
-        <h5 className="form-heading text-center">Login</h5>
+        <h5 className="form-heading text-center">Reset Password</h5>
         <br />
         <div className="inputs">
           <div className="inp">
-            <input type="text" placeholder="Email Address *" />
-            <input type="password" placeholder="Password *" />
+            <input
+              type="password"
+              placeholder="Enter New Password *"
+            />
+            <input
+              type="password"
+              placeholder="Confirm New Password *"
+            />
           </div>
-          <Link to={"/forgot-password"}>Forgot Your Password?</Link>
         </div>
-        <div className="form-bottons">
-          <button type="submit">Login</button>
-          <Link to={"/register"}>Sign Up</Link>
+        <div className="form-bottons mt-4">
+          <button type="submit">Reset</button>
         </div>
       </form>
-    </LoginUser>
+    </ResetP>
   );
-};
-
-const LoginUser = styled.div`
+}
+const ResetP = styled.div`
   width: 100%;
   min-height: 70vh;
   height: 100%;
@@ -76,10 +79,10 @@ const LoginUser = styled.div`
     }
     a {
       font-size: 0.8rem;
-      margin:1rem 0.5rem;
-      font-weight:500;
-      text-decoration:none;
-      color:var(--bg-one);
+      margin: 1rem 0.5rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--bg-one);
     }
   }
   form .form-bottons {
@@ -119,4 +122,4 @@ const LoginUser = styled.div`
     }
   }
 `;
-export default Login;
+export default ResetPassword
