@@ -2,6 +2,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet';
 import BreadCrumb from '../../components/BreadCrumb';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const ResetPassword = () => {
   return (
@@ -17,18 +18,13 @@ const ResetPassword = () => {
         <br />
         <div className="inputs">
           <div className="inp">
-            <input
-              type="password"
-              placeholder="Enter New Password *"
-            />
-            <input
-              type="password"
-              placeholder="Confirm New Password *"
-            />
+            <input type="password" placeholder="Enter New Password *" />
+            <input type="password" placeholder="Confirm New Password *" />
           </div>
         </div>
         <div className="form-bottons mt-4">
           <button type="submit">Reset</button>
+          <Link to={"/account/login"}>Cancel</Link>
         </div>
       </form>
     </ResetP>
@@ -90,6 +86,7 @@ const ResetP = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction:column;
     gap: 1rem;
     button {
       color: white;
@@ -106,19 +103,10 @@ const ResetP = styled.div`
       }
     }
     a {
-      color: black;
-      border: 1px solid var(--bg-logo);
-      background: var(--bg-logo);
+      color: var(--bg-one);
       font-size: 0.8rem;
-      padding: 0.3rem 1.5rem;
-      border-radius: 1rem;
-      transition: var(--transition);
       font-weight: 500;
-      &:hover {
-        background: var(--bg-logo2);
-        transition: var(--transition);
-        font-weight: 500;
-      }
+      border-bottom:1px solid var(--bg-one);
     }
   }
 `;

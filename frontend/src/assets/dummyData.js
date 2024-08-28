@@ -213,6 +213,7 @@ export const blogPostsData = [
     title: "The World Of VAR",
     postedOn: "12 July 2024",
     image: "/images/blog-1.jpg",
+    author:"Obinna Ishmael",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque numquam deserunt possimus nobis suscipit accusamus. Omnis doloribus soluta quod quis voluptatem nesciunt ipsum repellat sed ea laboriosam recusandae fuga hic voluptates, laudantium minus quam veniam quasi esse adipisci autem aliquam perspiciatis deleniti doloremque. Dignissimos voluptatum quas in aspernatur expedita, quisquam iusto illum dolorem delectus magnam hic aperiam fugiat laboriosam earum molestiae. Tenetur cum odit reiciendis deserunt atque placeat, quia exercitationem dolore optio recusandae dolor ut minima dolores delectus rerum ducimus omnis. Vitae voluptatem aut animi eligendi nihil. Nam laudantium corrupti perspiciatis corporis consectetur autem aperiam est, sapiente magni molestias dolorum?",
   },
@@ -221,6 +222,7 @@ export const blogPostsData = [
     title: "smart TVs make people Smart or Maybe not",
     postedOn: "18 July 2024",
     image: "/images/blog-2.jpg",
+    author:"Chetachukwu",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque numquam deserunt possimus nobis suscipit accusamus. Omnis doloribus soluta quod quis voluptatem nesciunt ipsum repellat sed ea laboriosam recusandae fuga hic voluptates, laudantium minus quam veniam quasi esse adipisci autem aliquam perspiciatis deleniti doloremque. Dignissimos voluptatum quas in aspernatur expedita, quisquam iusto illum dolorem delectus magnam hic aperiam fugiat laboriosam earum molestiae. Tenetur cum odit reiciendis deserunt atque placeat, quia exercitationem dolore optio recusandae dolor ut minima dolores delectus rerum ducimus omnis. Vitae voluptatem aut animi eligendi nihil. Nam laudantium corrupti perspiciatis corporis consectetur autem aperiam est, sapiente magni molestias dolorum?",
   },
@@ -229,6 +231,7 @@ export const blogPostsData = [
     title: "Steve Job Created Many Jobs",
     postedOn: "12 July 2022",
     image: "/images/blog-3.jpg",
+    author:"Obilomania",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque numquam deserunt possimus nobis suscipit accusamus. Omnis doloribus soluta quod quis voluptatem nesciunt ipsum repellat sed ea laboriosam recusandae fuga hic voluptates, laudantium minus quam veniam quasi esse adipisci autem aliquam perspiciatis deleniti doloremque. Dignissimos voluptatum quas in aspernatur expedita, quisquam iusto illum dolorem delectus magnam hic aperiam fugiat laboriosam earum molestiae. Tenetur cum odit reiciendis deserunt atque placeat, quia exercitationem dolore optio recusandae dolor ut minima dolores delectus rerum ducimus omnis. Vitae voluptatem aut animi eligendi nihil. Nam laudantium corrupti perspiciatis corporis consectetur autem aperiam est, sapiente magni molestias dolorum?",
   },
@@ -237,6 +240,7 @@ export const blogPostsData = [
     title: "Bluetooth Speakers Connects Couple",
     postedOn: "12 July 2024",
     image: "/images/blog-4.jpg",
+    author:"Joy Mayen",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque numquam deserunt possimus nobis suscipit accusamus. Omnis doloribus soluta quod quis voluptatem nesciunt ipsum repellat sed ea laboriosam recusandae fuga hic voluptates, laudantium minus quam veniam quasi esse adipisci autem aliquam perspiciatis deleniti doloremque. Dignissimos voluptatum quas in aspernatur expedita, quisquam iusto illum dolorem delectus magnam hic aperiam fugiat laboriosam earum molestiae. Tenetur cum odit reiciendis deserunt atque placeat, quia exercitationem dolore optio recusandae dolor ut minima dolores delectus rerum ducimus omnis. Vitae voluptatem aut animi eligendi nihil. Nam laudantium corrupti perspiciatis corporis consectetur autem aperiam est, sapiente magni molestias dolorum?",
   },

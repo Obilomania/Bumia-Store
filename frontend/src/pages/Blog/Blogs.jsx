@@ -1,9 +1,9 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import { blogPostsData } from "../assets/dummyData";
-import BreadCrumb from "../components/BreadCrumb";
-import BlogSectionCard from "../components/BlogSectionCard";
+import BreadCrumb from "../../components/BreadCrumb";
+import BlogSectionCard from "../../components/BlogSectionCard";
+import { blogPostsData } from "../../assets/dummyData";
 
 const Blogs = () => {
   return (

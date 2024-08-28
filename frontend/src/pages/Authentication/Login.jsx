@@ -20,11 +20,11 @@ const Login = () => {
             <input type="text" placeholder="Email Address *" />
             <input type="password" placeholder="Password *" />
           </div>
-          <Link to={"/forgot-password"}>Forgot Your Password?</Link>
+          <Link to={"/account/forgot-password"}>Forgot Your Password?</Link>
         </div>
         <div className="form-bottons">
           <button type="submit">Login</button>
-          <Link to={"/register"}>Sign Up</Link>
+          <Link to={"/account/register"}>Sign Up</Link>
         </div>
       </form>
     </LoginUser>

@@ -18,22 +18,14 @@ const ChangePassword = () => {
         <br />
         <div className="inputs">
           <div className="inp">
-            <input
-              type="Password"
-              placeholder="Old Password *"
-            />
-            <input
-              type="Password"
-              placeholder="New Password *"
-            />
-            <input
-              type="Password"
-              placeholder="Confirm New Password *"
-            />
+            <input type="Password" placeholder="Old Password *" />
+            <input type="Password" placeholder="New Password *" />
+            <input type="Password" placeholder="Confirm New Password *" />
           </div>
         </div>
         <div className="form-bottons mt-4">
-          <button type="submit">Change password</button>
+          <button type="submit">Reset</button>
+          <Link to={"/account/profile"}>Cancel</Link>
         </div>
       </form>
     </ResetP>

@@ -18,6 +18,7 @@ const Register = () => {
         <div className="inputs">
           <div className="inp">
             <input type="text" placeholder="Full Name *" />
+            <input type="text" placeholder="Phone Number *" />
             <input type="text" placeholder="Email Address *" />
             <input type="password" placeholder="Password *" />
             <input type="password" placeholder="Confirm Password *" />
@@ -25,7 +26,7 @@ const Register = () => {
         </div>
         <div className="form-bottons mt-4">
           <button type="submit">Register</button>
-          <Link to={"/login"}>Login</Link>
+          <Link to={"/account/login"}>Login</Link>
         </div>
       </form>
     </LoginUser>

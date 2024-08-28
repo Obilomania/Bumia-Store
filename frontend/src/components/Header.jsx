@@ -91,7 +91,7 @@ const Header = () => {
                 </div>
                 <div>
                   <Link
-                    to={"/login"}
+                    to={"/account/login"}
                     className="d-flex align-items-center gap-2 text-white"
                   >
                     <img

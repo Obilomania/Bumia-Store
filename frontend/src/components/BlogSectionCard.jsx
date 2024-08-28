@@ -2,22 +2,21 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const BlogSectionCard = (post) => {
-    console.log(post)
+const BlogSectionCard = ({post}) => {
   return (
     <BCard>
-      <div className="blog-card">
+      <div className="blog-card" key={post.id}>
         <div className="card-image">
-          <img src={post.post.image} alt="blogImg" className="img-fluid" />
+          <img src={post.image} alt="blogImg" className="img-fluid" />
         </div>
         <div className="blog-card-content">
-          <p className="blog-post-date mt-1">{post.postedOn}</p>
-          <h6 className="blog-post-title ">{post.post.title}</h6>
-          <p className="blog-post-desc m-0">{`${post.post.content.slice(
+          <p className="blog-post-date mt-1">{post.postedOn} <span> by: {post.author}</span></p>
+          <h6 className="blog-post-title ">{post.title}</h6>
+          <p className="blog-post-desc m-0">{`${post.content.slice(
             0,
             180
           )} ...`}</p>
-          <Link to="/">READ MORE</Link>
+          <Link to={`/blog/${post.id}`}>READ MORE</Link>
         </div>
       </div>
     </BCard>
@@ -52,6 +51,13 @@ const BCard = styled.div`
     .blog-post-desc {
       color: #918f8f;
       font-size: 0.8rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      span{
+        font-weight:500;
+        text-transform:uppercase;
+      }
     }
     a {
       color: white;

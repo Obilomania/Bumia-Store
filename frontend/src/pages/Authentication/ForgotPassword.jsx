@@ -20,10 +20,11 @@ const ForgotPassword = () => {
           <div className="inp">
             <input type="text" placeholder="Enter Your Registered Email Address *" />
           </div>
-          <Link to={"/login"}>Remembered Password? Login </Link>
+          <Link to={"/account/login"}>Remembered Password? Login </Link>
         </div>
-        <div className="form-bottons">
-          <button type="submit">Send</button>
+         <div className="form-bottons mt-4">
+          <button type="submit">Reset</button>
+          <Link to={"/account/register"}>Cancel</Link>
         </div>
       </form>
     </ResetP>
@@ -85,6 +86,7 @@ const ResetP = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     gap: 1rem;
     button {
@@ -102,19 +104,10 @@ const ResetP = styled.div`
       }
     }
     a {
-      color: black;
-      border: 1px solid var(--bg-logo);
-      background: var(--bg-logo);
+      color: var(--bg-one);
       font-size: 0.8rem;
-      padding: 0.3rem 1.5rem;
-      border-radius: 1rem;
-      transition: var(--transition);
       font-weight: 500;
-      &:hover {
-        background: var(--bg-logo2);
-        transition: var(--transition);
-        font-weight: 500;
-      }
+      border-bottom: 1px solid var(--bg-one);
     }
   }
 `;
