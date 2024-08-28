@@ -59,22 +59,30 @@ const Header = () => {
               <div className="header-upper-links d-flex align-items-center justify-content-between">
                 <div>
                   <Link
-                    to={"/"}
+                    to={"/compare-page"}
                     className="d-flex align-items-center gap-2 text-white"
                   >
-                    <img src={compareIMG} alt="compare" className="compare-icon"/>
-                    <Link to={"/compare-page"} className="mb-0 nav-left-p">
+                    <img
+                      src={compareIMG}
+                      alt="compare"
+                      className="compare-icon"
+                    />
+                    <p className="mb-0 nav-left-p">
                       Compare <br />
                       Products
-                    </Link>
+                    </p>
                   </Link>
                 </div>
                 <div>
                   <Link
-                    to={"/"}
+                    to={"/wish-list"}
                     className="d-flex align-items-center gap-2 text-white"
                   >
-                    <img src={wishIMG} alt="wishlist" className="wishlist-icon"/>
+                    <img
+                      src={wishIMG}
+                      alt="wishlist"
+                      className="wishlist-icon"
+                    />
                     <p className="mb-0 nav-left-p">
                       Wishlist & <br />
                       Favourite
@@ -83,10 +91,14 @@ const Header = () => {
                 </div>
                 <div>
                   <Link
-                    to={"/"}
+                    to={"/login"}
                     className="d-flex align-items-center gap-2 text-white"
                   >
-                    <img src={userAuthIMG} alt="userLogin" className="auth-icon"/>
+                    <img
+                      src={userAuthIMG}
+                      alt="userLogin"
+                      className="auth-icon"
+                    />
                     <p className="mb-0 nav-left-p">
                       Login <br />
                       My Account
@@ -98,7 +110,7 @@ const Header = () => {
                     to={"/"}
                     className="d-flex align-items-center gap-2 text-white"
                   >
-                    <img src={cartIMG} alt="compare" className="cart-icon"/>
+                    <img src={cartIMG} alt="compare" className="cart-icon" />
                     <div className="d-flex flex-column">
                       <span className="badge bg-white text-dark py-1">0</span>
                       <p className="mb-0 nav-left-p">$ 0.00</p>

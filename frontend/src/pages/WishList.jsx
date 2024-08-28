@@ -1,35 +1,35 @@
 import React from "react";
-import { Helmet } from "react-helmet";
-import BreadCrumb from "../components/BreadCrumb";
 import styled from "styled-components";
-import CompareProductCard from "../components/CompareProductCard";
+import BreadCrumb from "../components/BreadCrumb";
+import { Helmet } from "react-helmet";
 import { specialProducts } from "../assets/dummyData";
+import WishListCard from "../components/WishListCard";
 
-const CompareProduct = () => {
+const WishList = () => {
   return (
-    <ComparePage>
+    <WishlistPage>
       <Helmet>
-        <title>Compare Product</title>
+        <title>Wish List</title>
         <meta name="description" content="Our Store" />
       </Helmet>
-      <BreadCrumb title="Compare Product" />
+      <BreadCrumb title="Wishlist" />
 
       <div className="contact-wrapper py-5 home-wrapper">
         <div className="container-xxl">
           <div className="row the-cards">
-            {specialProducts.slice(6, 15).map((prod) => (
+            {specialProducts.slice(12, 19).map((prod) => (
               <div className="col-3 the-card" key={prod.id}>
-                <CompareProductCard prod={prod} />
+                <WishListCard prod={prod} />
               </div>
             ))}
           </div>
         </div>
       </div>
-    </ComparePage>
+    </WishlistPage>
   );
 };
 
-const ComparePage = styled.div`
+const WishlistPage = styled.div`
   width: 100%;
   min-height: 70vh;
   height: 100%;
@@ -43,4 +43,4 @@ const ComparePage = styled.div`
     width: 22.2%;
   }
 `;
-export default CompareProduct;
+export default WishList;

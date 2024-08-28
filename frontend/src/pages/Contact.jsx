@@ -19,7 +19,7 @@ const Contact = () => {
           <div className="row">
             <div className="col-12">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1981.9204483401684!2d3.365876373656716!3d6.541766356433044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8dbc9301a3cf%3A0x63a85b30c97ff4ba!2sPalmgrove!5e0!3m2!1sen!2sng!4v1724801049720!5m2!1sen!2sng"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.304865828484!2d3.277810585139544!3d6.608988905124223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b91003aeb3061%3A0xfd991f79cba90689!2sObilomania!5e0!3m2!1sen!2sng!4v1724804953819!5m2!1sen!2sng"
                 width="100%"
                 height="450"
                 style={{

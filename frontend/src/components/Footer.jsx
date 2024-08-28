@@ -110,10 +110,10 @@ const Footer = () => {
                 <Link to={"/"} className="text-white py-2 mb-0">
                   About Us
                 </Link>
-                <Link to={"/"} className="text-white py-2 mb-0">
+                <Link to={"/login"} className="text-white py-2 mb-0">
                   Login
                 </Link>
-                <Link to={"/"} className="text-white py-2 mb-0">
+                <Link to={"/register"} className="text-white py-2 mb-0">
                   Register
                 </Link>
                 <Link to={"/contact"} className="text-white py-2 mb-0">
