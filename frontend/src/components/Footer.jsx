@@ -55,16 +55,16 @@ const Footer = () => {
                 <Link to={"/"} className="text-white py-2 mb-0">
                   Bumia Store.
                 </Link>
-                <Link to={"/"} className="text-white py-2 mb-0">
+                <p className="text-white py-2 mb-0">
                   N0. 20 Coding Main Street, <br />
                   Conscious State, Nigeria.
-                </Link>
-                <Link to={"/"} className="text-white py-2 mb-0">
+                </p>
+                <p to={"/"} className="text-white py-2 mb-0">
                   +2348033954540
-                </Link>
-                <Link to={"/"} className="text-white py-2 mb-0">
+                </p>
+                <p to={"/"} className="text-white py-2 mb-0">
                   bumiastore@bumiastore.com
-                </Link>
+                </p>
                 <div className="d-flex align-items-center gap-3 social-icons">
                   <Link to={"/"}>
                     <IoLogoInstagram />
@@ -114,9 +114,9 @@ const Footer = () => {
                   Login
                 </Link>
                 <Link to={"/"} className="text-white py-2 mb-0">
-                  REgister
+                  Register
                 </Link>
-                <Link to={"/"} className="text-white py-2 mb-0">
+                <Link to={"/contact"} className="text-white py-2 mb-0">
                   Contact
                 </Link>
                 <Link to={"/"} className="text-white py-2 mb-0">

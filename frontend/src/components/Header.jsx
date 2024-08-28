@@ -62,11 +62,11 @@ const Header = () => {
                     to={"/"}
                     className="d-flex align-items-center gap-2 text-white"
                   >
-                    <img src={compareIMG} alt="compare" />
-                    <p className="mb-0 nav-left-p">
+                    <img src={compareIMG} alt="compare" className="compare-icon"/>
+                    <Link to={"/compare-page"} className="mb-0 nav-left-p">
                       Compare <br />
                       Products
-                    </p>
+                    </Link>
                   </Link>
                 </div>
                 <div>
@@ -74,7 +74,7 @@ const Header = () => {
                     to={"/"}
                     className="d-flex align-items-center gap-2 text-white"
                   >
-                    <img src={wishIMG} alt="wishlist" />
+                    <img src={wishIMG} alt="wishlist" className="wishlist-icon"/>
                     <p className="mb-0 nav-left-p">
                       Wishlist & <br />
                       Favourite
@@ -86,7 +86,7 @@ const Header = () => {
                     to={"/"}
                     className="d-flex align-items-center gap-2 text-white"
                   >
-                    <img src={userAuthIMG} alt="userLogin" />
+                    <img src={userAuthIMG} alt="userLogin" className="auth-icon"/>
                     <p className="mb-0 nav-left-p">
                       Login <br />
                       My Account
@@ -98,7 +98,7 @@ const Header = () => {
                     to={"/"}
                     className="d-flex align-items-center gap-2 text-white"
                   >
-                    <img src={cartIMG} alt="compare" />
+                    <img src={cartIMG} alt="compare" className="cart-icon"/>
                     <div className="d-flex flex-column">
                       <span className="badge bg-white text-dark py-1">0</span>
                       <p className="mb-0 nav-left-p">$ 0.00</p>
@@ -161,7 +161,7 @@ const Header = () => {
                     <NavLink to={"/blog"} className="text-white">
                       Blogs
                     </NavLink>
-                    <NavLink to={"/"} className="text-white">
+                    <NavLink to={"/contact"} className="text-white">
                       Contact
                     </NavLink>
                   </div>
@@ -187,6 +187,25 @@ const NavigationBar = styled.div`
   .header-upper {
     background: var(--bg-one);
     border-bottom: 1px solid var(--bg-one);
+    a {
+      color: white;
+    }
+    .compare-icon {
+      transition: 1s all ease-in-out;
+      &:hover {
+        transition: 1s all ease-in-out;
+        transform: rotate(360deg);
+      }
+    }
+    .wishlist-icon,
+    .auth-icon,
+    .cart-icon {
+      transition: var(--transition);
+      &:hover {
+        transition: var(--transition);
+        transform: scaleX(-1);
+      }
+    }
     .logo {
       color: white;
       span {
@@ -238,8 +257,8 @@ const NavigationBar = styled.div`
       background-color: var(--bg-one);
       color: white;
       font-size: 0.8rem;
-      border-bottom:2px solid var(--bg-three);
-      padding:.8rem;
+      border-bottom: 2px solid var(--bg-three);
+      padding: 0.8rem;
       &:hover {
         background-color: var(--bg-three);
       }

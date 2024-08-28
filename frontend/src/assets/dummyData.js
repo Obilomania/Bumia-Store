@@ -1,3 +1,21 @@
+export const sliderData = [
+  {
+    id: 1,
+    image: "/images/carousel/main-banner-1.jpg",
+    slogan: "AUTHENTICITY AT ITS PEAK",
+    topic: "Samsung Fold",
+    plan:"From &#x20A6;200,000, Payment In Installments",
+  },
+  {
+    id: 2,
+    image: "/images/carousel/main-banner.jpg",
+    slogan: "ALL GROOVY EVERYTHING",
+    topic: "HeadPhones & EarPods",
+    plan:"From &#x20A6;20,000, Payment In Installments",
+  },
+]
+
+
 export const featuredProducts = [
   { id: 1, name: "Samsung Tab 10", brand:"Samsung", image:"/images/tab.jpg", price:"250,000"},
   { id: 2, name: "Google Pixel", brand:"Google", image:"/images/google-pixel.png", price:"245,000"},

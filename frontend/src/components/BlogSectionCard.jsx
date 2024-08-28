@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const BlogSectionCard = (post) => {
+    console.log(post)
   return (
     <BCard>
       <div className="blog-card">
@@ -10,7 +11,7 @@ const BlogSectionCard = (post) => {
           <img src={post.post.image} alt="blogImg" className="img-fluid" />
         </div>
         <div className="blog-card-content">
-          <p className="blog-post-date mt-1">{post.post.postedOn}</p>
+          <p className="blog-post-date mt-1">{post.postedOn}</p>
           <h6 className="blog-post-title ">{post.post.title}</h6>
           <p className="blog-post-desc m-0">{`${post.post.content.slice(
             0,
@@ -40,6 +41,7 @@ const BCard = styled.div`
   }
   .blog-post-title{
     min-height:3rem;
+    color:var(--bg-one);
   } .blog-card-content {
     padding: 1rem;
     line-height:1.5rem;

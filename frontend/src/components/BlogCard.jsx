@@ -1,22 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import blogOneIMG from "../assets/images/blog-1.jpg";
 import { Link } from "react-router-dom";
 
-const BlogCard = () => {
+const BlogCard = ({post}) => {
   return (
     <BCard>
       <div className="blog-card">
         <div className="card-image">
-          <img src={blogOneIMG} alt="blogImg" className="img-fluid" />
+          <img src={post.image} alt="blogImg" className="img-fluid" />
         </div>
         <div className="blog-card-content">
-          <p className="blog-post-date">20 JUNE, 2024</p>
-          <h6 className="blog-post-title">A Beautiful VR world</h6>
-          <p className="blog-post-desc">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
-            natus et voluptatum.
-          </p>
+          <p className="blog-post-date">{post.postedOn}</p>
+          <h6 className="blog-post-title">{post.title}</h6>
+          <p className="blog-post-desc">{`${post.content.slice(0, 50)}...`}</p>
           <Link to="/">READ MORE</Link>
         </div>
       </div>
@@ -35,6 +31,9 @@ const BCard = styled.div`
     width: 100%;
     height: 100%;
     transition: var(--transition);
+  }
+  .blog-post-title{
+    min-height:3rem;
   }
   .blog-card img {
     width: 100%;
