@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import ProductIMG from "../../assets/images/tab.jpg";
 import { FiHeart } from "react-icons/fi";
 import { FaRegEye, FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { IoIosShuffle } from "react-icons/io";
@@ -9,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 const StoreList = ({product}) => {
   const navigate = useNavigate()
-  console.log(product)
   return (
     <StoreProductList>
       <div className="list-img">

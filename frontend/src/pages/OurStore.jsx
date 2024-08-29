@@ -16,7 +16,7 @@ const OurStore = () => {
   };
   const toggleGrid = () => {
     setGridList(true);
-  };
+  }; 
   return (
     <MyStore>
       <Helmet>

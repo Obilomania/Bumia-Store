@@ -20,6 +20,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
 import { useEffect } from "react";
 import ProductDetail from "./pages/Product/ProductDetail";
+import Cart from "./pages/Cart/Cart";
 
 
 
@@ -57,6 +58,7 @@ function App() {
 
             {/* *********AUTHENTICATED USER************** */}
             <Route path="/product/detail/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />} />
 
             {/* ************AUTHENTICATION************* */}
 
