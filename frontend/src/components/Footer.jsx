@@ -22,7 +22,7 @@ const Footer = () => {
               <div className="footer-top-data d-flex gap-5 align-items-center">
                 <img src={newsLetterIMG} alt="newsletterImg" />
                 <h2 className="newsletter mb-0 text-white">
-                  SUBSCIBE TO NEWSLETTER
+                  SUBSCRIBE TO NEWSLETTER
                 </h2>
               </div>
             </div>
@@ -87,19 +87,19 @@ const Footer = () => {
             <div className="col-3">
               <h5 className="text-white mb-3">Information</h5>
               <div className="footer-links d-flex flex-column">
-                <Link to={"/"} className="text-white py-2 mb-0">
+                <Link to={"/privacy-policy"} className="text-white py-2 mb-0">
                   Privacy Policy
                 </Link>
-                <Link to={"/"} className="text-white py-2 mb-0">
+                <Link to={"/refund-policy"} className="text-white py-2 mb-0">
                   Refund Policy
                 </Link>
-                <Link to={"/"} className="text-white py-2 mb-0">
+                <Link to={"/shipping-policy"} className="text-white py-2 mb-0">
                   Shipping Policy
                 </Link>
-                <Link to={"/"} className="text-white py-2 mb-0">
+                <Link to={"/terms"} className="text-white py-2 mb-0">
                   Terms & Conditions
                 </Link>
-                <Link to={"/"} className="text-white py-2 mb-0">
+                <Link to={"/blog"} className="text-white py-2 mb-0">
                   Blog
                 </Link>
               </div>

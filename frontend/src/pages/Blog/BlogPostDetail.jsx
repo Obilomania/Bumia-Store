@@ -53,10 +53,10 @@ const BlogPostDetail = () => {
         <form action="">
           <h5 className="leave-comment">Leave A Comment</h5>
           <div className="inputs">
-            <input type="text" placeholder="Name" />
+            <input type="text" placeholder="Name *" />
             <input type="email" placeholder="Email *" />
           </div>
-          <textarea name="" rows="5" id="" placeholder="Comment"></textarea>
+          <textarea name="" rows="5" id="" placeholder="Comment *"></textarea>
           <button type="submit">Send</button>
         </form>
       </div>

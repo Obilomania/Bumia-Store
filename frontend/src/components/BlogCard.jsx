@@ -13,7 +13,7 @@ const BlogCard = ({post}) => {
           <p className="blog-post-date">{post.postedOn}</p>
           <h6 className="blog-post-title">{post.title}</h6>
           <p className="blog-post-desc">{`${post.content.slice(0, 50)}...`}</p>
-          <Link to="/">READ MORE</Link>
+          <Link to={`/blog/${post.id}`}>READ MORE</Link>
         </div>
       </div>
     </BCard>

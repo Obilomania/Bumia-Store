@@ -37,14 +37,14 @@ const Contact = () => {
                   <div className="form">
                     <h5>Contact</h5>
                     <form action="">
-                      <input type="text" placeholder="Name" />
+                      <input type="text" placeholder="Name *" />
                       <input type="email" placeholder="Email *" />
                       <input type="text" placeholder="Phone Number" />
                       <textarea
                         name=""
                         rows="5"
                         id=""
-                        placeholder="message"
+                        placeholder="message *"
                       ></textarea>
                       <button type="submit">Send</button>
                     </form>
