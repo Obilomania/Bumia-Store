@@ -48,7 +48,6 @@ const OurStore = () => {
                   </div>
                 ) : (
                   <div className="list">
-                    <StoreList />
                     {featuredProducts.map((item) => (
                       <StoreList product={item} key={item.id} />
                     ))}

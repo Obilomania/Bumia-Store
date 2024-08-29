@@ -56,7 +56,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
 
             {/* *********AUTHENTICATED USER************** */}
-            <Route path="/product-detail" element={<ProductDetail />} />
+            <Route path="/product/detail/:id" element={<ProductDetail />} />
 
             {/* ************AUTHENTICATION************* */}
 

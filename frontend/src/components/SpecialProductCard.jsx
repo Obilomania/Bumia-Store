@@ -6,8 +6,10 @@ import { FaRegEye } from "react-icons/fa6";
 import { LiaShoppingBagSolid } from "react-icons/lia";
 import { IoIosShuffle } from "react-icons/io";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { useNavigate } from "react-router-dom";
 
 const SpecialProductCard = ({ product }) => {
+  const navigate = useNavigate()
   return (
     <SpecialProduct>
       <div className="special-product-card">
@@ -33,7 +35,10 @@ const SpecialProductCard = ({ product }) => {
             <p className="one">
               <IoIosShuffle />
             </p>
-            <p className="two">
+            <p
+              className="two"
+              onClick={() => navigate(`/product/detail/${product.id}`)}
+            >
               <FaRegEye />
             </p>
             <p className="three">
@@ -44,8 +49,8 @@ const SpecialProductCard = ({ product }) => {
 
         {/* ****************RIGHT CARD****************** */}
         <div className="right-card">
-                  <p className="brand">{product.brand}</p>
-                  <h6 className="card-heading">{product.name}</h6>
+          <p className="brand">{product.brand}</p>
+          <h6 className="card-heading">{product.name}</h6>
           <div className="star-rating d-flex align-items-center gap-1">
             <FaStar />
             <FaStar />

@@ -5,23 +5,26 @@ import { FiHeart } from "react-icons/fi";
 import { FaRegEye, FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { IoIosShuffle } from "react-icons/io";
 import { LiaShoppingBagSolid } from "react-icons/lia";
+import { useNavigate } from "react-router-dom";
 
-const StoreList = () => {
+const StoreList = ({product}) => {
+  const navigate = useNavigate()
+  console.log(product)
   return (
     <StoreProductList>
       <div className="list-img">
-        <img src={ProductIMG} alt="" />
+        <img src={product?.image} alt="" />
       </div>
       <div className="store-list-content">
         <div className="list-top">
-          <p className="list-brand">SAMSUNG</p>
+          <p className="list-brand">{product.brand}</p>
           <p>
             <span className="percentage">50%</span>
             <FiHeart />
           </p>
         </div>
         <div className="list-middle">
-          <h3 className="filter-title">SAMSUNG TABLET</h3>
+          <h3 className="filter-title">{product.name}</h3>
           <div className="stars">
             <p>
               <FaStar />
@@ -41,12 +44,15 @@ const StoreList = () => {
           </div>
         </div>
         <div className="list-bottom">
-          <p className="list-price">&#x20A6; 250,000</p>
+          <p className="list-price">&#x20A6; {product.price}</p>
           <div className="to-cart">
             <p className="one">
               <IoIosShuffle />
             </p>
-            <p className="two">
+            <p
+              className="two"
+              onClick={() => navigate(`/product/detail/${product.id}`)}
+            >
               <FaRegEye />
             </p>
             <p className="three">
@@ -130,6 +136,7 @@ const StoreProductList = styled.div`
       gap: 2rem;
       p {
         font-size: 1rem;
+        cursor:pointer;
       }
     }
   }

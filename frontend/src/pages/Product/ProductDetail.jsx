@@ -9,13 +9,13 @@ import { FiHeart } from "react-icons/fi";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import { SiMaterialdesignicons } from "react-icons/si";
 import { RxDimensions } from "react-icons/rx";
-import { BsShare } from "react-icons/bs";
 import verveIMG from "../../assets/images/Verve-Logo.png";
 import mastercardIMG from "../../assets/images/mastercard.png";
 import visacardIMG from "../../assets/images/visa card.png";
 import interswitchIMG from "../../assets/images/interswitch.png";
 import opayIMG from "../../assets/images/opay.png";
 import ReviewForm from "./component/ReviewForm";
+import YouMayLike from "./component/YouMayLike";
 
 const ProductDetail = () => {
   return (
@@ -196,7 +196,6 @@ const ProductDetail = () => {
                     </div>
                   </div>
                 </div>
-
               </div>
 
               {/* *****END OF ACCORDION********************* */}
@@ -245,7 +244,8 @@ const ProductDetail = () => {
             Suscipit tenetur ipsum, facilis unde dicta, accusamus dolorem
           </p>
         </div>
-        <ReviewForm/>
+        <ReviewForm />
+        <YouMayLike />
       </div>
     </SingleProduct>
   );
@@ -535,6 +535,5 @@ const SingleProduct = styled.div`
       margin-bottom: 0;
     }
   }
- 
 `;
 export default ProductDetail;

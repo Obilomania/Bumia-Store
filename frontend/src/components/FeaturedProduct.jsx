@@ -5,8 +5,10 @@ import { FiHeart } from "react-icons/fi";
 import { FaRegEye } from "react-icons/fa6";
 import { LiaShoppingBagSolid } from "react-icons/lia";
 import { IoIosShuffle } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const FeaturedProduct = ({ product }) => {
+  const navigate = useNavigate()
   return (
     <FeaturedProductCard>
       <div key={product.id} className="main-card-content">
@@ -36,7 +38,7 @@ const FeaturedProduct = ({ product }) => {
           <p className="one">
             <IoIosShuffle />
           </p>
-          <p className="two">
+          <p className="two" onClick={() => navigate(`/product/detail/${product.id}`)}>
             <FaRegEye />
           </p>
           <p className="three">
