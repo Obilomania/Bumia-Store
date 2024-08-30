@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import BreadCrumb from "../../components/BreadCrumb";
@@ -16,8 +16,22 @@ import interswitchIMG from "../../assets/images/interswitch.png";
 import opayIMG from "../../assets/images/opay.png";
 import ReviewForm from "./component/ReviewForm";
 import YouMayLike from "./component/YouMayLike";
+import TheProductCart from "../../components/TheProductCart";
 
 const ProductDetail = () => {
+  const [theCart, setTheCart] = useState(true);
+  const pushToCart = () => setTheCart(!theCart);
+  useEffect(() => {
+    if (theCart) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [theCart]);
+
   return (
     <SingleProduct>
       <Helmet>
@@ -25,6 +39,11 @@ const ProductDetail = () => {
         <meta name="description" content="Our Store" />
       </Helmet>
       <BreadCrumb title="Product Detail" />
+      {theCart && (
+        <div className="cart-overlay">
+          <TheProductCart pushToCart={pushToCart} />
+        </div>
+      )}
       <div className="contact-wrapper py-5 home-wrapper">
         <div className="container-xxl">
           <div className="row product-content">
@@ -86,7 +105,9 @@ const ProductDetail = () => {
               <div className="product-quantity d-flex align-items-center">
                 <p className="quantity">Quantity</p> &nbsp;{" "}
                 <input type="number" />{" "}
-                <button className="cart">ADD TO CART</button>
+                <button className="cart" onClick={pushToCart}>
+                  ADD TO CART
+                </button>
                 <button className="buy">BUY NOW</button>
               </div>
               <div className="wish-list">
@@ -256,6 +277,15 @@ const SingleProduct = styled.div`
   min-height: 60vh;
   height: 100%;
   background: var(--bg-grey);
+  position: relative;
+  .cart-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+  }
   .the-cards {
     display: flex;
     flex-wrap: wrap;
