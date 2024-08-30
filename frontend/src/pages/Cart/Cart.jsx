@@ -1,18 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import BreadCrumb from "../../components/BreadCrumb";
-import { FaRegTrashCan } from "react-icons/fa6";
-import productImage from "../../assets/images/tab.jpg";
 import CartItem from "./CartItem";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate()
+  const [count, setCount] = useState(1);
+  const addCount = () => {
+    setCount(count + 1);
+  };
+  const reduceCount = () => {
+    if (count <= 1) {
+      setCount(1);
+      return;
+    }
+    setCount(count - 1);
+  };
   return (
     <TheMainCart>
       <Helmet>
         <title>Cart</title>
-        <meta name="description" content="Our Store" />
+        <meta name="description" content="Cart" />
       </Helmet>
       <BreadCrumb title="Cart" />
       <div className="container-xxl">
@@ -23,13 +33,13 @@ const Cart = () => {
             <p className="the-quantity">QUANTITY</p>
             <p className="the-total">TOTAL</p>
           </div>
-          <CartItem />
-          <CartItem />
-          <CartItem />
+          <CartItem addCount={addCount} reduceCount={reduceCount} count={count}/>
+          <CartItem addCount={addCount} reduceCount={reduceCount} count={count}/>
+          <CartItem addCount={addCount} reduceCount={reduceCount} count={count}/>
         </div>
         <div className="checkout-to-action">
           <Link to={"/"} className="left-checkout">
-            Continue Shipping
+            Continue Shopping
           </Link>
           <div className="right-checkout">
             <p className="sub-total">
@@ -38,7 +48,7 @@ const Cart = () => {
             <p className="taxes">
               Taxes and Shipping are calculated at Checkout
             </p>
-            <button>Checkout</button>
+            <button onClick={()=>navigate("/shipping-information")}>Checkout</button>
           </div>
         </div>
       </div>
@@ -100,17 +110,31 @@ const TheMainCart = styled.div`
         font-weight: 500;
       }
     }
-    a,
-    button {
+    a {
       color: white;
       background: var(--bg-one);
       font-size: 0.8rem;
       padding: 0.4rem 1.5rem;
       border-radius: 1rem;
-      width: 10rem;
       transition: var(--transition);
       border: none;
       &:hover {
+        color: white;
+        background: var(--bg-two);
+        transition: var(--transition);
+      }
+    }
+    button {
+      width: 100%;
+      color: black;
+      background: var(--bg-logo);
+      font-size: 0.8rem;
+      padding: 0.4rem 1.5rem;
+      border-radius: 1rem;
+      transition: var(--transition);
+      border: none;
+      &:hover {
+        color: white;
         background: var(--bg-two);
         transition: var(--transition);
       }

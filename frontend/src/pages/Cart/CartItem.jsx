@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FaRegTrashCan } from "react-icons/fa6";
 import productImage from "../../assets/images/tab.jpg";
 
-const CartItem = () => {
+const CartItem = ({ addCount, reduceCount, count }) => {
   return (
     <MyCart>
       <div className="store-wrapper py-5 home-wrapper">
@@ -27,10 +27,15 @@ const CartItem = () => {
               <p className="the-price">&#x20A6; 250,000</p>
               <div className="the-quantity">
                 <div className="counter">
-                  <p className="signs">
-                    <span>+</span> <span>-</span>
-                  </p>
-                  <p className="count">1</p>
+                  <div className="signs">
+                    <button className="add-reduce" onClick={reduceCount}>
+                      -
+                    </button>
+                    <p className="count">{count}</p>
+                    <button className="add-reduce" onClick={addCount}>
+                      +
+                    </button>
+                  </div>
                 </div>
                 <button className="trash-can">
                   <FaRegTrashCan />
@@ -106,27 +111,31 @@ const MyCart = styled.div`
         justify-content: start;
         border: 2px solid var(--bg-grey);
         .counter {
-          background: white;
-          width: 5rem;
-          height: 3rem;
+          /* background: white; */
+          /* width: 5rem;
+          height: 3rem; */
           padding: 0 1rem 0 0.5em;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          overflow: hidden;
+          gap: 1rem;
           .signs {
             font-size: 1rem;
             display: flex;
             align-items: start;
             justify-content: start;
-            flex-direction: column;
-            gap: 0rem;
-            span {
-              border: 2px solid var(--bg-grey);
-              padding: 0.1rem 0.5rem;
+            gap: 1rem;
+            button {
+              width: 2rem;
+              margin-bottom: 0.3rem;
+              border: 1px solid var(--bg-one);
+              padding: 0rem 0.5rem;
+
               cursor: pointer;
               transition: var(--transition);
-              margin: 0;
+              p {
+                font-size: 1.2rem;
+              }
               &:hover {
                 background: var(--bg-logo);
                 transition: var(--transition);
@@ -160,6 +169,5 @@ const MyCart = styled.div`
       }
     }
   }
- 
 `;
 export default CartItem;
