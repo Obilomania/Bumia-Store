@@ -15,7 +15,7 @@ const CompareProduct = () => {
       <BreadCrumb title="Compare Product" />
 
       <div className="contact-wrapper py-5 home-wrapper">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="row the-cards">
             {specialProducts.slice(6, 15).map((prod) => (
               <div className="col-3 the-card" key={prod.id}>

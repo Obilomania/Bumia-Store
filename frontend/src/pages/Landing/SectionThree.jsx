@@ -10,7 +10,7 @@ const SectionThree = () => {
   return (
     <ThirdSection>
       <section className="home-wrapper-1 p-5">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="row">
             <div className="col-12">
               <div className="categories d-flex flex-wrap justify-content-between align-items-center">

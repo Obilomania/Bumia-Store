@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Route Direction lol
-app.use("/api/users", userRoute);
+app.use("/api/authentication", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/coupon", couponRoute);

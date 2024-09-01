@@ -1,17 +1,17 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Header from './Header'
-import Footer from './Footer'
+// import { Outlet } from 'react-router-dom'
+import Header from './Layout/Header'
+// import Footer from './Footer'
 import styled from 'styled-components'
 
 const Layout = () => {
   return (
     <TheMainLayout>
       <Header />
-      <div className="outLet">
+      {/* <div className="outLet">
         <Outlet />
-      </div>
-      <Footer />
+      </div> */}
+      {/* <Footer /> */}
     </TheMainLayout>
   );
 }

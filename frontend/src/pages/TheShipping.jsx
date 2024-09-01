@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const TheShipping = () => {
   return (
     <TheShippingP>
-      <div className="container-xxl">
+      <div className="page-container">
         <div className="row">
           <div className="col-12 terms-content">
             <h3 className="heading">

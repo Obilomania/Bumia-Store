@@ -4,7 +4,7 @@ import styled from "styled-components";
 const TermsAndCondition = () => {
   return (
     <Terms>
-      <div className="container-xxl">
+      <div className="page-container">
         <div className="row">
           <div className="col-12 terms-content">
             <h3 className="heading">

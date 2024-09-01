@@ -18,7 +18,7 @@ const SectionSeven = () => {
   return (
     <SeventhSection>
       <section className="blog-wrapper py-5 home-wrapper-2">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="row">
             <div className="col-12 d-flex align-items-center justify-content-between mb-3">
               <h3 className="section-heading">Special Products</h3>

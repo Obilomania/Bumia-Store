@@ -11,7 +11,7 @@ const SectionOne = () => {
   return (
     <FirstSection>
       <section className="home-wrapper-1 p-5">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="row">
             <div className="col-6">
               <div className="main-banner p-3 position-relative">

@@ -15,7 +15,7 @@ const WishList = () => {
       <BreadCrumb title="Wishlist" />
 
       <div className="contact-wrapper py-5 home-wrapper">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="row the-cards">
             {specialProducts.slice(12, 19).map((prod) => (
               <div className="col-3 the-card" key={prod.id}>

@@ -5,7 +5,7 @@ import { featuredProducts } from "../../assets/dummyData";
 const SectionEight = () => {
   return (
     <EightSection>
-      <div className="container-xxl py-5 nameless-cards">
+      <div className="page-container py-5 nameless-cards">
         {featuredProducts.slice(8, 12).map((product) => (
           <div className="nameless-card " key={product.id}>
             <div className="nameless-content">

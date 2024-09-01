@@ -12,7 +12,7 @@ const NotFound = () => {
       </Helmet>
       {/* <BreadCrumb title="Reset Password" /> */}
 
-      <div className="notfound-container">
+      <div className="notfound-page-container">
               <h1>PAGE NOT FOUND &#128532;</h1>
               <Link to="/">HOME</Link>
       </div>
@@ -27,7 +27,7 @@ const CantFindPage = styled.div`
   height: 100%;
   background: var(--bg-grey);
   position: relative;
-  .notfound-container {
+  .notfound-page-container {
     position: absolute;
     top: 50%;
     left: 50%;

@@ -15,7 +15,7 @@ const Contact = () => {
       </Helmet>
       <BreadCrumb title="Contact Us" />
       <div className="contact-wrapper py-5 home-wrapper">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="row">
             <div className="col-12">
               <iframe

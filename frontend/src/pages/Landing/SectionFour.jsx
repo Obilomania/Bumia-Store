@@ -14,7 +14,7 @@ const SectionFour = () => {
   return (
     <ForthSection>
       <section className="marquee-wrapper py-5">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="row">
             <div className="col-12">
               <div className="marquee-inner-wrapper card-wrapper">

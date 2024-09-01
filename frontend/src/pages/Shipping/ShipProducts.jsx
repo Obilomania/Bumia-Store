@@ -5,7 +5,7 @@ import productImG from "../../assets/images/tab.jpg";
 const ShipProducts = () => {
   return (
     <ShipProd>
-      <div className="img-container">
+      <div className="img-page-container">
         <span className="amount">2</span>
         <div className="p-image">
           <img src={productImG} alt="prod-img" />
@@ -28,7 +28,7 @@ const ShipProd = styled.div`
   position: relative;
   box-shadow: 0 4px 6px -2px #0000001a;
   padding-right:1rem;
-  .img-container {
+  .img-page-container {
     display: flex;
     align-items: center;
     justify-content: space-between;

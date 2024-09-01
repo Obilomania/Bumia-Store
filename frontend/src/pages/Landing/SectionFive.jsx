@@ -7,7 +7,7 @@ const SectionFive = () => {
   return (
     <FifthSection>
       <section className="blog-wrapper py-5 home-wrapper-2">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="col-12">
             <h3 className="section-heading">Latest Blog Post</h3>
           </div>

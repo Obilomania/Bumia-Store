@@ -17,7 +17,7 @@ const SectionSix = () => {
   return (
     <SixthSection>
       <section className="blog-wrapper py-5 home-wrapper-2">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="col-12 d-flex align-items-center justify-content-between">
             <h3 className="section-heading">Featured Products</h3>
             <div className="featured-arrows d-flex align-items-center gap-4">

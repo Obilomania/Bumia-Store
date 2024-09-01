@@ -6,7 +6,7 @@ import Review from "./Review";
 const ReviewForm = () => {
   return (
     <RevForm>
-      <div className="container-xxl">
+      <div className="page-container">
         <div className="row">
           <h5>Reviews</h5>
           <div className="col-12 the-review">

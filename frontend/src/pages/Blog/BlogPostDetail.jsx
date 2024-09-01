@@ -18,7 +18,7 @@ const BlogPostDetail = () => {
         <title>{`Blog Post - ${postDetail.title}`}</title>
         <meta name="description" content="Our Store" />
       </Helmet>
-      <div className="container-xxl">
+      <div className="page-container">
         <div className="row">
           <h3 className="post-heading text-center w-full mt-5">
             {postDetail.title}

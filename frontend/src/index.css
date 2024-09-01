@@ -5,14 +5,14 @@
   box-sizing: border-box;
 }
 :root {
-  --bg-one: #131921;
-  --bg-two: #3b4149;
+  --bg-one: #151c25;
+  --bg-two: #283544;
   --bg-three: #232f3e;
-  --bg-grey:rgba(245, 241, 241,.8);
+  --bg-grey: #F6F6F6;
   --bg-logo: #febd69;
   --bg-logo2: #bf4800;
-  --border-stroke:#ededed;
-  --transition:400ms all ease;
+  --border-stroke: #ededed;
+  --transition: 400ms all ease;
 }
 ::-webkit-scrollbar {
   width: 0.9rem;
@@ -26,12 +26,16 @@
   border-radius: 1rem;
   border: 1px solid var(--bg-logo);
 }
+
 body {
   font-family: "Rubik", sans-serif;
 }
 a {
   text-decoration: none;
   display: inline-block;
+}
+p {
+  margin-bottom: 0;
 }
 .form-control {
   outline: none;
@@ -41,9 +45,54 @@ a {
   box-shadow: none;
   border-color: inherit;
 }
-.section-heading{
-  font-size: 1.5rem;;
+.section-heading {
+  font-size: 1.5rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 1rem;;
+  margin-bottom: 1rem;
+}
+.main-container {
+  padding: 0 8rem;
+}
+.font-small {
+  font-size: 12px;
+}
+.small-heading{
+  font-size: 1rem;
+  font-weight: 500;;
+}
+
+@media screen and (max-width: 1200px) {
+}
+@media screen and (max-width: 900px) {
+  .main-container {
+    padding: 0 1rem;
+  }
+  .font-small {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .main-container {
+    padding: 0 1rem;
+  }
+  .font-small {
+    font-size: 11px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .main-container {
+    padding: 0 1rem;
+  }
+  .font-small {
+    font-size: 9px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .main-container {
+    padding: 0 1rem;
+  }
+  .font-small {
+    font-size: 8px;
+  }
 }

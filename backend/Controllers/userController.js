@@ -11,7 +11,6 @@ const Order = require("../Models/orderModel");
 
 const registerUser = asyncHandler(async (req, res) => {
   const { firstname, lastname, email, password, phone } = req.body;
-
   //Validation
   if (!firstname || !lastname || !phone || !email || !password) {
     res.status(400);
@@ -500,7 +499,7 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
   const updateOrder = await Order.findByIdAndUpdate(
     { _id: id },
     {
-      orderStatus : status,
+      orderStatus: status,
       paymentIntent: {
         status: status,
       },

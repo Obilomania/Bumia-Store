@@ -6,7 +6,7 @@ import FeaturedProduct from "../../../components/FeaturedProduct";
 const YouMayLike = () => {
   return (
     <YouMay>
-      <div className="container-xxl py-5">
+      <div className="page-container py-5">
         <div className="row">
           <h5>YOU MAY ALSO LIKE</h5>
           <div className="col-12 you-like mt-1">

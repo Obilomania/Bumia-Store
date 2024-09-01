@@ -19,7 +19,7 @@ import YouMayLike from "./component/YouMayLike";
 import TheProductCart from "../../components/TheProductCart";
 
 const ProductDetail = () => {
-  const [theCart, setTheCart] = useState(true);
+  const [theCart, setTheCart] = useState(false);
   const pushToCart = () => setTheCart(!theCart);
   useEffect(() => {
     if (theCart) {
@@ -45,7 +45,7 @@ const ProductDetail = () => {
         </div>
       )}
       <div className="contact-wrapper py-5 home-wrapper">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="row product-content">
             <div className="col-6 product-image">
               <div className="main-image">
@@ -244,7 +244,7 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
-        <div className="description container-xxl py-5">
+        <div className="description page-container py-5">
           <h5>Description</h5>
           <p className="desc-content">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Id incidunt

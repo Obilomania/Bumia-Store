@@ -10,10 +10,10 @@ const SectionTwo = () => {
   return (
     <SecondSection>
       <section className="home-wrapper-1 p-5">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="row">
             <div className="col-12">
-              <div className="services-container d-flex align-items-center justify-content-between">
+              <div className="services-page-container d-flex align-items-center justify-content-between">
                 <div className="one-service d-flex align-items-center gap-3">
                   <img src={shippingIcon} alt="shippingIcon" />
                   <div className="one-service-content">
@@ -62,7 +62,7 @@ const SecondSection = styled.div`
   width: 100%;
   height: 100%;
   background: var(--bg-grey);
-  .services-container{
+  .services-page-container{
     padding:0 1rem;
   } .one-service {
     img {

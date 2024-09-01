@@ -15,7 +15,7 @@ const Blogs = () => {
       <BreadCrumb title="Blog" />
 
       <div className="store-wrapper py-5 home-wrapper">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="row">
             <div className="col-12">
               <div className="blog-cards">

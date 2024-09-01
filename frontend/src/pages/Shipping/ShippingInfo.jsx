@@ -18,7 +18,7 @@ const ShippingInfo = () => {
           ? "Shipping Information"
           : "Confirm Shipping Information"}
       </h3>
-      <div className="container-xxl shipping-container">
+      <div className="page-container shipping-page-container">
         {editShippingInfo ? (
           <div className="contact-info">
             <h5 className="info-heading mb-4">Contact Information</h5>
@@ -137,7 +137,7 @@ const ShippingAddress = styled.div`
   min-height: 70vh;
   height: fit-content;
   background: var(--bg-grey);
-  .shipping-container {
+  .shipping-page-container {
     width: 100%;
     display: flex;
     align-items: start;

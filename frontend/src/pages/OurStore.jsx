@@ -25,7 +25,7 @@ const OurStore = () => {
       </Helmet>
       <BreadCrumb title="Our Store" />
       <div className="store-wrapper py-5 home-wrapper">
-        <div className="container-xxl">
+        <div className="page-container">
           <div className="row">
             <div className="col-3">
               <div className="filter-card mb-3">

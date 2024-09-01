@@ -25,7 +25,7 @@ const Cart = () => {
         <meta name="description" content="Cart" />
       </Helmet>
       <BreadCrumb title="Cart" />
-      <div className="container-xxl">
+      <div className="page-container">
         <div className="cart-list">
           <div className="list-headings">
             <p className="the-title">PRODUCT</p>
