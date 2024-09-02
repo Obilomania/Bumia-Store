@@ -5,10 +5,12 @@ import { BsChevronDown } from "react-icons/bs";
 import catMenuIMG from "../../assets/images/menu.svg";
 import StoreDropDown from "./StoreDropDown";
 import SpecialDropdown from "./SpecialDropdown";
+import CategoriesDropdown from "./CategoriesDropdown";
 
 const BottomeHeader = () => {
   const [ourStoreHover, setOurStoreHover] = useState(false);
   const [specialHover, setSpecialHover] = useState(false);
+  const [categoryHover, setCategoryHover] = useState(false);
   const HoverStoreEnter = () => {
     setOurStoreHover(true);
   };
@@ -20,6 +22,12 @@ const BottomeHeader = () => {
   };
   const HoverSpecialLeave = () => {
     setSpecialHover(false);
+  };
+  const HoverCategoryEnter = () => {
+    setCategoryHover(true);
+  };
+  const HoverCategoryLeave = () => {
+    setCategoryHover(false);
   };
   return (
     <HeaderBottom>
@@ -58,7 +66,11 @@ const BottomeHeader = () => {
               <BsChevronDown />
             </Link>
           </li>
-          <li>
+          <li
+            className="our-special"
+            onMouseEnter={HoverCategoryEnter}
+            onMouseLeave={HoverCategoryLeave}
+          >
             <Link>
               CATEGORIES <span className="hot">HOT</span> &nbsp;{" "}
               <BsChevronDown />
@@ -92,6 +104,12 @@ const BottomeHeader = () => {
         <SpecialDropdown
           specialHover={specialHover}
           setSpecialHover={setSpecialHover}
+        />
+      </div>
+      <div className="categories-dropdown">
+        <CategoriesDropdown
+          categoryHover={categoryHover}
+          setCategoryHover={setCategoryHover}
         />
       </div>
     </HeaderBottom>
@@ -166,6 +184,15 @@ const HeaderBottom = styled.div`
     padding: 0 8rem;
   }
   .special-dropdown-close {
+    width: 100%;
+    display: none;
+  }
+  .categories-dropdown {
+    width: 100%;
+    position: absolute;
+    padding: 0 8rem;
+  }
+  .categories-dropdown-close {
     width: 100%;
     display: none;
   }

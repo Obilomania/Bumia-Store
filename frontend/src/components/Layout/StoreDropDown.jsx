@@ -22,7 +22,7 @@ const StoreDropDown = ({ setOurStoreHover, ourStoreHover }) => {
         onMouseLeave={HoverStoreLeave}
       >
         <div className="appliances">
-          <p onClick={() => navigate("/")} className="small-heading mb-3">
+          <p onClick={() => navigate("/")} className="small-heading mb-2">
             Appliances
           </p>
           <p onClick={() => navigate("/")} className="font-small mb-2">
@@ -42,7 +42,7 @@ const StoreDropDown = ({ setOurStoreHover, ourStoreHover }) => {
           </p>
         </div>
         <div className="phones">
-          <p onClick={() => navigate("/")} className="small-heading mb-3">
+          <p onClick={() => navigate("/")} className="small-heading mb-2">
             Phones
           </p>
           <p onClick={() => navigate("/")} className="font-small mb-2">
