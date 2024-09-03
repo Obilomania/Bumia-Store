@@ -254,6 +254,7 @@ const TheFooter = styled.div`
       display: flex;
       flex-wrap: wrap;
       align-items: start;
+      flex-direction:row-reverse;
       gap: 1.5rem;
       h5 {
         font-size: 1rem;

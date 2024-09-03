@@ -332,6 +332,7 @@ const HeaderMiddle = styled.div`
         align-items: center;
         justify-content: space-between;
         font-size:1rem;
+        margin-bottom:.5rem;
         .hamburger {
           font-size: 1.5rem;
           margin-right: 0.8rem;

@@ -62,9 +62,10 @@ const SecondSection = styled.div`
   width: 100%;
   height: 100%;
   background: var(--bg-grey);
-  .services-page-container{
-    padding:0 1rem;
-  } .one-service {
+  .services-page-container {
+    padding: 0 8rem;
+  }
+  .one-service {
     img {
       width: 1.8rem;
     }
@@ -74,6 +75,33 @@ const SecondSection = styled.div`
     p {
       font-size: 0.8rem;
     }
+  }
+  @media screen and (max-width: 1200px) {
+  }
+  @media screen and (max-width: 900px) {
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    height: 100%;
+    background: var(--bg-grey);
+    .services-page-container {
+      padding: 0 1rem;
+    }
+    .one-service {
+      img {
+        width: 1.8rem;
+      }
+      h6 {
+        font-size: 0.8rem;
+      }
+      p {
+        font-size: 0.8rem;
+      }
+    }
+  }
+  @media screen and (max-width: 420px) {
+  }
+  @media screen and (max-width: 350px) {
   }
 `;
 export default SectionTwo;
