@@ -5,10 +5,11 @@ import compareIMG from "../../assets/images/compare.svg";
 import wishIMG from "../../assets/images/wishlist.svg";
 import userAuthIMG from "../../assets/images/user.svg";
 import cartIMG from "../../assets/images/cart.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMenuOutline } from "react-icons/io5";
 
 const MiddleHeader = ({ toggleNavReveal }) => {
+  const navigate = useNavigate()
   return (
     <HeaderMiddle>
       <div className="main-container middle-content">
@@ -27,28 +28,28 @@ const MiddleHeader = ({ toggleNavReveal }) => {
           </button>
         </div>
         <div className="left-wing">
-          <Link to={"/"} className="compare">
+          <Link to={"/compare-page"} className="compare">
             <img src={compareIMG} alt="compare-img" />
             <div className="write-up">
               <p className="font-small">Compare</p>
               <p className="font-small">Products</p>
             </div>
           </Link>
-          <Link to={"/"} className="wishlist">
+          <Link to={"/wish-list"} className="wishlist">
             <img src={wishIMG} alt="compare-img" />
             <div className="write-up">
               <p className="font-small">Favourite</p>
               <p className="font-small">Wishlist</p>
             </div>
           </Link>
-          <Link to={"/"} className="login">
+          <Link to={"/account/login"} className="login">
             <img src={userAuthIMG} alt="compare-img" />
             <div className="write-up">
               <p className="font-small">Log In</p>
               <p className="font-small">My Account</p>
             </div>
           </Link>
-          <Link to={"/"} className="cart">
+          <Link to={"/cart"} className="cart">
             <img src={cartIMG} alt="compare-img" />
             <div className="write-up">
               <p className="font-small cart-number">0</p>
@@ -69,11 +70,27 @@ const MiddleHeader = ({ toggleNavReveal }) => {
           </Link>
         </div>
         <div className="nav-icons">
-          <img src={compareIMG} alt="nav-ions" />
-          <img src={wishIMG} alt="nav-ions" />
-          <img src={userAuthIMG} alt="nav-ions" />
+          <img
+            src={compareIMG}
+            alt="nav-ions"
+            onClick={() => navigate("/compare-page")}
+          />
+          <img
+            src={wishIMG}
+            alt="nav-ions"
+            onClick={() => navigate("/wish-list")}
+          />
+          <img
+            src={userAuthIMG}
+            alt="nav-ions"
+            onClick={() => navigate("/account/login")}
+          />
           <div className="cart-img">
-            <img src={cartIMG} alt="nav-ions" />
+            <img
+              src={cartIMG}
+              alt="nav-ions"
+              onClick={() => navigate("/cart")}
+            />
             <span>0</span>
           </div>{" "}
         </div>

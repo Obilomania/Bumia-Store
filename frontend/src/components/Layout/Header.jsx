@@ -8,7 +8,11 @@ import MobileNavBar from "./MobileView/MobileNavBar";
 const Header = () => {
   const [navReveal, setNavReveal] = useState(false);
   const toggleNavReveal = () => setNavReveal(!navReveal);
-
+if (navReveal) {
+  document.body.style.overflow = "hidden";
+} else {
+  document.body.style.overflow = "auto";
+}
   return (
     <HeadNavigation>
       <TopHeader />

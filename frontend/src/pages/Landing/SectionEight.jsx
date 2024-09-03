@@ -30,12 +30,13 @@ const EightSection = styled.div`
   width: 100%;
   height: 100%;
   background: var(--bg-grey);
+  padding: 0rem 8rem;
   .nameless-cards {
     display: flex;
     align-items: center;
     justify-content: space-between;
     .nameless-card {
-        border-radius:.5rem;
+      border-radius: 0.5rem;
       box-shadow: 0 0 10px #0000001a;
       width: calc(100% / 4.2);
       height: 35vh;
@@ -65,7 +66,7 @@ const EightSection = styled.div`
         padding: 0.5rem 1rem;
         border-radius: 1rem;
         transition: 600ms all ease;
-        opacity:.5;
+        opacity: 0.5;
       }
       img {
         position: absolute;
@@ -98,7 +99,7 @@ const EightSection = styled.div`
           z-index: 3;
           border-radius: 1rem;
           transition: 600ms all ease;
-          opacity:1;
+          opacity: 1;
         }
         .nameless-content {
           position: absolute;
@@ -140,6 +141,21 @@ const EightSection = styled.div`
         }
       }
     }
+  }
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
+  @media screen and (max-width: 420px) {
+    display: none;
+  }
+  @media screen and (max-width: 350px) {
+    display: none;
   }
 `;
 export default SectionEight;
