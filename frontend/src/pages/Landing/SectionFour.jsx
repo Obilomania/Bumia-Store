@@ -41,11 +41,72 @@ const ForthSection = styled.div`
   width: 100%;
   height: 100%;
   background: var(--bg-grey);
+  padding: 0 8rem;
   .card-wrapper {
     background: white;
     box-shadow: 0 0 10px #0000001a;
     padding: 1rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
+  }
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+  height: 100%;
+  background: var(--bg-grey);
+  padding: 1rem;
+  .card-wrapper {
+    background: white;
+    box-shadow: 0 0 10px #0000001a;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  }
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  height: 100%;
+  background: var(--bg-grey);
+  padding: 1rem;
+  .card-wrapper {
+    background: white;
+    box-shadow: 0 0 10px #0000001a;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  height: 100%;
+  background: var(--bg-grey);
+  padding: 1rem;
+  .card-wrapper {
+    background: white;
+    box-shadow: 0 0 10px #0000001a;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  }
+  @media screen and (max-width: 420px) {
+    width: 100%;
+  height: 100%;
+  background: var(--bg-grey);
+  padding: 1rem;
+  .card-wrapper {
+    background: white;
+    box-shadow: 0 0 10px #0000001a;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  }
+  @media screen and (max-width: 350px) {
+    width: 100%;
+  height: 100%;
+  background: var(--bg-grey);
+  padding: 1rem;
+  .card-wrapper {
+    background: white;
+    box-shadow: 0 0 10px #0000001a;
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
   }
 `;
 export default SectionFour;

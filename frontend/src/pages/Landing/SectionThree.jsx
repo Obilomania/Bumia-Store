@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import cameraIMG from "../../assets/images/camera.jpg"
-import tvIMG from "../../assets/images/tv.jpg"
-import watchIMG from "../../assets/images/watch.jpg"
-import musGameIMG from "../../assets/images/headphone.jpg"
-
+import cameraIMG from "../../assets/images/camera.jpg";
+import tvIMG from "../../assets/images/tv.jpg";
+import watchIMG from "../../assets/images/watch.jpg";
+import musGameIMG from "../../assets/images/headphone.jpg";
 
 const SectionThree = () => {
   return (
@@ -70,7 +69,6 @@ const SectionThree = () => {
                   </div>
                   <img src={musGameIMG} alt="cameraImg" />
                 </div>
-                
               </div>
             </div>
           </div>
@@ -84,11 +82,12 @@ const ThirdSection = styled.div`
   width: 100%;
   height: 100%;
   background: var(--bg-grey);
+  padding:0 5rem;
   .categories {
     background: white;
     box-shadow: 0 0 10px #0000001a;
     padding: 1rem;
-    border-radius: .8rem;
+    border-radius: 0.8rem;
 
     img {
       width: 110px;
@@ -117,6 +116,21 @@ const ThirdSection = styled.div`
     border-right: 1px solid var(--border-stroke);
     border-right: 1px solid var(--border-stroke);
     padding: 0rem 0.5rem;
+  }
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
+  @media screen and (max-width: 420px) {
+    display: none;
+  }
+  @media screen and (max-width: 350px) {
+    display: none;
   }
 `;
 export default SectionThree;

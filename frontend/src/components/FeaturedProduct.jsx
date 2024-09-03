@@ -52,7 +52,7 @@ const FeaturedProduct = ({ product }) => {
 
 const FeaturedProductCard = styled.div`
   width: 16%;
-  min-height:18rem;
+  min-height: 18rem;
   background-color: white;
   border-radius: 0.5rem;
   padding: 0;
@@ -74,7 +74,7 @@ const FeaturedProductCard = styled.div`
       .three {
         font-size: 1rem;
         margin-bottom: 0;
-        padding: 0.2rem  0.2rem;
+        padding: 0.2rem 0.2rem;
         cursor: pointer;
         transition: var(--transition);
         &:hover {
@@ -83,7 +83,7 @@ const FeaturedProductCard = styled.div`
           cursor: pointer;
           background: var(--bg-logo);
           border-radius: 100%;
-          padding: 0.2rem  0.2rem;
+          padding: 0.2rem 0.2rem;
           transition: var(--transition);
         }
       }
@@ -105,7 +105,7 @@ const FeaturedProductCard = styled.div`
   .product-brand {
     font-size: 0.8rem;
     margin-bottom: 0.5rem;
-    color:var(--bg-logo2);
+    color: var(--bg-logo2);
   }
   .product-image {
     width: 100%;
@@ -129,8 +129,8 @@ const FeaturedProductCard = styled.div`
       color: gold;
     }
   }
-  .product-title{
-    min-height:3rem;
+  .product-title {
+    min-height: 3rem;
   }
   .discount-favourite {
     width: 100%;
@@ -151,6 +151,220 @@ const FeaturedProductCard = styled.div`
       font-size: 1rem;
       letter-spacing: 1px;
     }
+  }
+  @media screen and (max-width: 1200px) {
+  }
+  @media screen and (max-width: 900px) {
+  }
+  @media screen and (max-width: 600px) {
+    width: 48%;
+    min-height: 18rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0;
+    box-shadow: 0 0 10px #0000001a;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    .main-card-content {
+      width: 100%;
+      .add-to-cart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        gap: 1rem;
+        right: -5rem;
+        top: 3rem;
+        .one,
+        .two,
+        .three {
+          font-size: 1rem;
+          margin-bottom: 0;
+          padding: 0.2rem 0.2rem;
+          cursor: pointer;
+          transition: var(--transition);
+          &:hover {
+            font-size: 1rem;
+            margin-bottom: 0;
+            cursor: pointer;
+            background: var(--bg-logo);
+            border-radius: 100%;
+            padding: 0.2rem 0.2rem;
+            transition: var(--transition);
+          }
+        }
+      }
+
+      &:hover {
+        .add-to-cart {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: absolute;
+          gap: 1rem;
+          right: 1rem;
+          top: 3rem;
+          transition: var(--transition);
+        }
+      }
+    }
+    .product-brand {
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+      color: var(--bg-logo2);
+    }
+    .product-image {
+      width: 100%;
+      height: 100%;
+      transition: var(--transition);
+      p {
+        font-size: 0.8rem;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .product-price {
+      font-size: 0.8rem;
+    }
+    .card-content {
+      padding: 0 1rem;
+      .star-rating {
+        font-size: 0.8rem;
+        margin-bottom: 0.6rem;
+        color: gold;
+      }
+    }
+    .product-title {
+      min-height: 3rem;
+    }
+    .discount-favourite {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+      position: absolute;
+      top: 1rem;
+      .percentage {
+        font-size: 0.6rem;
+        font-weight: bolder;
+        background: var(--bg-logo);
+        padding: 0.2rem;
+        border-radius: 0.5rem;
+      }
+      p {
+        font-size: 1rem;
+        letter-spacing: 1px;
+      }
+    }
+  }
+  @media screen and (max-width: 420px) {
+    width: 48%;
+    min-height: 18rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0;
+    box-shadow: 0 0 10px #0000001a;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    .main-card-content {
+      width: 100%;
+      .add-to-cart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        gap: 1rem;
+        right: -5rem;
+        top: 3rem;
+        .one,
+        .two,
+        .three {
+          font-size: 1rem;
+          margin-bottom: 0;
+          padding: 0.2rem 0.2rem;
+          cursor: pointer;
+          transition: var(--transition);
+          &:hover {
+            font-size: 1rem;
+            margin-bottom: 0;
+            cursor: pointer;
+            background: var(--bg-logo);
+            border-radius: 100%;
+            padding: 0.2rem 0.2rem;
+            transition: var(--transition);
+          }
+        }
+      }
+
+      &:hover {
+        .add-to-cart {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: absolute;
+          gap: 1rem;
+          right: 1rem;
+          top: 3rem;
+          transition: var(--transition);
+        }
+      }
+    }
+    .product-brand {
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+      color: var(--bg-logo2);
+    }
+    .product-image {
+      width: 100%;
+      height: 100%;
+      transition: var(--transition);
+      p {
+        font-size: 0.8rem;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .product-price {
+      font-size: 0.8rem;
+    }
+    .card-content {
+      padding: 0 1rem;
+      .star-rating {
+        font-size: 0.8rem;
+        margin-bottom: 0.6rem;
+        color: gold;
+      }
+    }
+    .product-title {
+      min-height: 3rem;
+    }
+    .discount-favourite {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+      position: absolute;
+      top: 1rem;
+      .percentage {
+        font-size: 0.6rem;
+        font-weight: bolder;
+        background: var(--bg-logo);
+        padding: 0.2rem;
+        border-radius: 0.5rem;
+      }
+      p {
+        font-size: 1rem;
+        letter-spacing: 1px;
+      }
+    }
+  }
+  @media screen and (max-width: 350px) {
   }
 `;
 export default FeaturedProduct;
