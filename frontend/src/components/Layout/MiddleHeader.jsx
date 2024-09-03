@@ -331,6 +331,7 @@ const HeaderMiddle = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
+        font-size:1rem;
         .hamburger {
           font-size: 1.5rem;
           margin-right: 0.8rem;
@@ -397,6 +398,7 @@ const HeaderMiddle = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
+        font-size: 1rem;
         .hamburger {
           font-size: 1.5rem;
           margin-right: 0.8rem;
@@ -417,9 +419,9 @@ const HeaderMiddle = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 1rem;
+        gap: 0.5rem;
         img {
-          width: 1.5rem;
+          width: 1rem;
         }
         .cart-img {
           position: relative;

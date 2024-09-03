@@ -214,14 +214,14 @@ const HeaderBottom = styled.div`
           background: #199588;
           padding: 1.5px 0.3rem;
           border-radius: 0.3rem;
-          margin-left:.5rem;
+          margin-left: 0.5rem;
         }
         .hot {
           font-size: 0.6rem;
           background: #e62a65;
           padding: 1.5px 0.3rem;
           border-radius: 0.3rem;
-          margin-left:.5rem;
+          margin-left: 0.5rem;
         }
         .our-store,
         .our-special {
@@ -404,7 +404,7 @@ const HeaderBottom = styled.div`
         align-items: center;
         justify-content: center;
         input {
-          width: 60%;
+          width: 100%;
           border-top-left-radius: 0.3rem;
           border-bottom-left-radius: 0.3rem;
           padding: 9px 15px;
@@ -450,7 +450,7 @@ const HeaderBottom = styled.div`
         align-items: center;
         justify-content: center;
         input {
-          width: 60%;
+          width: 100%;
           border-top-left-radius: 0.3rem;
           border-bottom-left-radius: 0.3rem;
           padding: 9px 15px;
@@ -496,7 +496,7 @@ const HeaderBottom = styled.div`
         align-items: center;
         justify-content: center;
         input {
-          width: 60%;
+          width: 100%;
           border-top-left-radius: 0.3rem;
           border-bottom-left-radius: 0.3rem;
           padding: 9px 15px;
