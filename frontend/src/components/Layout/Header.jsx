@@ -8,6 +8,7 @@ import MobileNavBar from "./MobileView/MobileNavBar";
 const Header = () => {
   const [navReveal, setNavReveal] = useState(false);
   const toggleNavReveal = () => setNavReveal(!navReveal);
+  console.log(navReveal)
   return (
     <HeadNavigation>
       <TopHeader />
@@ -30,7 +31,7 @@ const HeadNavigation = styled.div`
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    display:none;
+    display: none;
   }
   @media screen and (max-width: 1200px) {
     position: relative;
@@ -41,7 +42,7 @@ const HeadNavigation = styled.div`
       left: 0;
       width: 100%;
       height: 100vh;
-      /* overflow-y: scroll; */
+      display: block;
     }
   }
   @media screen and (max-width: 900px) {
@@ -53,7 +54,7 @@ const HeadNavigation = styled.div`
       left: 0;
       width: 100%;
       height: 100vh;
-      /* overflow-y: scroll; */
+      display: block;
     }
   }
   @media screen and (max-width: 600px) {
@@ -65,7 +66,7 @@ const HeadNavigation = styled.div`
       left: 0;
       width: 100%;
       height: 100vh;
-      /* overflow-y: scroll; */
+      display: block;
     }
   }
   @media screen and (max-width: 420px) {
@@ -77,7 +78,7 @@ const HeadNavigation = styled.div`
       left: 0;
       width: 100%;
       height: 100vh;
-      /* overflow-y: scroll; */
+      display: block;
     }
   }
   @media screen and (max-width: 350px) {
@@ -89,7 +90,7 @@ const HeadNavigation = styled.div`
       left: 0;
       width: 100%;
       height: 100vh;
-      /* overflow-y: scroll; */
+      display: block;
     }
   }
 `;

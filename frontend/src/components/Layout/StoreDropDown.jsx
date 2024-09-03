@@ -96,6 +96,9 @@ const StoreDwopdown = styled.div`
     display: flex;
     align-items: start;
     justify-content: space-between;
+    position:relative;
+    z-index:100;
+    background: white;
     .appliances,
     .phones {
       p {

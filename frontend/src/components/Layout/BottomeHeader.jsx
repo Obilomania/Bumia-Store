@@ -169,7 +169,10 @@ const HeaderBottom = styled.div`
   width: 100%;
   background: var(--bg-two);
   color: white;
-  padding: 1rem 0;
+  padding: 0rem 0;
+  position: relative;
+  z-index: 100;
+
   .bottom-mobile-content {
     display: none;
   }
@@ -201,18 +204,24 @@ const HeaderBottom = styled.div`
         margin-bottom: 0;
         a {
           color: white;
+          height: 5vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .sale {
           font-size: 0.6rem;
           background: #199588;
-          padding: 3px 0.3rem;
+          padding: 1.5px 0.3rem;
           border-radius: 0.3rem;
+          margin-left:.5rem;
         }
         .hot {
           font-size: 0.6rem;
           background: #e62a65;
-          padding: 3px 0.3rem;
+          padding: 1.5px 0.3rem;
           border-radius: 0.3rem;
+          margin-left:.5rem;
         }
         .our-store,
         .our-special {
@@ -225,6 +234,7 @@ const HeaderBottom = styled.div`
     width: 100%;
     position: absolute;
     padding: 0 8rem;
+    z-index: 20;
   }
   .ourstore-dropdown-close {
     width: 100%;

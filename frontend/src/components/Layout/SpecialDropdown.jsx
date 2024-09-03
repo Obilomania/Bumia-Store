@@ -58,7 +58,7 @@ const SpecialMenu = styled.div`
     border-radius: 0.3rem;
     padding: 2rem 1.5rem;
     color: var(--bg-one);
-    /* background-color: var(--bg-grey); */
+    background-color: var(--bg-grey);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;

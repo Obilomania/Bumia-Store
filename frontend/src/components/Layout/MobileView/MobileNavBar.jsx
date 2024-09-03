@@ -152,7 +152,6 @@ const MobileNavBar = ({navReveal, toggleNavReveal}) => {
 const ResponsiveNav = styled.div`
   width: 100%;
   height: 100%;
-  overflow: scroll;
   .overlay {
     width: 100%;
     height: 100vh;
@@ -160,7 +159,7 @@ const ResponsiveNav = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 100;
     transition: 200ms all ease-in-out;
   }
   .overlay-close-close {
@@ -179,7 +178,7 @@ const ResponsiveNav = styled.div`
     position: relative;
     top: 0;
     left: 0;
-    z-index: 20;
+    z-index: 1000;
     color: var(--bg-one);
     background: white;
     overflow: hidden;

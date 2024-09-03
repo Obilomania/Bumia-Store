@@ -233,6 +233,8 @@ const DropDownTopDeals = styled.div`
     align-items: start;
     justify-content: space-between;
     padding-top: 1rem;
+    background: white;
+
     .left {
       height: 100%;
       width: 50%;

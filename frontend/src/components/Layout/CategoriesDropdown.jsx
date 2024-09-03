@@ -222,6 +222,7 @@ const DropDownCategory = styled.div`
     justify-content: space-between;
     padding-top: 1rem;
     .left {
+      background: white;
       height: 100%;
       width: 50%;
       padding: 1rem 1.5rem;
