@@ -293,21 +293,22 @@ const HeaderBottom = styled.div`
     }
     .bottom-mobile-content {
       display: block;
-      width:100%;
+      width: 100%;
+      position: relative;
+      z-index: 10;
       .search {
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content:center;
+        justify-content: center;
         input {
-          width:60%;
+          width: 60%;
           border-top-left-radius: 0.3rem;
           border-bottom-left-radius: 0.3rem;
           padding: 9px 15px;
           height: 36px;
           border: none;
           outline: none;
-          
         }
         button {
           width: 10%;
@@ -319,7 +320,7 @@ const HeaderBottom = styled.div`
           border-bottom-right-radius: 0.3rem;
           transition: var(--transition);
           &:hover {
-            border: 2px solid var(--bg-two);
+            border: none;
             transition: var(--transition);
             background: var(--bg-two);
             color: white;
@@ -338,21 +339,22 @@ const HeaderBottom = styled.div`
     }
     .bottom-mobile-content {
       display: block;
-      width:100%;
+      width: 100%;
+      position: relative;
+      z-index: 10;
       .search {
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content:center;
+        justify-content: center;
         input {
-          width:60%;
+          width: 60%;
           border-top-left-radius: 0.3rem;
           border-bottom-left-radius: 0.3rem;
           padding: 9px 15px;
           height: 36px;
           border: none;
           outline: none;
-          
         }
         button {
           width: 10%;
@@ -364,7 +366,7 @@ const HeaderBottom = styled.div`
           border-bottom-right-radius: 0.3rem;
           transition: var(--transition);
           &:hover {
-            border: 2px solid var(--bg-two);
+            border: none;
             transition: var(--transition);
             background: var(--bg-two);
             color: white;
@@ -383,21 +385,22 @@ const HeaderBottom = styled.div`
     }
     .bottom-mobile-content {
       display: block;
-      width:100%;
+      width: 100%;
+      position: relative;
+      z-index: 10;
       .search {
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content:center;
+        justify-content: center;
         input {
-          width:60%;
+          width: 60%;
           border-top-left-radius: 0.3rem;
           border-bottom-left-radius: 0.3rem;
           padding: 9px 15px;
           height: 36px;
           border: none;
           outline: none;
-          
         }
         button {
           width: 10%;
@@ -409,7 +412,7 @@ const HeaderBottom = styled.div`
           border-bottom-right-radius: 0.3rem;
           transition: var(--transition);
           &:hover {
-            border: 2px solid var(--bg-two);
+            border: none;
             transition: var(--transition);
             background: var(--bg-two);
             color: white;
@@ -428,21 +431,22 @@ const HeaderBottom = styled.div`
     }
     .bottom-mobile-content {
       display: block;
-      width:100%;
+      width: 100%;
+      position: relative;
+      z-index: 10;
       .search {
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content:center;
+        justify-content: center;
         input {
-          width:60%;
+          width: 60%;
           border-top-left-radius: 0.3rem;
           border-bottom-left-radius: 0.3rem;
           padding: 9px 15px;
           height: 36px;
           border: none;
           outline: none;
-          
         }
         button {
           width: 10%;
@@ -454,7 +458,7 @@ const HeaderBottom = styled.div`
           border-bottom-right-radius: 0.3rem;
           transition: var(--transition);
           &:hover {
-            border: 2px solid var(--bg-two);
+            border: none;
             transition: var(--transition);
             background: var(--bg-two);
             color: white;
@@ -473,21 +477,22 @@ const HeaderBottom = styled.div`
     }
     .bottom-mobile-content {
       display: block;
-      width:100%;
+      width: 100%;
+      position: relative;
+      z-index: 10;
       .search {
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content:center;
+        justify-content: center;
         input {
-          width:60%;
+          width: 60%;
           border-top-left-radius: 0.3rem;
           border-bottom-left-radius: 0.3rem;
           padding: 9px 15px;
           height: 36px;
           border: none;
           outline: none;
-          
         }
         button {
           width: 10%;
@@ -499,7 +504,7 @@ const HeaderBottom = styled.div`
           border-bottom-right-radius: 0.3rem;
           transition: var(--transition);
           &:hover {
-            border: 2px solid var(--bg-two);
+            border: none;
             transition: var(--transition);
             background: var(--bg-two);
             color: white;

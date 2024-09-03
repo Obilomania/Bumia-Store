@@ -197,6 +197,8 @@ const HeaderMiddle = styled.div`
       align-items: center;
       justify-content: space-between;
       padding-right: 1.5rem;
+      position: relative;
+      z-index: 10;
       .logo-things {
         display: flex;
         align-items: center;
@@ -259,6 +261,8 @@ const HeaderMiddle = styled.div`
       align-items: center;
       justify-content: space-between;
       padding-right: 1.5rem;
+      position: relative;
+      z-index: 10;
       .logo-things {
         display: flex;
         align-items: center;
@@ -321,6 +325,8 @@ const HeaderMiddle = styled.div`
       align-items: center;
       justify-content: space-between;
       padding-right: 1.5rem;
+      position: relative;
+      z-index: 10;
       .logo-things {
         display: flex;
         align-items: center;
@@ -348,6 +354,7 @@ const HeaderMiddle = styled.div`
         gap: 1rem;
         img {
           width: 1.5rem;
+          cursor: pointer;
         }
         .cart-img {
           position: relative;
@@ -364,6 +371,7 @@ const HeaderMiddle = styled.div`
             align-items: center;
             justify-content: center;
             border-radius: 100%;
+            cursor: pointer;
           }
         }
       }
@@ -383,6 +391,8 @@ const HeaderMiddle = styled.div`
       align-items: center;
       justify-content: space-between;
       padding-right: 1.5rem;
+      position: relative;
+      z-index: 10;
       .logo-things {
         display: flex;
         align-items: center;
@@ -445,6 +455,8 @@ const HeaderMiddle = styled.div`
       align-items: center;
       justify-content: space-between;
       padding-right: 1.5rem;
+      position: relative;
+      z-index: 10;
       .logo-things {
         display: flex;
         align-items: center;

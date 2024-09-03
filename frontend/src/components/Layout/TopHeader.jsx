@@ -24,6 +24,8 @@ const HeaderTop = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    z-index: 10;
   }
 `;
 export default TopHeader;
