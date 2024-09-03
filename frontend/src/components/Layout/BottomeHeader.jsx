@@ -280,6 +280,8 @@ const HeaderBottom = styled.div`
       padding-top: 1rem;
       box-shadow: 0 0 10px #0000001a;
       color: black;
+      background: white;
+
       P {
         padding: 0.4rem 0;
         border-bottom: 1px solid var(--bg-one);
