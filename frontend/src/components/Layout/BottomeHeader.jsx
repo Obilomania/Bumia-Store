@@ -1,16 +1,20 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { BsChevronDown } from "react-icons/bs";
+import { BsChevronDown, BsSearch } from "react-icons/bs";
 import catMenuIMG from "../../assets/images/menu.svg";
 import StoreDropDown from "./StoreDropDown";
 import SpecialDropdown from "./SpecialDropdown";
 import CategoriesDropdown from "./CategoriesDropdown";
+import TopDealsDropDown from "./TopDealsDropDown";
 
 const BottomeHeader = () => {
+  const navigate = useNavigate();
   const [ourStoreHover, setOurStoreHover] = useState(false);
   const [specialHover, setSpecialHover] = useState(false);
   const [categoryHover, setCategoryHover] = useState(false);
+  const [topDealsHover, setTopDealsHover] = useState(false);
+  const [elementHover, setElementHover] = useState(false);
   const HoverStoreEnter = () => {
     setOurStoreHover(true);
   };
@@ -28,6 +32,18 @@ const BottomeHeader = () => {
   };
   const HoverCategoryLeave = () => {
     setCategoryHover(false);
+  };
+  const HoverTopDealsEnter = () => {
+    setTopDealsHover(true);
+  };
+  const HoverTopDealsLeave = () => {
+    setTopDealsHover(false);
+  };
+  const HoverElementEnter = () => {
+    setElementHover(true);
+  };
+  const HoverElementLeave = () => {
+    setElementHover(false);
   };
   return (
     <HeaderBottom>
@@ -76,15 +92,34 @@ const BottomeHeader = () => {
               <BsChevronDown />
             </Link>
           </li>
-          <li>
+          <li
+            className="our-special"
+            onMouseEnter={HoverTopDealsEnter}
+            onMouseLeave={HoverTopDealsLeave}
+          >
             <Link>
               TOP DEALS &nbsp; <BsChevronDown />
             </Link>
           </li>
-          <li>
+          <li
+            className="our-element"
+            onMouseEnter={HoverElementEnter}
+            onMouseLeave={HoverElementLeave}
+          >
             <Link>
               ELEMENTS &nbsp; <BsChevronDown />
             </Link>
+            <div
+              className={
+                elementHover ? "element-dropdown" : "element-dropdown-vanish"
+              }
+            >
+              <p onClick={() => navigate("/")}>About</p>
+              <p onClick={() => navigate("/")}>Blogs</p>
+              <p onClick={() => navigate("/")}>Faqs</p>
+              <p onClick={() => navigate("/")}>Compare</p>
+              <p onClick={() => navigate("/")}>Wishlist</p>
+            </div>
           </li>
         </div>
       </div>
@@ -112,6 +147,20 @@ const BottomeHeader = () => {
           setCategoryHover={setCategoryHover}
         />
       </div>
+      <div className="topdeals-dropdown">
+        <TopDealsDropDown
+          topDealsHover={topDealsHover}
+          setTopDealsHover={setTopDealsHover}
+        />
+      </div>
+      <div className="bottom-mobile-content">
+        <div className="search">
+          <input type="text" placeholder="Search" className="font-small" />
+          <button className="">
+            <BsSearch className="" />
+          </button>
+        </div>
+      </div>
     </HeaderBottom>
   );
 };
@@ -121,6 +170,9 @@ const HeaderBottom = styled.div`
   background: var(--bg-two);
   color: white;
   padding: 1rem 0;
+  .bottom-mobile-content {
+    display: none;
+  }
   .bottom-content {
     width: 80%;
     .nav-housing {
@@ -195,6 +247,266 @@ const HeaderBottom = styled.div`
   .categories-dropdown-close {
     width: 100%;
     display: none;
+  }
+  .topdeals-dropdown {
+    width: 100%;
+    position: absolute;
+    padding: 0 8rem;
+  }
+  .topdeals-dropdown-close {
+    width: 100%;
+    display: none;
+  }
+  .our-element {
+    position: relative;
+    /* width: 100%; */
+    .element-dropdown-vanish {
+      display: none;
+    }
+    .element-dropdown {
+      display: block;
+      width: 100%;
+      position: absolute;
+      padding-top: 1rem;
+      box-shadow: 0 0 10px #0000001a;
+      color: black;
+      P {
+        padding: 0.4rem 0;
+        border-bottom: 1px solid var(--bg-one);
+        text-align: center;
+        transition: var(--transition);
+        cursor: pointer;
+        &:hover {
+          color: var(--bg-logo);
+          transition: var(--transition);
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+    background: var(--bg-two);
+    color: white;
+    padding: 1rem;
+    .bottom-content {
+      display: none;
+    }
+    .bottom-mobile-content {
+      display: block;
+      width:100%;
+      .search {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        input {
+          width:60%;
+          border-top-left-radius: 0.3rem;
+          border-bottom-left-radius: 0.3rem;
+          padding: 9px 15px;
+          height: 36px;
+          border: none;
+          outline: none;
+          
+        }
+        button {
+          width: 10%;
+          padding: 6px;
+          background: var(--bg-logo);
+          color: var(--bg-one);
+          border: none;
+          border-top-right-radius: 0.3rem;
+          border-bottom-right-radius: 0.3rem;
+          transition: var(--transition);
+          &:hover {
+            border: 2px solid var(--bg-two);
+            transition: var(--transition);
+            background: var(--bg-two);
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    background: var(--bg-two);
+    color: white;
+    padding: 1rem;
+    .bottom-content {
+      display: none;
+    }
+    .bottom-mobile-content {
+      display: block;
+      width:100%;
+      .search {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        input {
+          width:60%;
+          border-top-left-radius: 0.3rem;
+          border-bottom-left-radius: 0.3rem;
+          padding: 9px 15px;
+          height: 36px;
+          border: none;
+          outline: none;
+          
+        }
+        button {
+          width: 10%;
+          padding: 6px;
+          background: var(--bg-logo);
+          color: var(--bg-one);
+          border: none;
+          border-top-right-radius: 0.3rem;
+          border-bottom-right-radius: 0.3rem;
+          transition: var(--transition);
+          &:hover {
+            border: 2px solid var(--bg-two);
+            transition: var(--transition);
+            background: var(--bg-two);
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    background: var(--bg-two);
+    color: white;
+    padding: 1rem;
+    .bottom-content {
+      display: none;
+    }
+    .bottom-mobile-content {
+      display: block;
+      width:100%;
+      .search {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        input {
+          width:60%;
+          border-top-left-radius: 0.3rem;
+          border-bottom-left-radius: 0.3rem;
+          padding: 9px 15px;
+          height: 36px;
+          border: none;
+          outline: none;
+          
+        }
+        button {
+          width: 10%;
+          padding: 6px;
+          background: var(--bg-logo);
+          color: var(--bg-one);
+          border: none;
+          border-top-right-radius: 0.3rem;
+          border-bottom-right-radius: 0.3rem;
+          transition: var(--transition);
+          &:hover {
+            border: 2px solid var(--bg-two);
+            transition: var(--transition);
+            background: var(--bg-two);
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 420px) {
+    width: 100%;
+    background: var(--bg-two);
+    color: white;
+    padding: 1rem;
+    .bottom-content {
+      display: none;
+    }
+    .bottom-mobile-content {
+      display: block;
+      width:100%;
+      .search {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        input {
+          width:60%;
+          border-top-left-radius: 0.3rem;
+          border-bottom-left-radius: 0.3rem;
+          padding: 9px 15px;
+          height: 36px;
+          border: none;
+          outline: none;
+          
+        }
+        button {
+          width: 10%;
+          padding: 6px;
+          background: var(--bg-logo);
+          color: var(--bg-one);
+          border: none;
+          border-top-right-radius: 0.3rem;
+          border-bottom-right-radius: 0.3rem;
+          transition: var(--transition);
+          &:hover {
+            border: 2px solid var(--bg-two);
+            transition: var(--transition);
+            background: var(--bg-two);
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 350px) {
+    width: 100%;
+    background: var(--bg-two);
+    color: white;
+    padding: 1rem;
+    .bottom-content {
+      display: none;
+    }
+    .bottom-mobile-content {
+      display: block;
+      width:100%;
+      .search {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content:center;
+        input {
+          width:60%;
+          border-top-left-radius: 0.3rem;
+          border-bottom-left-radius: 0.3rem;
+          padding: 9px 15px;
+          height: 36px;
+          border: none;
+          outline: none;
+          
+        }
+        button {
+          width: 10%;
+          padding: 6px;
+          background: var(--bg-logo);
+          color: var(--bg-one);
+          border: none;
+          border-top-right-radius: 0.3rem;
+          border-bottom-right-radius: 0.3rem;
+          transition: var(--transition);
+          &:hover {
+            border: 2px solid var(--bg-two);
+            transition: var(--transition);
+            background: var(--bg-two);
+            color: white;
+          }
+        }
+      }
+    }
   }
 `;
 
