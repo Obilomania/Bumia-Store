@@ -55,7 +55,7 @@ const FeaturedProductCard = styled.div`
   min-height: 18rem;
   background-color: white;
   border-radius: 0.5rem;
-  padding: 0;
+  padding: 0.8rem 0;
   box-shadow: 0 0 10px #0000001a;
   position: relative;
   overflow: hidden;
@@ -161,7 +161,7 @@ const FeaturedProductCard = styled.div`
     min-height: 18rem;
     background-color: white;
     border-radius: 0.5rem;
-    padding: 0;
+    padding: 0.8rem 0;
     box-shadow: 0 0 10px #0000001a;
     position: relative;
     overflow: hidden;
@@ -237,7 +237,7 @@ const FeaturedProductCard = styled.div`
       }
     }
     .product-title {
-      min-height: 3rem;
+      min-height: 2rem;
     }
     .discount-favourite {
       width: 100%;
@@ -265,7 +265,8 @@ const FeaturedProductCard = styled.div`
     min-height: 18rem;
     background-color: white;
     border-radius: 0.5rem;
-    padding: 0;
+    padding: 0.8rem 0;
+
     box-shadow: 0 0 10px #0000001a;
     position: relative;
     overflow: hidden;
