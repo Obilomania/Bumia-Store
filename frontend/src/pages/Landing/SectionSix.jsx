@@ -116,6 +116,31 @@ const SixthSection = styled.div`
     }
   }
   @media screen and (max-width: 900px) {
+    .section-heading {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+    }
+    .featured-arrows {
+      margin-bottom: 0.8rem;
+
+      span {
+        color: var(--bg-two);
+        opacity: 0.5;
+        border: 2px solid var(--bg-two);
+        font-size: 0.8rem;
+        padding: 0rem 0.8rem;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        transition: var(--transition);
+        &:hover {
+          font-size: 1rem;
+          transition: var(--transition);
+        }
+        &:active {
+          background: var(--bg-logo);
+        }
+      }
+    }
   }
   @media screen and (max-width: 600px) {
     width: 100%;
