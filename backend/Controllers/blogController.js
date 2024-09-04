@@ -65,14 +65,132 @@ const getSinglePost = asyncHandler(async (req, res) => {
 const getAllBlogPosts = asyncHandler(async (req, res) => {
   const allPost = await Blog.find();
   if (!allPost) {
-    return res
-      .status(404)
-      .json({
-        success: false,
-        message: "Unable to retreive post, Please try again",
-      });
+    return res.status(404).json({
+      success: false,
+      message: "Unable to retreive post, Please try again",
+    });
   }
   return res.status(200).json({ success: true, allPost });
+});
+
+// **************DELETE POST**********************$incc
+const deleteBlogPost = asyncHandler(async (req, res) => {
+  const onePost = await Blog.findByIdAndDelete(req.params._id);
+  if (!onePost) {
+    return res.status(404).json({
+      success: false,
+      message: "Unable to delete post, Please try again",
+    });
+  }
+  return res
+    .status(200)
+    .json({ success: true, message: "Post deleted successfully" });
+});
+
+// **************LIKE POST**********************$incc
+const likeBlogPost = asyncHandler(async (req, res) => {
+    const { postId } = req.body;
+  const blogPost = await Blog.findById(postId);
+  const loggedInUserId = req?.user?._id;
+  const isLiked = blogPost.isLiked;
+  const alreadyDisLiked = blogPost.disLikes?.find(
+    (userId) => userId.toString() === loggedInUserId?.toString()
+  );
+  if (alreadyDisLiked) {
+    const blogPost = await Blog.findByIdAndUpdate(
+      postId,
+      {
+        $pull: { disLikes: loggedInUserId },
+        isDisliked: false,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.status(201).json({ success: true, blogPost });
+  }
+  if (isLiked) {
+    const blogPost = await Blog.findByIdAndUpdate(
+      postId,
+      {
+        $pull: { likes: loggedInUserId },
+        isLiked: false,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.status(201).json({ success: true, blogPost });
+    }
+    else{
+        const blogPost = await Blog.findByIdAndUpdate(
+          postId,
+          {
+            $push: { likes: loggedInUserId },
+            isLiked: true,
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        res.status(201).json({ success: true, blogPost });
+    }
+});
+
+
+// **************DIS-LIKE POST**********************$incc
+const disLikeBlogPost = asyncHandler(async (req, res) => {
+    const { postId } = req.body;
+  const blogPost = await Blog.findById(postId);
+  const loggedInUserId = req?.user?._id;
+  const isDisliked  = blogPost?.isDisliked ;
+  const alreadyLiked = blogPost.likes?.find(
+    (userId) => userId.toString() === loggedInUserId?.toString()
+  );
+  if (alreadyLiked) {
+    const blogPost = await Blog.findByIdAndUpdate(
+      postId,
+      {
+        $pull: { likes: loggedInUserId },
+        isLiked: false,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.status(201).json({ success: true, blogPost });
+  }
+  if (isDisliked) {
+    const blogPost = await Blog.findByIdAndUpdate(
+      postId,
+      {
+        $pull: { disLikes: loggedInUserId },
+        isDisliked: false,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.status(201).json({ success: true, blogPost });
+  } else {
+    const blogPost = await Blog.findByIdAndUpdate(
+      postId,
+      {
+        $push: { disLikes: loggedInUserId },
+        isDisliked: true,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+    res.status(201).json({ success: true, blogPost });
+  }
 });
 
 module.exports = {
@@ -80,4 +198,7 @@ module.exports = {
   updateBlogPost,
   getSinglePost,
   getAllBlogPosts,
+  deleteBlogPost,
+  likeBlogPost,
+  disLikeBlogPost,
 };
