@@ -34,6 +34,7 @@ const WishlistPage = styled.div`
   min-height: 70vh;
   height: 100%;
   background: var(--bg-grey);
+  padding: 0 8rem;
   .the-cards {
     display: flex;
     flex-wrap: wrap;
@@ -41,6 +42,31 @@ const WishlistPage = styled.div`
   }
   .the-card {
     width: 22.2%;
+  }
+  @media screen and (max-width: 1200px) {
+  }
+  @media screen and (max-width: 900px) {
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    min-height: 70vh;
+    height: 100%;
+    background: var(--bg-grey);
+    padding: 1rem;
+    .the-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content:space-between;
+      gap: 1rem;
+    }
+    .the-card {
+      width: 100%;
+      
+    }
+  }
+  @media screen and (max-width: 420px) {
+  }
+  @media screen and (max-width: 350px) {
   }
 `;
 export default WishList;

@@ -45,6 +45,7 @@ const LoginUser = styled.div`
     border-radius: 0.5rem;
     padding: 1rem 1rem 2rem 1rem;
     box-shadow: 0 0 10px #0000001a;
+    position: relative;
   }
   form .inputs {
     display: flex;

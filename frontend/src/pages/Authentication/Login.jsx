@@ -44,6 +44,7 @@ const LoginUser = styled.div`
     border-radius: 0.5rem;
     padding: 1rem 1rem 2rem 1rem;
     box-shadow: 0 0 10px #0000001a;
+    position: relative;
   }
   form .inputs {
     display: flex;
@@ -393,7 +394,7 @@ const LoginUser = styled.div`
     height: 100%;
     background: var(--bg-grey);
     overflow: hidden;
-    padding:0;
+    padding: 0;
     /* display:none; */
     form {
       width: 80%;

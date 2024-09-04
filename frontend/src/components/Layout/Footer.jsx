@@ -286,7 +286,7 @@ const TheFooter = styled.div`
     padding: 1rem;
     overflow:hidden;
     .with-love {
-      font-size: 0.8rem;
+      font-size: 0.6rem;
     }
     footer {
       border-top: 1px solid var(--bg-two);

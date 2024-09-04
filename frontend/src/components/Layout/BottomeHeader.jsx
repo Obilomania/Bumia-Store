@@ -69,7 +69,10 @@ const BottomeHeader = () => {
             className="our-store"
             onMouseEnter={HoverStoreEnter}
             onMouseLeave={HoverStoreLeave}
-            onClick={() => navigate("/our-store")}
+            onClick={() => {
+              setOurStoreHover(false);
+              navigate("/our-store");
+            }}
           >
             <Link>
               {" "}
@@ -118,11 +121,11 @@ const BottomeHeader = () => {
                 elementHover ? "element-dropdown" : "element-dropdown-vanish"
               }
             >
-              <p onClick={() => navigate("/")}>About</p>
-              <p onClick={() => navigate("/")}>Blogs</p>
+              <p onClick={() => navigate("/about")}>About</p>
+              <p onClick={() => navigate("/blog")}>Blogs</p>
               <p onClick={() => navigate("/")}>Faqs</p>
-              <p onClick={() => navigate("/")}>Compare</p>
-              <p onClick={() => navigate("/")}>Wishlist</p>
+              <p onClick={() => navigate("/compare-page")}>Compare</p>
+              <p onClick={() => navigate("/wish-list")}>Wishlist</p>
             </div>
           </li>
         </div>
