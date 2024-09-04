@@ -733,6 +733,8 @@ const SpecialProduct = styled.div`
       display: flex;
       flex-direction: column;
       align-items: start;
+      justify-content:space-between;
+      width:70%;
       gap: 1.2rem;
       .brand {
         color: var(--bg-logo2);
