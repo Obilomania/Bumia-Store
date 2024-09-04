@@ -1,8 +1,8 @@
-import React from 'react'
-import BreadCrumb from '../../components/BreadCrumb';
-import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import BreadCrumb from "../../components/BreadCrumb";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const ChangePassword = () => {
   return (
@@ -30,7 +30,7 @@ const ChangePassword = () => {
       </form>
     </ResetP>
   );
-}
+};
 
 const ResetP = styled.div`
   width: 100%;
@@ -119,5 +119,78 @@ const ResetP = styled.div`
       }
     }
   }
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+    min-height: 70vh;
+    height: 100%;
+    background: var(--bg-grey);
+    form {
+      width: 60%;
+      margin: 10vh auto;
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1rem 1rem 2rem 1rem;
+      box-shadow: 0 0 10px #0000001a;
+    }
+  }
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    min-height: 70vh;
+    height: 100%;
+    background: var(--bg-grey);
+    form {
+      width: 40%;
+      margin: 10vh auto;
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1rem 1rem 2rem 1rem;
+      box-shadow: 0 0 10px #0000001a;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    min-height: 70vh;
+    height: 100%;
+    background: var(--bg-grey);
+    padding: 0 1rem;
+    form {
+      width: 100%;
+      margin: 5vh auto;
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1rem 1rem 2rem 1rem;
+      box-shadow: 0 0 10px #0000001a;
+    }
+  }
+  @media screen and (max-width: 420px) {
+    width: 100%;
+    min-height: 70vh;
+    height: 100%;
+    background: var(--bg-grey);
+    padding: 0 1rem;
+    form {
+      width: 100%;
+      margin: 5vh auto;
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1rem 1rem 2rem 1rem;
+      box-shadow: 0 0 10px #0000001a;
+    }
+  }
+  @media screen and (max-width: 350px) {
+    width: 100%;
+    min-height: 70vh;
+    height: 100%;
+    background: var(--bg-grey);
+    padding: 0 1rem;
+    form {
+      width: 100%;
+      margin: 5vh auto;
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1rem 1rem 2rem 1rem;
+      box-shadow: 0 0 10px #0000001a;
+    }
+  }
 `;
-export default ChangePassword
+export default ChangePassword;

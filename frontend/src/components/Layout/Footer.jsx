@@ -281,8 +281,113 @@ const TheFooter = styled.div`
     }
   }
   @media screen and (max-width: 420px) {
+     width: 100%;
+    background: var(--bg-three);
+    padding: 1rem;
+    overflow:hidden;
+    .with-love {
+      font-size: 0.8rem;
+    }
+    footer {
+      border-top: 1px solid var(--bg-two);
+    }
+    .subscribe {
+      width: 100%;
+      .input-group {
+        width: 100%;
+      }
+    }
+    .search-bg {
+      background: var(--bg-logo);
+    }
+    .the-writeups {
+    }
+    .footer-links {
+      font-size: 0.8rem;
+    }
+    .the-writeups {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: start;
+      flex-direction:row-reverse;
+      gap: .8rem;
+      h5 {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+      justify-content: space-between;
+      .footer-col {
+        width: 47%;
+      }
+    }
+    .payment-logo {
+      .payment-logo-div {
+        width: 2rem;
+        background-color: white;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        border-radius: 5px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
   }
   @media screen and (max-width: 350px) {
+     width: 100%;
+    background: var(--bg-three);
+    padding: 1rem;
+    .with-love {
+      font-size: 0.8rem;
+    }
+    footer {
+      border-top: 1px solid var(--bg-two);
+    }
+    .subscribe {
+      width: 100%;
+      .input-group {
+        width: 100%;
+      }
+    }
+    .search-bg {
+      background: var(--bg-logo);
+    }
+    .the-writeups {
+    }
+    .footer-links {
+      font-size: 0.8rem;
+    }
+    .the-writeups {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: start;
+      flex-direction:row-reverse;
+      gap: 1.5rem;
+      h5 {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+      justify-content: space-between;
+      .footer-col {
+        width: 45%;
+      }
+    }
+    .payment-logo {
+      .payment-logo-div {
+        width: 2rem;
+        background-color: white;
+        border: 1px solid #ccc;
+        overflow: hidden;
+        border-radius: 5px;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
   }
 `;
 export default Footer;

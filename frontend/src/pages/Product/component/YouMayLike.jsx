@@ -7,9 +7,9 @@ const YouMayLike = () => {
   return (
     <YouMay>
       <div className="page-container py-5">
-        <div className="row">
+        <div className="">
           <h5>YOU MAY ALSO LIKE</h5>
-          <div className="col-12 you-like mt-1">
+          <div className=" you-like mt-1">
             <div className="featured-cards">
               {featuredProducts
                 .slice(0, 6)
@@ -30,6 +30,7 @@ const YouMay = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap:wrap;
   }
 `;
 export default YouMayLike;

@@ -49,7 +49,10 @@ const BottomeHeader = () => {
     <HeaderBottom>
       <div className="main-container bottom-content">
         <div className="nav-housing">
-          <div className="shop-category cursor-pointer" onClick={() => navigate("/our-store")}>
+          <div
+            className="shop-category cursor-pointer"
+            onClick={() => navigate("/our-store")}
+          >
             <div className="main-category-content">
               <img src={catMenuIMG} alt="category-icn" />
               SHOP CATEGORIES
@@ -66,8 +69,9 @@ const BottomeHeader = () => {
             className="our-store"
             onMouseEnter={HoverStoreEnter}
             onMouseLeave={HoverStoreLeave}
+            onClick={() => navigate("/our-store")}
           >
-            <Link onClick={() => navigate("/our-store")}>
+            <Link>
               {" "}
               OUR STORE &nbsp; <BsChevronDown />
             </Link>

@@ -39,7 +39,7 @@ const ReviewSection = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   border-bottom: 2px solid var(--bg-grey);
-  padding:1rem 0;
+  padding: 1rem 0;
   .ratings {
     display: flex;
     align-items: center;
@@ -67,6 +67,133 @@ const ReviewSection = styled.div`
     }
     span {
       font-weight: 500;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+  }
+  @media screen and (max-width: 900px) {
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--bg-grey);
+    margin-bottom: 2rem;
+    padding: 0;
+    .ratings {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-direction: row-reverse;
+      .star-rating {
+        color: gold;
+      }
+      p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+      }
+      span {
+        font-weight: 500;
+      }
+    }
+    .review-comment {
+      display: flex;
+      align-items: start;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+      p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+      }
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+  @media screen and (max-width: 420px) {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--bg-grey);
+    margin-bottom: 2rem;
+    padding: 0;
+    .ratings {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-direction: row-reverse;
+      .star-rating {
+        color: gold;
+      }
+      p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+      }
+      span {
+        font-weight: 500;
+      }
+    }
+    .review-comment {
+      display: flex;
+      align-items: start;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+      p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+      }
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+  @media screen and (max-width: 350px) {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--bg-grey);
+    margin-bottom: 2rem;
+    padding: 0;
+    .ratings {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-direction: row-reverse;
+      .star-rating {
+        color: gold;
+      }
+      p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+      }
+      span {
+        font-weight: 500;
+      }
+    }
+    .review-comment {
+      display: flex;
+      align-items: start;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+      p {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+      }
+      span {
+        font-weight: 500;
+      }
     }
   }
 `;

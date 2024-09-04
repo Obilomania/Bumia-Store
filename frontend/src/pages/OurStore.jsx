@@ -24,7 +24,7 @@ const OurStore = () => {
         <meta name="description" content="Our Store" />
       </Helmet>
       <BreadCrumb title="Our Store" />
-      <div className="store-wrapper py-5 home-wrapper">
+      <div className="store-wrapper py-2 home-wrapper">
         <div className="page-container">
           <div className="row">
             <div className="col-3">
@@ -67,6 +67,7 @@ const MyStore = styled.div`
   width: 100%;
   height: 100%;
   background: var(--bg-grey);
+  padding:0rem 8rem;
   .filter-title {
     font-size: 1rem;
     line-height: 1.2rem;
@@ -86,7 +87,7 @@ const MyStore = styled.div`
     .grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 1.5rem;
       /* padding: 20px; */
       width: 100%;
     }
