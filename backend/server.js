@@ -8,9 +8,10 @@ const morgan = require("morgan");
 
 //Routes
 const userRoute = require("./Routes/userRoute");
-const productRoute = require("./Routes/productRoute.js");
+const productRoute = require("./Routes/productRoute");
 const categoryRoute = require("./Routes/categoryRoute");
 const couponRoute = require("./Routes/couponRoute")
+const blogRoute = require("./Routes/blogRoute");
 
 const app = express();
 app.use(morgan("dev"));
@@ -24,6 +25,7 @@ app.use("/api/authentication", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/coupon", couponRoute);
+app.use("/api/blog", blogRoute);
 app.get("/", (req, res) => {
   res.send("Home Page");
 });
