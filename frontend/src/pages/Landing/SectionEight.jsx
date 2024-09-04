@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { featuredProducts } from "../../assets/dummyData";
+import { useNavigate } from "react-router-dom";
 
 const SectionEight = () => {
+  const navigate = useNavigate();
   return (
     <EightSection>
       <div className="page-container py-5 nameless-cards">
@@ -18,7 +20,7 @@ const SectionEight = () => {
             </div>
             <div className="overlay"></div>
             <img src={product.image} alt="" />
-            <button>VISIT STORE</button>
+            <button onClick={() => navigate("/our-store")}>VISIT STORE</button>
           </div>
         ))}
       </div>
