@@ -97,6 +97,7 @@ const updateProduct = asyncHandler(async (req, res) => {
       quantity,
       color,
     } = singleProduct;
+
     let images = [];
     let imagePath = [];
     const files = req.files;
@@ -106,7 +107,10 @@ const updateProduct = asyncHandler(async (req, res) => {
           folder: "Bumia Store",
           resource_type: "image",
         });
-        imagePath.push({ url: uploadedFile.secure_url });
+        imagePath.push({
+          url: uploadedFile.secure_url,
+          public_id: uploadedFile.public_id,
+        });
         fs.unlinkSync(file.path);
       }
       imagePath.forEach((imgPath) => {
@@ -116,6 +120,7 @@ const updateProduct = asyncHandler(async (req, res) => {
       res.status(500);
       throw new Error("Image could not be uploaded");
     }
+
     singleProduct.title = req.body.title || title;
     singleProduct.description = req.body.description || description;
     singleProduct.slug = req.body.title || slug;
@@ -128,18 +133,13 @@ const updateProduct = asyncHandler(async (req, res) => {
 
     const updatedProduct = await singleProduct.save();
     if (updatedProduct) {
-      res.status(200).json({
-        _id: updatedProduct._id,
-        title: updatedProduct.title,
-        description: updatedProduct.description,
-        slug: updatedProduct.slug,
-        price: updatedProduct.price,
-        category: updatedProduct.category,
-        brand: updatedProduct.brand,
-        quantity: updatedProduct.quantity,
-        images: updatedProduct.images,
-        color: updatedProduct.color,
-      });
+      res
+        .status(200)
+        .json({
+          success: true,
+          message: "Product Updated Successfully",
+          data: updateProduct,
+        });
     } else {
       res.status(400);
       throw new Error("Product Not Found!!!");
@@ -150,11 +150,11 @@ const updateProduct = asyncHandler(async (req, res) => {
 //Delete a Product
 const deleteProduct = asyncHandler(async (req, res) => {
   const { _id } = req.params;
-  const product = await Product.findById(_id)
+  const product = await Product.findById(_id);
   product.images.forEach(async (img) => {
     await cloudinary.uploader.destroy(img.public_id);
   });
-  
+
   const theProduct = await Product.findByIdAndDelete(_id);
   if (!theProduct) {
     res.status(404);
@@ -190,6 +190,38 @@ const uploadImages = asyncHandler(async (req, res) => {
   } else {
     res.status(500);
     throw new Error("Image could not be uploaded");
+  }
+});
+
+const deleteProductImage = asyncHandler(async (req, res) => {
+  try {
+    const { prodId, imageId } = req.params;
+
+    const product = await Product.findById(prodId);
+    if (!product)
+      return res
+        .status(404)
+        .json({ success: false, message: "Product not found" });
+
+    const imageToDelete = product.images.find(
+      (img) => img._id.toString() === imageId
+    );
+    if (!imageToDelete)
+      return res
+        .status(404)
+        .json({ success: false, message: "Image not found" });
+
+    await cloudinary.uploader.destroy(imageToDelete.public_id);
+
+    await Product.findByIdAndUpdate(prodId, {
+      $pull: { images: { _id: imageId } }, // Remove the image with the matching _id from the array
+    });
+    res.json({
+      success: true,
+      message: "Image deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
@@ -229,4 +261,5 @@ module.exports = {
   uploadImages,
   addToWishList,
   productRating,
+  deleteProductImage,
 };

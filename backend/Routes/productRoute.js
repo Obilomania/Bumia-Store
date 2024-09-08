@@ -11,6 +11,7 @@ const {
   addToWishList,
   productRating,
   uploadImages,
+  deleteProductImage,
 } = require("../Controllers/productController");
 const {
     imageSizeResize,
@@ -43,5 +44,7 @@ router.put(
   uploadPhoto.array("images", 5),
   uploadImages
 );
+
+router.delete("/:prodId/images/:imageId" , protect, isAdmin, deleteProductImage)
 
 module.exports = router;
