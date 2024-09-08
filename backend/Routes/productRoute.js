@@ -14,21 +14,33 @@ const {
 } = require("../Controllers/productController");
 const {
     imageSizeResize,
+    uploadPhoto,
 } = require("../Middlewares/uploadImagesMiddleware");
-const { upload } = require("../Config/fileUpload");
 
 router.get("/:_id", getAProduct);
 router.put("/wishlist", protect, addToWishList);
 router.put("/rating", protect, productRating);
 router.get("/", getAllProducts);
-router.post("/", protect, isAdmin,createProduct);
+router.post(
+  "/",
+  protect,
+  isAdmin,
+  uploadPhoto.array("images", 5),
+  createProduct
+);
 router.delete("/:_id", protect, isAdmin, deleteProduct);
-router.put("/:_id", protect, isAdmin, updateProduct);
+router.put(
+  "/:_id",
+  protect,
+  isAdmin,
+  uploadPhoto.array("images", 5),
+  updateProduct
+);
 router.put(
   "/upload/:_id",
   protect,
   isAdmin,
-  upload.array("images", 5),
+  uploadPhoto.array("images", 5),
   uploadImages
 );
 

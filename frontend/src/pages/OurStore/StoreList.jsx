@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import styled from "styled-components";
 import { FiHeart } from "react-icons/fi";
 import { FaRegEye, FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";

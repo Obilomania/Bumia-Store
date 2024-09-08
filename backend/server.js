@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./Middlewares/errorMiddleware");
 const morgan = require("morgan");
+const fs = require('fs')
 
 //Routes
 const userRoute = require("./Routes/userRoute");
@@ -18,8 +19,8 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //Route Direction lol
 app.use("/api/authentication", userRoute);

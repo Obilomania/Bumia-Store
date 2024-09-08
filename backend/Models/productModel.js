@@ -27,6 +27,9 @@ const productSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+    discountPrice: {
+      type: Number,
+    },
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
@@ -40,7 +43,7 @@ const productSchema = mongoose.Schema(
       required: true,
     },
     sold: { type: Number, default: 0 },
-    images: [],
+    images: [{ url: String, public_id: String }],
     color: {
       type: String,
       required: true,

@@ -5,28 +5,44 @@ const User = require("../Models/userModel");
 const multer = require("multer");
 const { fileSizeFormatter } = require("../Config/fileUpload");
 const cloudinary = require("cloudinary").v2;
-const fs = require("fs")
+const fs = require("fs");
 
 //Create a product
 const createProduct = asyncHandler(async (req, res) => {
-  const {
-    title,
-    description,
-    slug,
-    price,
-    category,
-    brand,
-    quantity,
-    color,
-  } = req.body;
+  const { title, description, slug, price, category, brand, quantity, color } =
+    req.body;
   if (req.body.title) {
     req.body.slug = slugify(req.body.title);
   }
+
   const productExist = await Product.findOne({ title });
   if (productExist) {
     res.status(400);
     throw new Error("Product already exists");
   }
+  let images = [];
+  let imagePath = [];
+  const files = req.files;
+  try {
+    for (const file of files) {
+      uploadedFile = await cloudinary.uploader.upload(file.path, {
+        folder: "Bumia Store",
+        resource_type: "image",
+      });
+      imagePath.push({
+        url: uploadedFile.secure_url,
+        public_id: uploadedFile.public_id,
+      });
+      fs.unlinkSync(file.path);
+    }
+    imagePath.forEach((imgPath) => {
+      images.push(imgPath);
+    });
+  } catch (error) {
+    res.status(500);
+    throw new Error("Image could not be uploaded");
+  }
+
   const product = await Product.create({
     title,
     description,
@@ -36,9 +52,10 @@ const createProduct = asyncHandler(async (req, res) => {
     brand,
     quantity,
     color,
+    images,
   });
   if (product) {
-    res.status(201).json(product);
+    return res.status(200).json({ success: true, product });
   } else {
     res.status(500);
     throw new Error("Error Creating Product, Please try again");
@@ -78,9 +95,27 @@ const updateProduct = asyncHandler(async (req, res) => {
       category,
       brand,
       quantity,
-      images,
       color,
     } = singleProduct;
+    let images = [];
+    let imagePath = [];
+    const files = req.files;
+    try {
+      for (const file of files) {
+        uploadedFile = await cloudinary.uploader.upload(file.path, {
+          folder: "Bumia Store",
+          resource_type: "image",
+        });
+        imagePath.push({ url: uploadedFile.secure_url });
+        fs.unlinkSync(file.path);
+      }
+      imagePath.forEach((imgPath) => {
+        images.push(imgPath);
+      });
+    } catch (error) {
+      res.status(500);
+      throw new Error("Image could not be uploaded");
+    }
     singleProduct.title = req.body.title || title;
     singleProduct.description = req.body.description || description;
     singleProduct.slug = req.body.title || slug;
@@ -115,6 +150,11 @@ const updateProduct = asyncHandler(async (req, res) => {
 //Delete a Product
 const deleteProduct = asyncHandler(async (req, res) => {
   const { _id } = req.params;
+  const product = await Product.findById(_id)
+  product.images.forEach(async (img) => {
+    await cloudinary.uploader.destroy(img.public_id);
+  });
+  
   const theProduct = await Product.findByIdAndDelete(_id);
   if (!theProduct) {
     res.status(404);
@@ -126,16 +166,15 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 //Upload Images
 const uploadImages = asyncHandler(async (req, res) => {
-  // console.log(req.files);
   let imagePath = [];
   const files = req.files;
   for (const file of files) {
     uploadedFile = await cloudinary.uploader.upload(file.path, {
-      folder: "Super Store",
+      folder: "Bumia Store",
       resource_type: "image",
     });
     imagePath.push({ url: uploadedFile.secure_url });
-    fs.unlinkSync(file.path)
+    fs.unlinkSync(file.path);
   }
   const product = await Product.findByIdAndUpdate(
     req.params._id,
@@ -148,8 +187,7 @@ const uploadImages = asyncHandler(async (req, res) => {
   );
   if (product) {
     res.status(200).json(product);
-  }
-  else {
+  } else {
     res.status(500);
     throw new Error("Image could not be uploaded");
   }
@@ -175,46 +213,12 @@ const addToWishList = asyncHandler(async (req, res) => {
       { $push: { wishList: prodId } },
       { new: true }
     );
-    res.json(user);
+    return res.status(200).json({ success: true, user });
   }
 });
 
 //Product Rating
-const productRating = asyncHandler(async (req, res) => {
-  const { _id } = req.user;
-  const { star, prodId } = req.body;
-  const product = await Product.findById(prodId);
-  let productRated = product.ratings.find(
-    (userId) => userId.postedby.toString() === _id.toString
-  );
-  if (productRated) {
-    const updateRating = await Product.updateOne(
-      {
-        ratings: { $elemMatch: alreadyRated },
-      },
-      { $set: { "ratings.$.star": star, "ratings.$.comment": comment } },
-      { new: true }
-    );
-  } else {
-    const ratedProduct = await Product.findByIdAndUpdate(
-      prodId,
-      { $push: { ratings: { star: star, comment: comment, postedby: _id } } },
-      { new: true }
-    );
-  }
-  const getAllRatings = await Product.findById(prodId);
-  let totalRating = getAllRatings.ratings.length;
-  let sumAllRatings = getAllRatings.ratings
-    .map((item) => item.star)
-    .reduce((prev, cur) => prev + cur, 0);
-  let actualRating = math.round(sumAllRatings / totalRating);
-  let finalProductRating = await Product.findByIdAndUpdate(
-    prodId,
-    { totalRating: actualRating },
-    { new: true }
-  );
-  res.json(finalProductRating);
-});
+const productRating = asyncHandler(async (req, res) => {});
 
 module.exports = {
   createProduct,
