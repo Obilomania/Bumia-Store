@@ -70,6 +70,35 @@ const authAPI = createApi({
       }),
       providesTags: ["authAPI"],
     }),
+    createUserAddress: builder.mutation({
+      query: (userData) => ({
+        url: "user/address",
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: userData,
+        credentials: "include",
+      }),
+      invalidatesTags: ["authAPI"],
+    }),
+    editUserAddress: builder.mutation({
+      query: ({ userInput, _id }) => ({
+        url: "user/address/" + _id,
+        method: "PUT",
+        body: userInput,
+        credentials: "include",
+      }),
+      invalidatesTags: ["authAPI"],
+    }),
+    getUserAddress: builder.query({
+      query: (_id) => ({
+        url: "user/address/" + _id,
+        method: "GET",
+        credentials: "include",
+      }),
+      validatesTags: ["authAPI"],
+    }),
   }),
 });
 
@@ -80,5 +109,8 @@ export const {
   useEditUserProfileMutation,
   useUserChangePasswordMutation,
   useUserLogOutQuery,
+  useCreateUserAddressMutation,
+  useEditUserAddressMutation,
+  useGetUserAddressQuery,
 } = authAPI;
 export default authAPI;

@@ -27,6 +27,7 @@ import { useDispatch } from "react-redux";
 import { user_auth_status } from "./redux/reducers/authSlice";
 import { base_Url } from "./components/Layout/BottomeHeader";
 import axios from "axios";
+import MyProfile from "./pages/Authentication/MyProfile";
 
 export const ScrollToTop = () => {
   const location = useLocation();
@@ -84,6 +85,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/shipping-information" element={<ShippingInfo />} />
             <Route path="/address" element={<Address />} />
+            <Route path="/profile" element={<MyProfile />} />
 
             {/* ************AUTHENTICATION************* */}
 

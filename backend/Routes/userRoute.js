@@ -22,6 +22,7 @@ const {
 } = require("../Controllers/userController");
 const isAdmin = require("../Middlewares/isAdminMiddlere");
 const protect = require("../MiddleWares/authMiddleware");
+const { createAddress, getAddress, updateAddress } = require("../Controllers/addressController");
 const router = express.Router();
 
 
@@ -53,5 +54,12 @@ router.post("/cart/apply-coupon", protect, applyCoupon);
 router.post("/orders/cash-order", protect, createOrder);
 router.get("/orders/get-order", protect, getOrders);
 router.put("/orders/update-order/:id", protect, isAdmin, updateOrderStatus);
+
+
+//**********************ADDRESSSSSSSSSSSSSSS */
+router.post("/address", protect, createAddress);
+router.put("/address/:_id", protect, updateAddress);
+router.get("/address/:_id", protect, getAddress);
+
 
 module.exports = router;

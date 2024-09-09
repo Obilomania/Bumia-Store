@@ -1,139 +1,108 @@
-import React, { useState } from 'react'
-import { Helmet } from 'react-helmet';
-import styled from 'styled-components'
-import BreadCrumb from '../../components/BreadCrumb';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import toast from 'react-hot-toast';
-
-
+import React, { useState } from "react";
+import { Helmet } from "react-helmet";
+import styled from "styled-components";
+import BreadCrumb from "../../components/BreadCrumb";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import { useCreateUserAddressMutation } from "../../redux/rtk-queries/authAPI";
+import Loader from "../../components/Loader";
+import { user_address } from "../../redux/reducers/authSlice";
 
 const initialState = {
-  firstname: "",
-  lastname: "",
-  phone: "",
-  email: "",
-  password: "",
+  address: "",
+  localGovernmentArea: "",
+  state: "",
+  zipcode: "",
 };
 const Address = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isChecked, setChecked] = useState(false);
-  const [registerInfo, setRegisterInfo] = useState(initialState);
+  const [addressInfo, setAddressInfo] = useState(initialState);
+  const [saveAddress, { isLoading }] = useCreateUserAddressMutation();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    setRegisterInfo({ ...registerInfo, [name]: value });
+    setAddressInfo({ ...addressInfo, [name]: value });
   };
 
-  const handleCheckboxChange = (event) => {
-    setChecked(event.target.checked);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      !addressInfo.address ||
+      !addressInfo.localGovernmentArea ||
+      !addressInfo.state
+    ) {
+      return toast.error("Please fill all fields with *");
+    }
+    const res = await saveAddress({
+      address: addressInfo.address,
+      localGovernmentArea: addressInfo.localGovernmentArea,
+      state: addressInfo.state,
+      zipcode: addressInfo.zipcode,
+    });
+    if (res?.data) {
+      toast.success("Address Saved");
+      dispatch(user_address(res?.data?.newAddress));
+
+      navigate("/profile");
+    } else if (res?.error) {
+      return toast.error(res?.error?.data?.message);
+    }
+    navigate("/profile");
   };
-
-
-   const handleSubmit = async (e) => {
-     e.preventDefault();
-     if (
-       !registerInfo.firstname ||
-       !registerInfo.lastname ||
-       !registerInfo.email ||
-       !registerInfo.password ||
-       !registerInfo.confirmPassword ||
-       !registerInfo.phone
-     ) {
-       return toast.error("Please fill all fields");
-     } 
-    //  const res = await registerNewUser({
-    //    firstname: registerInfo.firstname,
-    //    lastname: registerInfo.lastname,
-    //    email: registerInfo.email,
-    //    password: registerInfo.password,
-    //    phone: registerInfo.phone,
-    //  });
-    //  console.log(res);
-    //  if (res?.data) {
-    //    toast.success("Login Succesfull");
-    //    const {
-        
-    //    } = res?.data;
-
-
-    //    localStorage.setItem("userRole", role);
-    //    localStorage.setItem("userName", firstname);
-
-    //    navigate("/address");
-    //  } else if (res?.error) {
-    //    return toast.error(res?.error?.data?.message);
-    //  }
-     navigate("/address");
-   };
 
   return (
     <AddressPage>
-        {/* {isLoading && <Loader />} */}
-        <Helmet>
-          <title>Address</title>
-          <meta name="description" content="Address" />
-        </Helmet>
-        <BreadCrumb title="Address" />
-        <form action="" className="login-form" onSubmit={handleSubmit}>
-          <h5 className="form-heading text-center">Sign Up</h5>
-          <br />
-          <div className="inputs">
-            <div className="inp">
-              <input
-                type="text"
-                placeholder="First Name *"
-                name="firstname"
-                value={registerInfo.firstname}
-                onChange={(e) => handleInput(e)}
-              />
-              <input
-                type="text"
-                placeholder="Last Name *"
-                name="lastname"
-                value={registerInfo.lastname}
-                onChange={(e) => handleInput(e)}
-              />
-              <input
-                type="text"
-                placeholder="Phone Number *"
-                name="phone"
-                value={registerInfo.phone}
-                onChange={(e) => handleInput(e)}
-              />
-              <input
-                type="text"
-                placeholder="Email Address *"
-                name="email"
-                value={registerInfo.email}
-                onChange={(e) => handleInput(e)}
-              />
-              <input
-                type="password"
-                placeholder="Password *"
-                name="password"
-                value={registerInfo.password}
-                onChange={(e) => handleInput(e)}
-              />
-              <input
-                type="password"
-                placeholder="Confirm Password *"
-                name="confirmPassword"
-                value={registerInfo.confirmPassword}
-                onChange={(e) => handleInput(e)}
-              />
-            </div>
-           
+      {isLoading && <Loader />}
+      <Helmet>
+        <title>Address</title>
+        <meta name="description" content="Address" />
+      </Helmet>
+      <BreadCrumb title="Address" />
+      <form action="" className="login-form" onSubmit={handleSubmit}>
+        <h5 className="form-heading text-center">Enter Address</h5>
+        <br />
+        <div className="inputs">
+          <div className="inp">
+            <input
+              type="text"
+              placeholder="House Address *"
+              name="address"
+              value={addressInfo.address}
+              onChange={(e) => handleInput(e)}
+            />
+            <input
+              type="text"
+              placeholder="Local Government Area *"
+              name="localGovernmentArea"
+              value={addressInfo.localGovernmentArea}
+              onChange={(e) => handleInput(e)}
+            />
+            <input
+              type="text"
+              placeholder="State *"
+              name="state"
+              value={addressInfo.state}
+              onChange={(e) => handleInput(e)}
+            />
+            <input
+              type="text"
+              placeholder="Zip Code (Opional)"
+              name="zipcode"
+              value={addressInfo.zipcode}
+              onChange={(e) => handleInput(e)}
+            />
           </div>
-          <div className="form-bottons mt-4">
-            <Link to={"/"}>Skip</Link>
-            <button type="submit">Save Address</button>
-          </div>
-        </form>
+        </div>
+        <div className="form-bottons mt-4">
+          <Link to={"/"}>Skip</Link>
+          <button type="submit">Save Address</button>
+        </div>
+      </form>
     </AddressPage>
   );
-}
+};
 
 const AddressPage = styled.div`
   width: 100%;
@@ -320,4 +289,4 @@ const AddressPage = styled.div`
     }
   }
 `;
-export default Address
+export default Address;

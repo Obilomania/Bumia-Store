@@ -69,9 +69,8 @@ const Register = () => {
       password: registerInfo.password,
       phone: registerInfo.phone,
     });
-    console.log(res)
     if (res?.data) {
-      toast.success("Login Succesfull");
+      toast.success("Registration Succesfull");
       const {
         firstname,
         lastname,
