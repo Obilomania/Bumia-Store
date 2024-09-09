@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./Middlewares/errorMiddleware");
 const morgan = require("morgan");
+const cors = require("cors");
+
 
 //Routes
 const userRoute = require("./Routes/userRoute");
@@ -22,6 +24,14 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+  cors({
+    origin: ["https://bitbyvest.onrender.com", "http://localhost:3000"], // List your allowed origins
+    credentials: true, // Allow credentials (cookies)
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 //Route Direction lol
 app.use("/api/user", userRoute);

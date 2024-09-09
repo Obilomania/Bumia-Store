@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Loader = () => {
     return <LoaderComponent>
         <div className="loader-content">
-            <p>Bumia <span>Store</span></p>
+            <p>Bumia <span>Store  </span></p>
       </div>
   </LoaderComponent>;
 };
@@ -25,9 +25,10 @@ const LoaderComponent = styled.div`
   .loader-content {
     display: inline-block;
     animation: scaleInOut 800ms infinite;
+    opacity:.7;
     p {
       font-weight: 500;
-      font-size: 2rem;
+      font-size: 1rem;
       span {
         color: var(--bg-logo);
         margin-left: -0.3rem;

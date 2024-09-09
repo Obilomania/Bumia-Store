@@ -22,9 +22,11 @@ import { useEffect } from "react";
 import ProductDetail from "./pages/Product/ProductDetail";
 import Cart from "./pages/Cart/Cart";
 import ShippingInfo from "./pages/Shipping/ShippingInfo";
-
-
-
+import Address from "./pages/Authentication/Address";
+import { useDispatch } from "react-redux";
+import { user_auth_status } from "./redux/reducers/authSlice";
+import { base_Url } from "./components/Layout/BottomeHeader";
+import axios from "axios";
 
 export const ScrollToTop = () => {
   const location = useLocation();
@@ -34,9 +36,29 @@ export const ScrollToTop = () => {
   return null;
 };
 
-
 function App() {
-  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    async function authStatus() {
+      try {
+        const response = await axios.get(`${base_Url}user/login-status`, {
+          withCredentials: true,
+        });
+        dispatch(user_auth_status(response.data));
+        return response.data;
+      } catch (error) {
+        const message =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+        console.log(message); // Add this line to log the message;
+      }
+    }
+    authStatus();
+  }, [dispatch]);
+
   return (
     <>
       <BrowserRouter>
@@ -61,6 +83,7 @@ function App() {
             <Route path="/product/detail/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/shipping-information" element={<ShippingInfo />} />
+            <Route path="/address" element={<Address />} />
 
             {/* ************AUTHENTICATION************* */}
 

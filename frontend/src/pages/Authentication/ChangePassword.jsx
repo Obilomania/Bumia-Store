@@ -3,6 +3,7 @@ import BreadCrumb from "../../components/BreadCrumb";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import withoutAuth from "../../HOC/withoutAuth";
 
 const ChangePassword = () => {
   return (
@@ -194,4 +195,4 @@ const ResetP = styled.div`
     }
   }
 `;
-export default ChangePassword;
+export default withoutAuth(ChangePassword);

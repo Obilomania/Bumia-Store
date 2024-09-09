@@ -1,32 +1,186 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import BreadCrumb from "../../components/BreadCrumb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import withoutAuth from "../../HOC/withoutAuth";
+import toast from "react-hot-toast";
+import { useRegisterUserMutation } from "../../redux/rtk-queries/authAPI";
+import Loader from "../../components/Loader";
+import {
+  user_address,
+  user_auth_status,
+  user_cart,
+  user_email,
+  user_firstName,
+  user_id,
+  user_isBlocked,
+  user_lastName,
+  user_memberSince,
+  user_phone,
+  user_role,
+  user_wishList,
+} from "../../redux/reducers/authSlice";
+import { useDispatch } from "react-redux";
 
+const initialState = {
+  firstname: "",
+  lastname: "",
+  phone: "",
+  email: "",
+  password: "",
+};
 const Register = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const [isChecked, setChecked] = useState(false);
+  const [registerInfo, setRegisterInfo] = useState(initialState);
+  const [registerNewUser, { isLoading }] = useRegisterUserMutation();
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setRegisterInfo({ ...registerInfo, [name]: value });
+  };
+
+  const handleCheckboxChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      !registerInfo.firstname ||
+      !registerInfo.lastname ||
+      !registerInfo.email ||
+      !registerInfo.password ||
+      !registerInfo.confirmPassword ||
+      !registerInfo.phone
+    ) {
+      return toast.error("Please fill all fields");
+    } else if (registerInfo.password !== registerInfo.confirmPassword) {
+      return toast.error("Password is not a Match");
+    } else if (!isChecked) {
+      return toast.error("Please agree to our terms and conditions");
+    }
+    const res = await registerNewUser({
+      firstname: registerInfo.firstname,
+      lastname: registerInfo.lastname,
+      email: registerInfo.email,
+      password: registerInfo.password,
+      phone: registerInfo.phone,
+    });
+    console.log(res)
+    if (res?.data) {
+      toast.success("Login Succesfull");
+      const {
+        firstname,
+        lastname,
+        email,
+        role,
+        id,
+        isBlocked,
+        phone,
+        registrationDate,
+        wishList,
+        address,
+        cart,
+      } = res?.data;
+
+      dispatch(user_firstName(firstname));
+      dispatch(user_lastName(lastname));
+      dispatch(user_email(email));
+      dispatch(user_phone(phone));
+      dispatch(user_id(id));
+      dispatch(user_auth_status(true));
+      dispatch(user_role(role));
+      dispatch(user_isBlocked(isBlocked));
+      dispatch(user_memberSince(registrationDate));
+      dispatch(user_wishList(wishList));
+      dispatch(user_address(address));
+      dispatch(user_cart(cart));
+      localStorage.setItem("userRole", role);
+      localStorage.setItem("userName", firstname);
+
+      navigate("/address");
+    } else if (res?.error) {
+      return toast.error(res?.error?.data?.message);
+    }
+    navigate("/address");
+    
+  };
+
   return (
     <LoginUser>
+      {isLoading && <Loader />}
       <Helmet>
         <title>Sign Up</title>
         <meta name="description" content="Our Store" />
       </Helmet>
       <BreadCrumb title="Sign Up" />
-      <form action="" className="login-form">
+      <form action="" className="login-form" onSubmit={handleSubmit}>
         <h5 className="form-heading text-center">Sign Up</h5>
         <br />
         <div className="inputs">
           <div className="inp">
-            <input type="text" placeholder="Full Name *" />
-            <input type="text" placeholder="Phone Number *" />
-            <input type="text" placeholder="Email Address *" />
-            <input type="password" placeholder="Password *" />
-            <input type="password" placeholder="Confirm Password *" />
+            <input
+              type="text"
+              placeholder="First Name *"
+              name="firstname"
+              value={registerInfo.firstname}
+              onChange={(e) => handleInput(e)}
+            />
+            <input
+              type="text"
+              placeholder="Last Name *"
+              name="lastname"
+              value={registerInfo.lastname}
+              onChange={(e) => handleInput(e)}
+            />
+            <input
+              type="text"
+              placeholder="Phone Number *"
+              name="phone"
+              value={registerInfo.phone}
+              onChange={(e) => handleInput(e)}
+            />
+            <input
+              type="text"
+              placeholder="Email Address *"
+              name="email"
+              value={registerInfo.email}
+              onChange={(e) => handleInput(e)}
+            />
+            <input
+              type="password"
+              placeholder="Password *"
+              name="password"
+              value={registerInfo.password}
+              onChange={(e) => handleInput(e)}
+            />
+            <input
+              type="password"
+              placeholder="Confirm Password *"
+              name="confirmPassword"
+              value={registerInfo.confirmPassword}
+              onChange={(e) => handleInput(e)}
+            />
+          </div>
+          <div className="form-checkbox">
+            <input
+              type="checkbox"
+              name="agree"
+              checked={isChecked}
+              onChange={handleCheckboxChange}
+            />
+            <p>
+              I agree with
+              <Link to={"/terms"}>Terms and Conditions</Link>
+            </p>
           </div>
         </div>
         <div className="form-bottons mt-4">
+          {/* <Link to={"/account/login"}>Login</Link> */}
           <button type="submit">Register</button>
-          <Link to={"/account/login"}>Login</Link>
         </div>
       </form>
     </LoginUser>
@@ -38,9 +192,10 @@ const LoginUser = styled.div`
   min-height: 70vh;
   height: 100%;
   background: var(--bg-grey);
+  overflow: hidden;
   form {
     width: 25%;
-    margin: 10vh auto;
+    margin: 5vh auto;
     background-color: white;
     border-radius: 0.5rem;
     padding: 1rem 1rem 2rem 1rem;
@@ -54,6 +209,28 @@ const LoginUser = styled.div`
     justify-content: center;
     gap: 0rem;
     width: 100%;
+    .form-checkbox {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 1rem;
+      font-weight: 500;
+      input {
+        width: fit-content;
+      }
+      p {
+        width: 100%;
+        margin-top: 0rem;
+        font-size: 0.8rem;
+        font-weight: 400;
+        a {
+          text-decoration: none;
+          color: var(--primary);
+          font-weight: 600;
+        }
+      }
+    }
     .inp {
       display: flex;
       flex-direction: column;
@@ -195,4 +372,4 @@ const LoginUser = styled.div`
     }
   }
 `;
-export default Register;
+export default withoutAuth(Register);

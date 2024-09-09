@@ -6,6 +6,22 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLoginUserMutation } from "../../redux/rtk-queries/authAPI";
 import { useDispatch } from "react-redux";
 import Loader from "../../components/Loader";
+import toast from "react-hot-toast";
+import {
+  user_address,
+  user_auth_status,
+  user_cart,
+  user_email,
+  user_firstName,
+  user_id,
+  user_isBlocked,
+  user_lastName,
+  user_memberSince,
+  user_phone,
+  user_role,
+  user_wishList,
+} from "../../redux/reducers/authSlice";
+import withoutAuth from "../../HOC/withoutAuth";
 
 const Login = () => {
   const [loginUser, { isLoading }] = useLoginUserMutation();
@@ -24,22 +40,83 @@ const Login = () => {
     }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (userInput.email === "" || userInput.password === "") {
+      return toast.error("Please fill all Inputs");
+    }
+    const response = await loginUser({
+      email: userInput.email,
+      password: userInput.password,
+    });
+    if (response?.data?.isBlocked) {
+      return toast.error("User Blocked, Contact Admin");
+    }
+    if (response?.data) {
+      toast.success("Login Succesfull");
+      const {
+        firstname,
+        lastname,
+        email,
+        role,
+        id,
+        isBlocked,
+        phone,
+        registrationDate,
+        wishList,
+        address,
+        cart,
+      } = response?.data;
+
+      dispatch(user_firstName(firstname));
+      dispatch(user_lastName(lastname));
+      dispatch(user_email(email));
+      dispatch(user_phone(phone));
+      dispatch(user_id(id));
+      dispatch(user_auth_status(true));
+      dispatch(user_role(role));
+      dispatch(user_isBlocked(isBlocked));
+      dispatch(user_memberSince(registrationDate));
+      dispatch(user_wishList(wishList));
+      dispatch(user_address(address));
+      dispatch(user_cart(cart));
+      localStorage.setItem("userRole", role);
+      localStorage.setItem("userName", firstname);
+
+      navigate("/");
+    } else if (response?.error) {
+      return toast.error(response?.error?.data?.message);
+    }
+    navigate("/");
+  };
 
   return (
     <LoginUser>
-      <Loader/>
+      {isLoading && <Loader />}
       <Helmet>
         <title>Login</title>
         <meta name="description" content="Our Store" />
       </Helmet>
       <BreadCrumb title="Login" />
-      <form action="" className="login-form">
+      <form action="" className="login-form" onSubmit={handleSubmit}>
         <h5 className="form-heading text-center">Login</h5>
         <br />
         <div className="inputs">
           <div className="inp">
-            <input type="text" placeholder="Email Address *" />
-            <input type="password" placeholder="Password *" />
+            <input
+              type="text"
+              placeholder="Email Address *"
+              name="email"
+              value={userInput?.email}
+              onChange={(e) => handleInputChange(e)}
+            />
+            <input
+              type="password"
+              placeholder="Password *"
+              name="password"
+              value={userInput.password}
+              onChange={(e) => handleInputChange(e)}
+            />
           </div>
           <Link to={"/account/forgot-password"}>Forgot Your Password?</Link>
         </div>
@@ -503,4 +580,4 @@ const LoginUser = styled.div`
   @media screen and (max-width: 350px) {
   }
 `;
-export default Login;
+export default withoutAuth(Login);

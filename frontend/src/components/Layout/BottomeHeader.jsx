@@ -7,6 +7,13 @@ import StoreDropDown from "./StoreDropDown";
 import SpecialDropdown from "./SpecialDropdown";
 import CategoriesDropdown from "./CategoriesDropdown";
 import TopDealsDropDown from "./TopDealsDropDown";
+import { FaPowerOff } from "react-icons/fa6";
+import axios from "axios";
+import toast from "react-hot-toast";
+import store from "../../redux/store";
+import { resetUserState } from "../../redux/reducers/authSlice";
+
+export const base_Url = "http://localhost:5000/api/";
 
 const BottomeHeader = () => {
   const navigate = useNavigate();
@@ -15,6 +22,22 @@ const BottomeHeader = () => {
   const [categoryHover, setCategoryHover] = useState(false);
   const [topDealsHover, setTopDealsHover] = useState(false);
   const [elementHover, setElementHover] = useState(false);
+  const userName = localStorage.getItem("userName");
+  const logOutUser = () => {
+    const response = axios.get(`${base_Url}user/logout`, {
+      withCredentials: true,
+    });
+    if (response.data) {
+      toast.success("User Logged Out");
+    } else if (response.error) {
+      return toast.error(response.error?.data?.message);
+    }
+    store.dispatch(resetUserState());
+
+    localStorage.clear();
+    navigate("/");
+  };
+
   const HoverStoreEnter = () => {
     setOurStoreHover(true);
   };
@@ -128,6 +151,14 @@ const BottomeHeader = () => {
               <p onClick={() => navigate("/wish-list")}>Wishlist</p>
             </div>
           </li>
+          {userName ? (
+            <button className="logout-btn" onClick={logOutUser}>
+              LOGOUT{" "}
+              <span>
+                <FaPowerOff />
+              </span>
+            </button>
+          ) : null}
         </div>
       </div>
       <div
@@ -184,7 +215,7 @@ const HeaderBottom = styled.div`
     display: none;
   }
   .bottom-content {
-    width: 80%;
+    width: 100%;
     .nav-housing {
       display: flex;
       align-items: center;
@@ -235,6 +266,25 @@ const HeaderBottom = styled.div`
           display: flex;
         }
       }
+    }
+  }
+  .logout-btn {
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.3rem;
+    background: #e62a65;
+    padding: 0.1rem 0.5rem;
+    transition: var(--transition);
+    &:hover {
+      background: #f33c76;
+    }
+    span {
+      font-size: 0.6rem;
+      margin-left: 0.5rem;
     }
   }
   .ourstore-dropdown {

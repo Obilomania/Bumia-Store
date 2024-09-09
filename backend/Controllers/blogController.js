@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
-const Blog = require("../Models/blogModel");
 const User = require("../Models/userModel");
+const Blog = require("../Models/blogModel");
 
 // ********************CREATE BLOG POST************************************
 const createBlogPost = asyncHandler(async (req, res) => {
@@ -21,7 +21,7 @@ const updateBlogPost = asyncHandler(async (req, res) => {
   if (!_id) {
     return res
       .status(404)
-      .json({ success: false, message: "Unable to retieve post" });
+      .json({ success: false, message: "Unable to retrieve post" });
   }
 
   const updatedPost = await Blog.findByIdAndUpdate(

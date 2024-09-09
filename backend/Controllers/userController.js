@@ -41,7 +41,18 @@ const registerUser = asyncHandler(async (req, res) => {
     phone,
   });
   //Genrate token for new user
-  const token = generateToken(newUser._id);
+  const token = generateToken({
+    _id: newUser._id,
+    firstname: newUser.firstname,
+    lastname: newUser.lastname,
+    email: newUser.email,
+    phone: newUser.phone,
+    role: newUser.role,
+    cart: newUser.cart,
+    address: newUser.address,
+    wishList: newUser.wishList,
+    isBlocked: newUser.isBlocked,
+  });
 
   //send HTTP-Only cookie to clientside
   res.cookie("token", token, {
@@ -52,8 +63,19 @@ const registerUser = asyncHandler(async (req, res) => {
     secure: true,
   });
   if (newUser) {
-    const { _id, firstname, lastname, role, email, phone, registrationDate } =
-      newUser;
+    const {
+      _id,
+      firstname,
+      lastname,
+      role,
+      email,
+      phone,
+      registrationDate,
+      cart,
+      address,
+      wishList,
+      token,
+    } = newUser;
     res.status(201).json({
       _id,
       firstname,
@@ -62,6 +84,9 @@ const registerUser = asyncHandler(async (req, res) => {
       email,
       phone,
       registrationDate,
+      cart,
+      address,
+      wishList,
       token,
     });
   } else {
@@ -94,7 +119,18 @@ const loginUser = asyncHandler(async (req, res) => {
   //User exist but check if password is correct
   const passwordisValid = await bcrypt.compare(password, user.password);
   //Genrate token for new user
-  const token = generateToken(user._id);
+  const token = generateToken({
+    _id: user._id,
+    firstname: user.firstname,
+    lastname: user.lastname,
+    email: user.email,
+    phone: user.phone,
+    role: user.role,
+    cart: user.cart,
+    address: user.address,
+    wishList: user.wishList,
+    isBlocked: user.isBlocked,
+  });
 
   //send HTTP-Only cookie to clientside
   res.cookie("token", token, {
@@ -106,8 +142,18 @@ const loginUser = asyncHandler(async (req, res) => {
   });
 
   if (user && passwordisValid) {
-    const { _id, firstname, lastname, role, email, phone, registrationDate } =
-      user;
+    const {
+      _id,
+      firstname,
+      lastname,
+      role,
+      email,
+      phone,
+      registrationDate,
+      cart,
+      address,
+      wishList,
+    } = user;
     res.status(200).json({
       _id,
       firstname,
@@ -116,6 +162,9 @@ const loginUser = asyncHandler(async (req, res) => {
       email,
       phone,
       registrationDate,
+      cart,
+      address,
+      wishList,
       token,
     });
   } else {
@@ -409,7 +458,6 @@ const getUserCart = asyncHandler(async (req, res) => {
   const myCart = await Cart.findOne({ user: _id }).populate("products.product");
   if (!myCart) {
     res.status(400);
-     
   }
   return res.status(200).json(myCart);
 });

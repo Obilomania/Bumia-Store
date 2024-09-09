@@ -10,6 +10,7 @@ import { IoMenuOutline } from "react-icons/io5";
 
 const MiddleHeader = ({ toggleNavReveal }) => {
   const navigate = useNavigate()
+  const userName = localStorage.getItem("userName")
   return (
     <HeaderMiddle>
       <div className="main-container middle-content">
@@ -42,13 +43,27 @@ const MiddleHeader = ({ toggleNavReveal }) => {
               <p className="font-small">Wishlist</p>
             </div>
           </Link>
-          <Link to={"/account/login"} className="login">
-            <img src={userAuthIMG} alt="compare-img" />
-            <div className="write-up">
-              <p className="font-small">Log In</p>
-              <p className="font-small">My Account</p>
-            </div>
-          </Link>
+          {userName ? (
+            <>
+              <Link className="login">
+                <img src={userAuthIMG} alt="compare-img" />
+                <div className="write-up">
+                  <p className="font-small">Hello</p>
+                  <p className="font-small">{userName}</p>
+                </div>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to={"/account/login"} className="login">
+                <img src={userAuthIMG} alt="compare-img" />
+                <div className="write-up">
+                  <p className="font-small">Log In</p>
+                  <p className="font-small">My Account</p>
+                </div>
+              </Link>
+            </>
+          )}
           <Link to={"/cart"} className="cart">
             <img src={cartIMG} alt="compare-img" />
             <div className="write-up">
