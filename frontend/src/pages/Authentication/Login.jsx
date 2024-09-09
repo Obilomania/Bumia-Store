@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import BreadCrumb from "../../components/BreadCrumb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useLoginUserMutation } from "../../redux/rtk-queries/authAPI";
+import { useDispatch } from "react-redux";
+import Loader from "../../components/Loader";
 
 const Login = () => {
+  const [loginUser, { isLoading }] = useLoginUserMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [userInput, setUserInput] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserInput((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+
   return (
     <LoginUser>
+      <Loader/>
       <Helmet>
         <title>Login</title>
         <meta name="description" content="Our Store" />

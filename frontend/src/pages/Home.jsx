@@ -11,6 +11,7 @@ import SectionEight from './Landing/SectionEight'
 const Home = () => {
   return (
     <>
+    
       <SectionOne />
       <SectionTwo />
       <SectionThree />
