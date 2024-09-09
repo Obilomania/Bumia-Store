@@ -12,16 +12,24 @@ const {
   productRating,
   uploadImages,
   deleteProductImage,
+  getRecommendedProducts,
+  getFeaturedProducts,
+  getProductsByCategory,
+  makeProductFeatured,
 } = require("../Controllers/productController");
 const {
-    imageSizeResize,
-    uploadPhoto,
+  imageSizeResize,
+  uploadPhoto,
 } = require("../Middlewares/uploadImagesMiddleware");
 
 router.get("/:_id", getAProduct);
 router.put("/wishlist", protect, addToWishList);
 router.put("/rating", protect, productRating);
 router.get("/", getAllProducts);
+router.get("/recommendations", getRecommendedProducts);
+router.get("/featured", getFeaturedProducts);
+router.get("/category/:category", getProductsByCategory);
+router.put("/featured/:_id", makeProductFeatured);
 router.post(
   "/",
   protect,
@@ -45,6 +53,6 @@ router.put(
   uploadImages
 );
 
-router.delete("/:prodId/images/:imageId" , protect, isAdmin, deleteProductImage)
+router.delete("/:prodId/images/:imageId", protect, isAdmin, deleteProductImage);
 
 module.exports = router;

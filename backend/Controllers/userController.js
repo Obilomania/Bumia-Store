@@ -149,6 +149,7 @@ const getUser = asyncHandler(async (req, res) => {
       registrationDate,
       address,
       wishList,
+      cart,
     } = user;
     res.status(201).json({
       firstname,
@@ -160,6 +161,7 @@ const getUser = asyncHandler(async (req, res) => {
       registrationDate,
       address,
       wishList,
+      cart,
     });
   } else {
     res.status(404);
@@ -183,6 +185,7 @@ const getOneParticularUser = asyncHandler(async (req, res) => {
       address,
       wishList,
       isBlocked,
+      cart,
     } = theUser;
     res.status(200).json({
       _id,
@@ -195,6 +198,7 @@ const getOneParticularUser = asyncHandler(async (req, res) => {
       address,
       wishList,
       isBlocked,
+      cart,
     });
   } else {
     res.status(404);
@@ -359,6 +363,7 @@ const userCart = asyncHandler(async (req, res) => {
   if (alreadyExistInCart) {
     alreadyExistInCart.remove();
   }
+
   for (let i = 0; i < cart.length; i++) {
     let cartObject = {};
     cartObject.product = cart[i]._id;
@@ -368,16 +373,18 @@ const userCart = asyncHandler(async (req, res) => {
     cartObject.price = getPrice.price;
     products.push(cartObject);
   }
+
   let cartTotal = 0;
   for (let i = 0; i < products.length; i++) {
     cartTotal = cartTotal + products[i].price * products[i].count;
   }
+
   let newCart = await new Cart({
     products,
     cartTotal,
     user: user._id,
   }).save();
-  res.json(newCart);
+  res.status(201).json({ success: true, message: "successful", newCart });
 });
 
 //Controller to Empty User`s Cart
@@ -393,7 +400,7 @@ const emptyCart = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Unable to delete cart, Please try again!");
   }
-  return res.status(200).json("Cart is Empty");
+  return res.status(200).json({ success: true, message: "Cart is empty" });
 });
 
 //Controller to get User`s Cart
@@ -402,7 +409,7 @@ const getUserCart = asyncHandler(async (req, res) => {
   const myCart = await Cart.findOne({ user: _id }).populate("products.product");
   if (!myCart) {
     res.status(400);
-    throw new Error("Cart is empty");
+     
   }
   return res.status(200).json(myCart);
 });

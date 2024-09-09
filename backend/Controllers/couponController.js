@@ -25,6 +25,39 @@ const createCoupon = asyncHandler(async (req, res) => {
   res.status(201).json(newCoupon);
 });
 
+const getCoupon = asyncHandler(async (req, res) => {
+  const coupon = await Coupon.findOne({ userId: req.body, isActive: true });
+  if (!coupon) {
+    res.status(404);
+    throw new Error("Coupon Not Found!!!");
+  }
+  res.json({ success: true, coupon });
+});
+
+const validateCoupon = asyncHandler(async (req, res) => {
+  const { code } = req.body;
+  const coupon = await Coupon.findOne({
+    name: code,
+    userId: req.user._id,
+    isActive: true,
+  });
+  if (!coupon) {
+    res.status(404);
+    throw new Error("Coupon Not Found!!!");
+  }
+  if (coupon.expiry < new Date()) {
+    coupon.isActive = false;
+    await coupon.save();
+    return res.status(400).json({ success: false, message: "Coupon Expired" });
+  }
+  res.json({
+    success: true,
+    name: coupon.name,
+    discountPercentage: coupon.discountPercentage,
+    message: "Coupon is Valid",
+  });
+});
+
 //Get all coupons
 const getAllCoupon = asyncHandler(async (req, res) => {
   const allCoupon = await Coupon.find().sort("-createdAt");
@@ -85,6 +118,8 @@ const deleteCoupon = asyncHandler(async (req, res) => {
 
 module.exports = {
   createCoupon,
+  getCoupon,
+  validateCoupon,
   getAllCoupon,
   getSingleCoupon,
   updateCoupon,

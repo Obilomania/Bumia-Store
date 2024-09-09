@@ -6,6 +6,7 @@ const multer = require("multer");
 const { fileSizeFormatter } = require("../Config/fileUpload");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
+const { redisClient } = require("../Config/redis");
 
 //Create a product
 const createProduct = asyncHandler(async (req, res) => {
@@ -83,6 +84,83 @@ const getAllProducts = asyncHandler(async (req, res) => {
   }
 });
 
+//GET FEATURED PRODUCTS
+const getFeaturedProducts = asyncHandler(async (req, res) => {
+  let featuredProducts = await redisClient.get("featured_products");
+  if (featuredProducts) {
+    return res.json(JSON.parse(featuredProducts));
+  }
+
+  //if not in redis fetch from MongoDb
+  featuredProducts = await Product.find({
+    isFeatured: true,
+  }).lean();
+  if (!featuredProducts) {
+    return res.status(404).json({ message: "No featured products found" });
+  }
+
+  //store in redis for future quick access
+  await redisClient.set("featured_products", JSON.stringify(featuredProducts));
+  res.json(featuredProducts);
+});
+
+//GET RECOMMENDED PRODUCTS
+const getRecommendedProducts = asyncHandler(async (req, res) => {
+  try {
+    const recommendedProducts = await Product.aggregate([
+      { $sample: { size: 6 } },
+      {
+        $project: {
+          _id: 1,
+          title: 1,
+          description: 1,
+          image: 1,
+          price: 1,
+          discountPrice: 1,
+        },
+      },
+    ]);
+    res.json(products);
+  } catch (error) {
+    console.log("Error in getRecommendedProducts controller", error.message);
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
+  }
+});
+
+//GET PRODUCTS BY CATEGORY
+const getProductsByCategory = asyncHandler(async (req, res) => {
+  const { category } = req.params;
+  const products = await Product.find({ category });
+  if (!products) {
+    return res.status(404).json({ message: "No products found" });
+  }
+  res.json(products);
+});
+
+
+//MAKE A PRODUCT FEATURED
+async function updateFeaturedProductsCache() {
+  try {
+    const featuredProducts = await Product.find({ isFeatured: true, }).lean()
+    await redisClient.set("featured_products", JSON.stringify(featuredProducts),"EX", 60 * 60 * 24);
+  } catch (error) {
+    console.log("Error in updating cache")
+  }
+}
+const makeProductFeatured = asyncHandler(async (req, res) => {
+  const { _id } = req.params;
+  const product = await Product.findById(_id);
+  if (!product) {
+    return res.status(404).json({ message: "Product not found" });
+  }
+  product.isFeatured = true;
+  await updateFeaturedProductsCache();
+  await product.save();
+  res.json(product);
+});
+
 //Update a Product
 const updateProduct = asyncHandler(async (req, res) => {
   const singleProduct = await Product.findById(req.params._id);
@@ -133,13 +211,11 @@ const updateProduct = asyncHandler(async (req, res) => {
 
     const updatedProduct = await singleProduct.save();
     if (updatedProduct) {
-      res
-        .status(200)
-        .json({
-          success: true,
-          message: "Product Updated Successfully",
-          data: updateProduct,
-        });
+      res.status(200).json({
+        success: true,
+        message: "Product Updated Successfully",
+        data: updateProduct,
+      });
     } else {
       res.status(400);
       throw new Error("Product Not Found!!!");
@@ -256,6 +332,10 @@ module.exports = {
   createProduct,
   getAProduct,
   getAllProducts,
+  getFeaturedProducts,
+  getRecommendedProducts,
+  getProductsByCategory,
+  makeProductFeatured,
   updateProduct,
   deleteProduct,
   uploadImages,

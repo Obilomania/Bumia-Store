@@ -34,6 +34,10 @@ const productSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
     },
+    isFeatured: {
+      type: Boolean,
+      default:false
+    }, 
     brand: {
       type: String,
       required: true,

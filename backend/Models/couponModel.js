@@ -12,10 +12,22 @@ const couponSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    discount: {
+    discountPercentage: {
       type: Number,
       required: true,
+      min: 0,
+      max:100
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    }, 
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+      unique: true,
+    }
   },
   {
     timestamps: true,

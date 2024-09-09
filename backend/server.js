@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./Middlewares/errorMiddleware");
 const morgan = require("morgan");
-const fs = require('fs')
 
 //Routes
 const userRoute = require("./Routes/userRoute");
@@ -14,6 +13,8 @@ const categoryRoute = require("./Routes/categoryRoute");
 const couponRoute = require("./Routes/couponRoute")
 const blogRoute = require("./Routes/blogRoute");
 const brandRoute = require("./Routes/brandRoute");
+const cartRoute = require("./Routes/cartRoute");
+const paymentRoute = require("./Routes/paymentRoute");
 
 const app = express();
 app.use(morgan("dev"));
@@ -23,12 +24,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //Route Direction lol
-app.use("/api/authentication", userRoute);
+app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/brand", brandRoute);
 app.use("/api/coupon", couponRoute);
 app.use("/api/blog", blogRoute);
+app.use("/api/cart", cartRoute);
+app.use("/api/payment", paymentRoute);
 app.get("/", (req, res) => {
   res.send("Home Page");
 });
