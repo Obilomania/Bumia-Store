@@ -1,11 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import BreadCrumb from "../../components/BreadCrumb";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import withoutAuth from "../../HOC/withoutAuth";
+import withAuth from "../../HOC/withAuth";
+import { useUserChangePasswordMutation } from "../../redux/rtk-queries/authAPI";
+import toast from "react-hot-toast";
 
 const ChangePassword = () => {
+  const navigate = useNavigate();
+  const [changeUserPassword, { isLoading }] = useUserChangePasswordMutation();
+  const [userInput, setUserInput] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserInput((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      userInput.oldPassword === "" ||
+      userInput.newPassword === "" ||
+      userInput.confirmNewPassword === ""
+    ) {
+      return toast.error("Please fill all Inputs");
+    }
+    if (userInput.newPassword !== userInput.confirmNewPassword) {
+      return toast.error("New Passwords dont match");
+    }
+    const res = await changeUserPassword({ userInput });
+    if (res?.data) {
+      toast.success("Password Changed");
+      navigate("/profile");
+    }
+    if (res?.error) {
+      toast.error(res?.error?.data?.message);
+    }
+    return;
+  };
   return (
     <ResetP>
       <Helmet>
@@ -14,19 +54,37 @@ const ChangePassword = () => {
       </Helmet>
       <BreadCrumb title="Change Password" />
 
-      <form action="" className="login-form">
+      <form action="" className="login-form" onSubmit={handleSubmit}>
         <h5 className="form-heading text-center">Change Password</h5>
         <br />
         <div className="inputs">
           <div className="inp">
-            <input type="Password" placeholder="Old Password *" />
-            <input type="Password" placeholder="New Password *" />
-            <input type="Password" placeholder="Confirm New Password *" />
+            <input
+              type="Password"
+              placeholder="Old Password *"
+              name="oldPassword"
+              value={userInput?.oldPassword}
+              onChange={(e) => handleInputChange(e)}
+            />
+            <input
+              type="Password"
+              placeholder="New Password *"
+              name="newPassword"
+              value={userInput?.newPassword}
+              onChange={(e) => handleInputChange(e)}
+            />
+            <input
+              type="Password"
+              placeholder="Confirm New Password *"
+              name="confirmNewPassword"
+              value={userInput?.confirmNewPassword}
+              onChange={(e) => handleInputChange(e)}
+            />
           </div>
         </div>
         <div className="form-bottons mt-4">
-          <button type="submit">Reset</button>
           <Link to={"/account/profile"}>Cancel</Link>
+          <button type="submit">Change</button>
         </div>
       </form>
     </ResetP>
@@ -38,6 +96,7 @@ const ResetP = styled.div`
   min-height: 70vh;
   height: 100%;
   background: var(--bg-grey);
+  overflow: hidden;
   form {
     width: 25%;
     margin: 10vh auto;
@@ -195,4 +254,4 @@ const ResetP = styled.div`
     }
   }
 `;
-export default withoutAuth(ChangePassword);
+export default withAuth(ChangePassword);

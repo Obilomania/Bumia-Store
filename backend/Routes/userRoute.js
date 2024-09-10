@@ -19,6 +19,7 @@ const {
   createOrder,
   getOrders,
   updateOrderStatus,
+  changeUserPassword,
 } = require("../Controllers/userController");
 const isAdmin = require("../Middlewares/isAdminMiddlere");
 const protect = require("../MiddleWares/authMiddleware");
@@ -35,6 +36,7 @@ router.get("/mycart", protect, getUserCart);
 //Authentication
 router.post("/register", registerUser);
 router.post("/login", loginUser);
+router.put("/changepassword", protect, changeUserPassword);
 router.get("/logout", logOut);
 router.get("/login-status", loginStatus);
 router.get("/getuser", protect, getUser);

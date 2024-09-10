@@ -173,6 +173,33 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+
+const changeUserPassword = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+  const { oldPassword, newPassword } = req.body;
+  const user = await User.findById(userId);
+
+  if (!user) {
+    res.status(404);
+    throw new Error("Error, Please try again");
+  }
+  if (!oldPassword || !newPassword) {
+    res.status(400);
+    throw new Error("Please fill all inputs");
+  }
+
+  const oldPasswordIsCorrect = await bcrypt.compare(oldPassword, user.password);
+
+  if (oldPasswordIsCorrect) {
+    user.password = newPassword;
+    await user.save();
+    res.status(200).json({ message: "Password changed successfully" });
+  } else {
+    res.status(400);
+    throw new Error("old password is incorrect");
+  }
+})
+
 //Get All User
 const getAllUsers = asyncHandler(async (req, res) => {
   const getEveryUser = await User.find().select("-password");
@@ -564,6 +591,7 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
 module.exports = {
   registerUser,
   loginUser,
+  changeUserPassword,
   getAllUsers,
   getUser,
   getOneParticularUser,

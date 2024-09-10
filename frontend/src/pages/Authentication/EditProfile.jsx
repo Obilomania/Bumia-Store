@@ -58,8 +58,8 @@ const EditProfile = () => {
     navigate("/profile");
   };
   return (
-      <EditPro>
-          {isLoading && <Loader/>}
+    <EditPro>
+      {isLoading && <Loader />}
       <Helmet>
         <title>Edit Profile</title>
         <meta name="description" content="Edit Profile" />
@@ -103,6 +103,7 @@ const EditProfile = () => {
         <div className="form-bottons mt-4">
           <Link to={"/edit-address"}>Edit Address</Link>
           <button type="submit">Update Profile</button>
+          <Link to={"/account/change-password"}>Change Password</Link>
         </div>
       </form>
     </EditPro>
@@ -198,6 +199,7 @@ const EditPro = styled.div`
       border-radius: 1rem;
       transition: var(--transition);
       font-weight: 500;
+      text-align: center;
       &:hover {
         background: var(--bg-two);
         transition: var(--transition);
@@ -213,6 +215,7 @@ const EditPro = styled.div`
       border-radius: 1rem;
       transition: var(--transition);
       font-weight: 500;
+      text-align: center;
       &:hover {
         background: var(--bg-logo2);
         transition: var(--transition);
@@ -276,6 +279,17 @@ const EditPro = styled.div`
       border-radius: 0.5rem;
       padding: 1rem 1rem 2rem 1rem;
       box-shadow: 0 0 10px #0000001a;
+      .form-bottons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        a,
+        button {
+          width: 100%;
+          text-align: center;
+        }
+      }
     }
   }
   @media screen and (max-width: 350px) {
