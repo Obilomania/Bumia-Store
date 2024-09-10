@@ -92,8 +92,8 @@ const authAPI = createApi({
       invalidatesTags: ["authAPI"],
     }),
     getUserAddress: builder.query({
-      query: (_id) => ({
-        url: "user/address/" + _id,
+      query: (id) => ({
+        url: "user/address/" + id,
         method: "GET",
         credentials: "include",
       }),

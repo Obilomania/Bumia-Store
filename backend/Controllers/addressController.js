@@ -58,15 +58,14 @@ const updateAddress = asyncHandler(async (req, res) => {
 
 //***********************************GET ADDRESS**************************
 const getAddress = asyncHandler(async (req, res) => {
-  const { _id } = req.params;
-  const userAddress = await Address.findById(_id);
+ const addresses = await Address.find({ user: req.user._id });
 
-  if (!userAddress) {
+  if (!addresses) {
     return res
       .status(404)
       .json({ success: false, message: "Address not found" });
   }
-  return res.status(201).json({ success: true, userAddress });
+  return res.status(201).json({ success: true, addresses });
 });
 
 module.exports = {

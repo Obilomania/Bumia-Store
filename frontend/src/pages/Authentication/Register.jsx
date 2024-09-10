@@ -76,7 +76,7 @@ const Register = () => {
         lastname,
         email,
         role,
-        id,
+        _id,
         isBlocked,
         phone,
         registrationDate,
@@ -89,7 +89,7 @@ const Register = () => {
       dispatch(user_lastName(lastname));
       dispatch(user_email(email));
       dispatch(user_phone(phone));
-      dispatch(user_id(id));
+      dispatch(user_id(_id));
       dispatch(user_auth_status(true));
       dispatch(user_role(role));
       dispatch(user_isBlocked(isBlocked));

@@ -59,7 +59,7 @@ router.put("/orders/update-order/:id", protect, isAdmin, updateOrderStatus);
 //**********************ADDRESSSSSSSSSSSSSSS */
 router.post("/address", protect, createAddress);
 router.put("/address/:_id", protect, updateAddress);
-router.get("/address/:_id", protect, getAddress);
+router.get("/address/:id", protect, getAddress);
 
 
 module.exports = router;

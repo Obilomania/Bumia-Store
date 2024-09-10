@@ -45,7 +45,7 @@ const MiddleHeader = ({ toggleNavReveal }) => {
           </Link>
           {userName ? (
             <>
-              <Link className="login">
+              <Link className="login" to={"/profile"}>
                 <img src={userAuthIMG} alt="compare-img" />
                 <div className="write-up">
                   <p className="font-small">Hello</p>

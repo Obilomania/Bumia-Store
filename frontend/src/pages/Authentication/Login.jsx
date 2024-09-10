@@ -59,7 +59,7 @@ const Login = () => {
         lastname,
         email,
         role,
-        id,
+        _id,
         isBlocked,
         phone,
         registrationDate,
@@ -72,7 +72,7 @@ const Login = () => {
       dispatch(user_lastName(lastname));
       dispatch(user_email(email));
       dispatch(user_phone(phone));
-      dispatch(user_id(id));
+      dispatch(user_id(_id));
       dispatch(user_auth_status(true));
       dispatch(user_role(role));
       dispatch(user_isBlocked(isBlocked));
@@ -137,7 +137,7 @@ const LoginUser = styled.div`
   overflow: hidden;
   form {
     width: 25%;
-    margin: 10vh auto;
+    margin: 5vh auto;
     background-color: white;
     border-radius: 0.5rem;
     padding: 1rem 1rem 2rem 1rem;
