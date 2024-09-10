@@ -7,10 +7,30 @@ import userAuthIMG from "../../assets/images/user.svg";
 import cartIMG from "../../assets/images/cart.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { IoMenuOutline } from "react-icons/io5";
+import { FaPowerOff } from "react-icons/fa6";
+import axios from "axios";
+import { base_Url } from "./BottomeHeader";
+import { resetUserState } from "../../redux/reducers/authSlice";
+import store from "../../redux/store";
+import toast from "react-hot-toast";
 
 const MiddleHeader = ({ toggleNavReveal }) => {
-  const navigate = useNavigate()
-  const userName = localStorage.getItem("userName")
+  const navigate = useNavigate();
+  const userName = localStorage.getItem("userName");
+    const logOutUser = () => {
+      const response = axios.get(`${base_Url}user/logout`, {
+        withCredentials: true,
+      });
+      if (response.data) {
+        toast.success("User Logged Out");
+      } else if (response.error) {
+        return toast.error(response.error?.data?.message);
+      }
+      store.dispatch(resetUserState());
+
+      localStorage.clear();
+      navigate("/");
+    };
   return (
     <HeaderMiddle>
       <div className="main-container middle-content">
@@ -95,11 +115,23 @@ const MiddleHeader = ({ toggleNavReveal }) => {
             alt="nav-ions"
             onClick={() => navigate("/wish-list")}
           />
-          <img
-            src={userAuthIMG}
-            alt="nav-ions"
-            onClick={() => navigate("/account/login")}
-          />
+          {userName ? (
+            <>
+              <img
+                src={userAuthIMG}
+                alt="nav-ions"
+                onClick={() => navigate("/profile")}
+              />
+            </>
+          ) : (
+            <>
+              <img
+                src={userAuthIMG}
+                alt="nav-ions"
+                onClick={() => navigate("/account/login")}
+              />
+            </>
+          )}
           <div className="cart-img">
             <img
               src={cartIMG}
@@ -107,7 +139,12 @@ const MiddleHeader = ({ toggleNavReveal }) => {
               onClick={() => navigate("/cart")}
             />
             <span>0</span>
-          </div>{" "}
+          </div>
+          {userName && (
+            <span className="logOffMobile" onClick={logOutUser}>
+              <FaPowerOff />
+            </span>
+          )}
         </div>
       </div>
     </HeaderMiddle>
@@ -215,11 +252,21 @@ const HeaderMiddle = styled.div`
       }
     }
   }
+  .logOffMobile {
+    display: none;
+  }
   @media screen and (max-width: 1200px) {
     width: 100%;
     background: var(--bg-one);
     color: white;
     padding: 0.8rem 1rem;
+    .logOffMobile {
+      display: block;
+      font-size: 1.5rem;
+      margin-left: 0.6rem;
+      color: #e62a65;
+      margin-bottom: 0.2rem;
+    }
     .middle-content {
       display: none;
     }
@@ -284,6 +331,13 @@ const HeaderMiddle = styled.div`
     background: var(--bg-one);
     color: white;
     padding: 0.8rem 1rem;
+    .logOffMobile {
+      display: block;
+      font-size: 1.5rem;
+      margin-left: 0.6rem;
+      color: #e62a65;
+      margin-bottom: 0.2rem;
+    }
     .middle-content {
       display: none;
     }
@@ -348,6 +402,13 @@ const HeaderMiddle = styled.div`
     background: var(--bg-one);
     color: white;
     padding: 0.8rem 1rem;
+    .logOffMobile {
+      display: block;
+      font-size: 1.3rem;
+      margin-left: 0.6rem;
+      color: #e62a65;
+      margin-bottom: 0.2rem;
+    }
     .middle-content {
       display: none;
     }
@@ -363,8 +424,8 @@ const HeaderMiddle = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-size:1rem;
-        margin-bottom:.5rem;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
         .hamburger {
           font-size: 1.5rem;
           margin-right: 0.8rem;
@@ -416,6 +477,12 @@ const HeaderMiddle = styled.div`
     background: var(--bg-one);
     color: white;
     padding: 0.8rem 1rem;
+    .logOffMobile {
+      display: block;
+      font-size: 1rem;
+      margin-left: 1rem;
+      color: #e62a65;
+    }
     .middle-content {
       display: none;
     }
@@ -431,9 +498,9 @@ const HeaderMiddle = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-size: 1rem;
+        font-size: 0.8rem;
         .hamburger {
-          font-size: 1.5rem;
+          font-size: 1.2rem;
           margin-right: 0.8rem;
           cursor: pointer;
           position: relative;

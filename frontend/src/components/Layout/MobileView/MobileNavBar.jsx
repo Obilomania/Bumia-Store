@@ -10,6 +10,7 @@ import ElementMobile from "./ElementMobile";
 
 const MobileNavBar = ({navReveal, toggleNavReveal}) => {
   const [activeStore, setActiveStore] = useState(false);
+  
   const toggleStore = () => {
     setActiveStore(!activeStore);
     setActiveSpecial(false);
