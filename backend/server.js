@@ -28,7 +28,7 @@ app.use(
   cors({
     origin: ["https://bitbyvest.onrender.com", "http://localhost:3000"], // List your allowed origins
     credentials: true, // Allow credentials (cookies)
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT","PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );

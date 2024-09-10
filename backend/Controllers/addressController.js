@@ -1,5 +1,4 @@
 const asyncHandler = require("express-async-handler");
-const User = require("../Models/userModel");
 const Address = require("../Models/addressModel");
 
 // ********************CREATE ADDRESS************************************
@@ -28,15 +27,17 @@ const createAddress = asyncHandler(async (req, res) => {
 // *******************************UPDATE ADDRESS********************************
 
 const updateAddress = asyncHandler(async (req, res) => {
-  const { _id } = req.params;
-  if (!_id) {
+  const { id } = req.params;
+  console.log(id)
+  console.log(req.body)
+  if (!id) {
     return res
       .status(404)
-      .json({ success: false, message: "Unable to retrieve post" });
+      .json({ success: false, message: "Unable to retrieve Address" });
   }
 
   const updateAddress = await Address.findByIdAndUpdate(
-    _id,
+    {_id: id},
     {
       address: req.body.address,
       localGovernmentArea: req.body.localGovernmentArea,
@@ -48,7 +49,7 @@ const updateAddress = asyncHandler(async (req, res) => {
       runValidators: true,
     }
   );
-  if (!updatedPost) {
+  if (!updateAddress) {
     return res
       .status(400)
       .json({ success: false, message: "Error updating Address" });

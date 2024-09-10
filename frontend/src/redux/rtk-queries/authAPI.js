@@ -46,9 +46,9 @@ const authAPI = createApi({
       providesTags: ["authAPI"],
     }),
     editUserProfile: builder.mutation({
-      query: ({ userInput }) => ({
-        url: `user/editprofile`,
-        method: "PUT",
+      query: ( userInput ) => ({
+        url: `user/updateuser`,
+        method: "PATCH",
         body: userInput,
         credentials: "include",
       }),
@@ -83,9 +83,9 @@ const authAPI = createApi({
       invalidatesTags: ["authAPI"],
     }),
     editUserAddress: builder.mutation({
-      query: ({ userInput, _id }) => ({
-        url: "user/address/" + _id,
-        method: "PUT",
+      query: ({_id, userInput}) => ({
+        url: `user/address/${_id}`,
+        method: "PATCH",
         body: userInput,
         credentials: "include",
       }),

@@ -3,121 +3,70 @@ import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import BreadCrumb from "../../components/BreadCrumb";
 import { Link, useNavigate } from "react-router-dom";
-import withoutAuth from "../../HOC/withoutAuth";
+import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import { useRegisterUserMutation } from "../../redux/rtk-queries/authAPI";
-import Loader from "../../components/Loader";
+import { useEditUserProfileMutation } from "../../redux/rtk-queries/authAPI";
 import {
-  user_address,
-  user_auth_status,
-  user_cart,
   user_email,
   user_firstName,
-  user_id,
-  user_isBlocked,
   user_lastName,
-  user_memberSince,
   user_phone,
-  user_role,
-  user_wishList,
 } from "../../redux/reducers/authSlice";
-import { useDispatch } from "react-redux";
+import Loader from "../../components/Loader";
+import withAuth from "../../HOC/withAuth";
 
-const initialState = {
-  firstname: "",
-  lastname: "",
-  phone: "",
-  email: "",
-  password: "",
-};
-const Register = () => {
+const EditProfile = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const [isChecked, setChecked] = useState(false);
-  const [registerInfo, setRegisterInfo] = useState(initialState);
-  const [registerNewUser, { isLoading }] = useRegisterUserMutation();
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state?.persistedReducer?.auth);
+  const [editUserProfile, { isLoading }] = useEditUserProfileMutation();
+  const [registerInfo, setRegisterInfo] = useState({
+    firstname: userInfo.firstName,
+    lastname: userInfo.lastName,
+    phone: userInfo.phone,
+    email: userInfo.email,
+  });
 
   const handleInput = (e) => {
     const { name, value } = e.target;
     setRegisterInfo({ ...registerInfo, [name]: value });
   };
 
-  const handleCheckboxChange = (event) => {
-    setChecked(event.target.checked);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      !registerInfo.firstname ||
-      !registerInfo.lastname ||
-      !registerInfo.email ||
-      !registerInfo.password ||
-      !registerInfo.confirmPassword ||
-      !registerInfo.phone
-    ) {
-      return toast.error("Please fill all fields");
-    } else if (registerInfo.password !== registerInfo.confirmPassword) {
-      return toast.error("Password is not a Match");
-    } else if (!isChecked) {
-      return toast.error("Please agree to our terms and conditions");
-    }
-    const res = await registerNewUser({
+
+    const res = await editUserProfile({
       firstname: registerInfo.firstname,
       lastname: registerInfo.lastname,
       email: registerInfo.email,
-      password: registerInfo.password,
       phone: registerInfo.phone,
     });
     if (res?.data) {
-      toast.success("Registration Succesfull");
-      const {
-        firstname,
-        lastname,
-        email,
-        role,
-        _id,
-        isBlocked,
-        phone,
-        registrationDate,
-        wishList,
-        address,
-        cart,
-      } = res?.data;
+      toast.success("Profile Updated Succesfully");
+      const { firstname, lastname, email, phone } = res?.data;
 
       dispatch(user_firstName(firstname));
       dispatch(user_lastName(lastname));
       dispatch(user_email(email));
       dispatch(user_phone(phone));
-      dispatch(user_id(_id));
-      dispatch(user_auth_status(true));
-      dispatch(user_role(role));
-      dispatch(user_isBlocked(isBlocked));
-      dispatch(user_memberSince(registrationDate));
-      dispatch(user_wishList(wishList));
-      dispatch(user_address(address));
-      dispatch(user_cart(cart));
-      localStorage.setItem("userRole", role);
       localStorage.setItem("userName", firstname);
 
-      navigate("/address");
+      navigate("/profile");
     } else if (res?.error) {
       return toast.error(res?.error?.data?.message);
     }
-    navigate("/address");
-    
+    navigate("/profile");
   };
-
   return (
-    <LoginUser>
-      {isLoading && <Loader />}
+      <EditPro>
+          {isLoading && <Loader/>}
       <Helmet>
-        <title>Sign Up</title>
-        <meta name="description" content="Sign Up" />
+        <title>Edit Profile</title>
+        <meta name="description" content="Edit Profile" />
       </Helmet>
-      <BreadCrumb title="Sign Up" />
+      <BreadCrumb title="Edit Profile" />
       <form action="" className="login-form" onSubmit={handleSubmit}>
-        <h5 className="form-heading text-center">Sign Up</h5>
+        <h5 className="form-heading text-center">Edit Profile</h5>
         <br />
         <div className="inputs">
           <div className="inp">
@@ -149,44 +98,18 @@ const Register = () => {
               value={registerInfo.email}
               onChange={(e) => handleInput(e)}
             />
-            <input
-              type="password"
-              placeholder="Password *"
-              name="password"
-              value={registerInfo.password}
-              onChange={(e) => handleInput(e)}
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password *"
-              name="confirmPassword"
-              value={registerInfo.confirmPassword}
-              onChange={(e) => handleInput(e)}
-            />
-          </div>
-          <div className="form-checkbox">
-            <input
-              type="checkbox"
-              name="agree"
-              checked={isChecked}
-              onChange={handleCheckboxChange}
-            />
-            <p>
-              I agree with
-              <Link to={"/terms"}>Terms and Conditions</Link>
-            </p>
           </div>
         </div>
         <div className="form-bottons mt-4">
-          {/* <Link to={"/account/login"}>Login</Link> */}
-          <button type="submit">Register</button>
+          <Link to={"/edit-address"}>Edit Address</Link>
+          <button type="submit">Update Profile</button>
         </div>
       </form>
-    </LoginUser>
+    </EditPro>
   );
 };
 
-const LoginUser = styled.div`
+const EditPro = styled.div`
   width: 100%;
   min-height: 70vh;
   height: 100%;
@@ -371,4 +294,4 @@ const LoginUser = styled.div`
     }
   }
 `;
-export default withoutAuth(Register);
+export default withAuth(EditProfile);

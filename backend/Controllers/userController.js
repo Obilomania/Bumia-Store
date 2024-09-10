@@ -279,14 +279,7 @@ const updateUser = asyncHandler(async (req, res) => {
     user.role = role;
 
     const updatedUser = await user.save();
-    res.status(200).json({
-      _id: updatedUser._id,
-      firstname: updatedUser.firstname,
-      lastname: updatedUser.lastname,
-      phone: updatedUser.phone,
-      email: updatedUser.email,
-      role: updatedUser.role,
-    });
+    res.status(200).json(updatedUser);
   } else {
     res.status(400);
     throw new Error("User Not Found!!!");

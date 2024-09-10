@@ -7,6 +7,7 @@ import BreadCrumb from "../../components/BreadCrumb";
 import store from "../../redux/store";
 import { user_address } from "../../redux/reducers/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import withAuth from "../../HOC/withAuth";
 
 const MyProfile = () => {
   const userInfo = useSelector((state) => state.persistedReducer.auth);
@@ -41,6 +42,10 @@ const MyProfile = () => {
           </p>
           <p>
             Member Since : <span>{userInfo?.memberSince}</span>
+          </p>
+          <p>
+            Address :{" "}
+            <span>{userInfo?.address?.address}</span>
           </p>
           <p>
             Local Government :{" "}
@@ -329,4 +334,4 @@ const ProfilePage = styled.div`
   @media screen and (max-width: 350px) {
   }
 `;
-export default MyProfile;
+export default withAuth(MyProfile);

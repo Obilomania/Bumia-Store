@@ -28,6 +28,8 @@ import { user_auth_status } from "./redux/reducers/authSlice";
 import { base_Url } from "./components/Layout/BottomeHeader";
 import axios from "axios";
 import MyProfile from "./pages/Authentication/MyProfile";
+import EditProfile from "./pages/Authentication/EditProfile";
+import EditAddress from "./pages/Authentication/EditAddress";
 
 export const ScrollToTop = () => {
   const location = useLocation();
@@ -86,6 +88,8 @@ function App() {
             <Route path="/shipping-information" element={<ShippingInfo />} />
             <Route path="/address" element={<Address />} />
             <Route path="/profile" element={<MyProfile />} />
+            <Route path="/edit-profile" element={<EditProfile />} />
+            <Route path="/edit-address" element={<EditAddress />} />
 
             {/* ************AUTHENTICATION************* */}
 

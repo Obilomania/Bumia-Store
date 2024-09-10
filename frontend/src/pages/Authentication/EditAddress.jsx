@@ -1,192 +1,114 @@
-import React, { useState } from "react";
-import { Helmet } from "react-helmet";
-import styled from "styled-components";
-import BreadCrumb from "../../components/BreadCrumb";
-import { Link, useNavigate } from "react-router-dom";
-import withoutAuth from "../../HOC/withoutAuth";
-import toast from "react-hot-toast";
-import { useRegisterUserMutation } from "../../redux/rtk-queries/authAPI";
+import React, { useEffect, useState } from "react";
 import Loader from "../../components/Loader";
 import {
-  user_address,
-  user_auth_status,
-  user_cart,
-  user_email,
-  user_firstName,
-  user_id,
-  user_isBlocked,
-  user_lastName,
-  user_memberSince,
-  user_phone,
-  user_role,
-  user_wishList,
-} from "../../redux/reducers/authSlice";
-import { useDispatch } from "react-redux";
+  useEditUserAddressMutation,
+  useGetUserAddressQuery,
+} from "../../redux/rtk-queries/authAPI";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { user_address } from "../../redux/reducers/authSlice";
+import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
+import BreadCrumb from "../../components/BreadCrumb";
+import styled from "styled-components";
+import withAuth from "../../HOC/withAuth";
+import store from "../../redux/store";
 
-const initialState = {
-  firstname: "",
-  lastname: "",
-  phone: "",
-  email: "",
-  password: "",
-};
-const Register = () => {
+const EditAddress = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const [isChecked, setChecked] = useState(false);
-  const [registerInfo, setRegisterInfo] = useState(initialState);
-  const [registerNewUser, { isLoading }] = useRegisterUserMutation();
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state?.persistedReducer?.auth);
+  const { data, isLoading } = useGetUserAddressQuery(userInfo.id);
+
+  useEffect(() => {
+    if (!isLoading) {
+      store.dispatch(user_address(data?.addresses[0]));
+    }
+  });
+
+  const [addressInfo, setAddressInfo] = useState({
+    address: userInfo?.address?.address,
+    localGovernmentArea: userInfo?.address?.localGovernmentArea,
+    state: userInfo?.address?.state,
+    zipcode: userInfo?.address?.zipcode,
+  });
+  const [saveAddress] = useEditUserAddressMutation();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    setRegisterInfo({ ...registerInfo, [name]: value });
-  };
-
-  const handleCheckboxChange = (event) => {
-    setChecked(event.target.checked);
+    setAddressInfo({ ...addressInfo, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      !registerInfo.firstname ||
-      !registerInfo.lastname ||
-      !registerInfo.email ||
-      !registerInfo.password ||
-      !registerInfo.confirmPassword ||
-      !registerInfo.phone
-    ) {
-      return toast.error("Please fill all fields");
-    } else if (registerInfo.password !== registerInfo.confirmPassword) {
-      return toast.error("Password is not a Match");
-    } else if (!isChecked) {
-      return toast.error("Please agree to our terms and conditions");
-    }
-    const res = await registerNewUser({
-      firstname: registerInfo.firstname,
-      lastname: registerInfo.lastname,
-      email: registerInfo.email,
-      password: registerInfo.password,
-      phone: registerInfo.phone,
+    const res = await saveAddress({
+      _id: data?.addresses[0]._id,
+      userInput: addressInfo,
     });
+    console.log(res);
     if (res?.data) {
-      toast.success("Registration Succesfull");
-      const {
-        firstname,
-        lastname,
-        email,
-        role,
-        _id,
-        isBlocked,
-        phone,
-        registrationDate,
-        wishList,
-        address,
-        cart,
-      } = res?.data;
+      toast.success("Address Updated Succesfully");
+      dispatch(user_address(res?.data?.updateAddress));
 
-      dispatch(user_firstName(firstname));
-      dispatch(user_lastName(lastname));
-      dispatch(user_email(email));
-      dispatch(user_phone(phone));
-      dispatch(user_id(_id));
-      dispatch(user_auth_status(true));
-      dispatch(user_role(role));
-      dispatch(user_isBlocked(isBlocked));
-      dispatch(user_memberSince(registrationDate));
-      dispatch(user_wishList(wishList));
-      dispatch(user_address(address));
-      dispatch(user_cart(cart));
-      localStorage.setItem("userRole", role);
-      localStorage.setItem("userName", firstname);
-
-      navigate("/address");
+        navigate("/profile");
     } else if (res?.error) {
       return toast.error(res?.error?.data?.message);
     }
-    navigate("/address");
-    
+    navigate("/profile");
   };
-
   return (
-    <LoginUser>
+    <AddressPage>
       {isLoading && <Loader />}
       <Helmet>
-        <title>Sign Up</title>
-        <meta name="description" content="Sign Up" />
+        <title>Edit Address</title>
+        <meta name="description" content="Edit Address" />
       </Helmet>
-      <BreadCrumb title="Sign Up" />
+      <BreadCrumb title="Address" />
       <form action="" className="login-form" onSubmit={handleSubmit}>
-        <h5 className="form-heading text-center">Sign Up</h5>
+        <h5 className="form-heading text-center">Edit Address</h5>
         <br />
         <div className="inputs">
           <div className="inp">
             <input
               type="text"
-              placeholder="First Name *"
-              name="firstname"
-              value={registerInfo.firstname}
+              placeholder="House Address "
+              name="address"
+              value={addressInfo.address}
               onChange={(e) => handleInput(e)}
             />
             <input
               type="text"
-              placeholder="Last Name *"
-              name="lastname"
-              value={registerInfo.lastname}
+              placeholder="Local Government Area "
+              name="localGovernmentArea"
+              value={addressInfo.localGovernmentArea}
               onChange={(e) => handleInput(e)}
             />
             <input
               type="text"
-              placeholder="Phone Number *"
-              name="phone"
-              value={registerInfo.phone}
+              placeholder="State "
+              name="state"
+              value={addressInfo.state}
               onChange={(e) => handleInput(e)}
             />
             <input
               type="text"
-              placeholder="Email Address *"
-              name="email"
-              value={registerInfo.email}
+              placeholder="Zip Code"
+              name="zipcode"
+              value={addressInfo.zipcode}
               onChange={(e) => handleInput(e)}
             />
-            <input
-              type="password"
-              placeholder="Password *"
-              name="password"
-              value={registerInfo.password}
-              onChange={(e) => handleInput(e)}
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password *"
-              name="confirmPassword"
-              value={registerInfo.confirmPassword}
-              onChange={(e) => handleInput(e)}
-            />
-          </div>
-          <div className="form-checkbox">
-            <input
-              type="checkbox"
-              name="agree"
-              checked={isChecked}
-              onChange={handleCheckboxChange}
-            />
-            <p>
-              I agree with
-              <Link to={"/terms"}>Terms and Conditions</Link>
-            </p>
           </div>
         </div>
         <div className="form-bottons mt-4">
-          {/* <Link to={"/account/login"}>Login</Link> */}
-          <button type="submit">Register</button>
+          <Link to={"/profile"}>View Profile</Link>
+          <button type="submit">Save Address</button>
         </div>
       </form>
-    </LoginUser>
+    </AddressPage>
   );
 };
 
-const LoginUser = styled.div`
+const AddressPage = styled.div`
   width: 100%;
   min-height: 70vh;
   height: 100%;
@@ -371,4 +293,4 @@ const LoginUser = styled.div`
     }
   }
 `;
-export default withoutAuth(Register);
+export default withAuth(EditAddress);
