@@ -55,6 +55,7 @@ const authSlice = createSlice({
     user_memberSince: (state, action) => {
       state.memberSince = action.payload;
     },
+    
     resetUserState: (state) => {
       state.id = "";
       state.firstName = "";
@@ -68,6 +69,7 @@ const authSlice = createSlice({
       state.loginStatus = false;
       state.isBlocked = false;
       state.memberSince = null;
+      state.filteredUsers = null;
     },
   },
 });

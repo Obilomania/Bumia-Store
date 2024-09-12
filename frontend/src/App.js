@@ -30,6 +30,8 @@ import axios from "axios";
 import MyProfile from "./pages/Authentication/MyProfile";
 import EditProfile from "./pages/Authentication/EditProfile";
 import EditAddress from "./pages/Authentication/EditAddress";
+import AdminLanding from "./pages/Dashboards/adminDashboard/AdminLanding";
+import AdminLayout from "./pages/Dashboards/adminDashboard/Layout";
 
 export const ScrollToTop = () => {
   const location = useLocation();
@@ -104,6 +106,9 @@ function App() {
               path="/account/change-password"
               element={<ChangePassword />}
             />
+          </Route>
+          <Route path="/admin-dashboard" element={<AdminLayout />}>
+            <Route index element={<AdminLanding />} />
           </Route>
         </Routes>
       </BrowserRouter>

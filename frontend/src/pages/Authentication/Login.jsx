@@ -52,8 +52,8 @@ const Login = () => {
     if (response?.data?.isBlocked) {
       return toast.error("User Blocked, Contact Admin");
     }
-    if (response?.data) {
-      toast.success("Login Succesfull");
+    if (response?.data?.role === 'Admin') {
+      toast.success(`Welcome ${response?.data?.firstname}`);
       const {
         firstname,
         lastname,
@@ -67,7 +67,42 @@ const Login = () => {
         address,
         cart,
       } = response?.data;
+      console.log(role);
 
+      dispatch(user_firstName(firstname));
+      dispatch(user_lastName(lastname));
+      dispatch(user_email(email));
+      dispatch(user_phone(phone));
+      dispatch(user_id(_id));
+      dispatch(user_auth_status(true));
+      dispatch(user_role(role));
+      dispatch(user_isBlocked(isBlocked));
+      dispatch(user_memberSince(registrationDate));
+      dispatch(user_wishList(wishList));
+      dispatch(user_address(address));
+      dispatch(user_cart(cart));
+      localStorage.setItem("userRole", role);
+      localStorage.setItem("userName", firstname);
+
+      navigate("/admin-dashboard");
+    }
+
+    else if (response?.data?.role === 'User') {
+      toast.success(`Welcome ${response?.data?.firstname}`);
+      const {
+        firstname,
+        lastname,
+        email,
+        role,
+        _id,
+        isBlocked,
+        phone,
+        registrationDate,
+        wishList,
+        address,
+        cart,
+      } = response?.data;
+     
       dispatch(user_firstName(firstname));
       dispatch(user_lastName(lastname));
       dispatch(user_email(email));
@@ -87,7 +122,6 @@ const Login = () => {
     } else if (response?.error) {
       return toast.error(response?.error?.data?.message);
     }
-    navigate("/");
   };
 
   return (
@@ -121,8 +155,8 @@ const Login = () => {
           <Link to={"/account/forgot-password"}>Forgot Your Password?</Link>
         </div>
         <div className="form-bottons">
-          <button type="submit">Login</button>
           <Link to={"/account/register"}>Sign Up</Link>
+          <button type="submit">Login</button>
         </div>
       </form>
     </LoginUser>

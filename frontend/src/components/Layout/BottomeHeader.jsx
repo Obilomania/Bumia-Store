@@ -256,7 +256,7 @@ const HeaderBottom = styled.div`
         }
         .hot {
           font-size: 0.6rem;
-          background: #e62a65;
+          background: var(--bg-red);
           padding: 1.5px 0.3rem;
           border-radius: 0.3rem;
           margin-left: 0.5rem;

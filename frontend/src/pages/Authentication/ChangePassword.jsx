@@ -6,6 +6,7 @@ import styled from "styled-components";
 import withAuth from "../../HOC/withAuth";
 import { useUserChangePasswordMutation } from "../../redux/rtk-queries/authAPI";
 import toast from "react-hot-toast";
+import Loader from "../../components/Loader";
 
 const ChangePassword = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const ChangePassword = () => {
   };
   return (
     <ResetP>
+      {isLoading && <Loader/>}
       <Helmet>
         <title>Change Password</title>
         <meta name="description" content="Our Store" />
@@ -83,7 +85,7 @@ const ChangePassword = () => {
           </div>
         </div>
         <div className="form-bottons mt-4">
-          <Link to={"/account/profile"}>Cancel</Link>
+          <Link to={"/profile"}>Cancel</Link>
           <button type="submit">Change</button>
         </div>
       </form>
