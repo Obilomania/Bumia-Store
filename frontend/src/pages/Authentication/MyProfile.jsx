@@ -44,8 +44,7 @@ const MyProfile = () => {
             Member Since : <span>{userInfo?.memberSince}</span>
           </p>
           <p>
-            Address :{" "}
-            <span>{userInfo?.address?.address}</span>
+            Address : <span>{userInfo?.address?.address}</span>
           </p>
           <p>
             Local Government :{" "}
@@ -63,8 +62,13 @@ const MyProfile = () => {
             State : <span>{userInfo?.address?.state}</span>
           </p>
           <div className="form-bottons mt-4">
+            <button type="submit" onClick={() => navigate("/admin-dashboard")}>
+              ADMIN
+            </button>
             <Link to={"/"}>HOME</Link>
-            <button type="submit" onClick={() => navigate("/edit-profile")}>EDIT PROFILE</button>
+            <button type="submit" onClick={() => navigate("/edit-profile")}>
+              EDIT PROFILE
+            </button>
           </div>
         </div>
       </div>

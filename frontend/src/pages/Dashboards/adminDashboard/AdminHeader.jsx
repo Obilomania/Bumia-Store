@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 
-const AdminHeader = () => {
+const AdminHeader = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
   const navigate = useNavigate();
   const userName = localStorage.getItem("userName");
 
@@ -34,12 +34,12 @@ const AdminHeader = () => {
     <AdminHeaderNav>
       <div className="admin-header-content">
         <div className="leftNav">
-          <span>
+          <span onClick={toggleSideBar} className="hamburger">
             <RxHamburgerMenu />
           </span>
           <p className="welcome">
             Hello, <span onClick={() => navigate("/profile")}>{userName}</span>{" "}
-            &nbsp; 
+            &nbsp;
           </p>
         </div>
         <div className="the-input">
@@ -75,6 +75,9 @@ const AdminHeaderNav = styled.div`
   align-items: center;
   justify-content: space-between;
   color: white;
+  .hamburger {
+    display: block;
+  }
   .welcome {
     display: flex;
     align-items: center;
@@ -108,8 +111,8 @@ const AdminHeaderNav = styled.div`
           border-radius: 100%;
           background: var(--bg-red);
           position: absolute;
-          top:.2rem;
-          right:-1px;
+          top: 0.2rem;
+          right: -1px;
         }
       }
     }
@@ -155,6 +158,105 @@ const AdminHeaderNav = styled.div`
         cursor: pointer;
       }
     }
+  }
+  @media screen and (max-width: 1200px) {
+  }
+  @media screen and (max-width: 900px) {
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    padding: 0 1rem;
+    background: var(--bg-two);
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    .welcome {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      span {
+        color: var(--bg-logo);
+        font-weight: 500;
+        margin-left: 0.5rem;
+      }
+    }
+    .admin-header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 0rem;
+      .rightNav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        span {
+          cursor: pointer;
+        }
+        .notification {
+          cursor: pointer;
+          position: relative;
+          span {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 100%;
+            background: var(--bg-red);
+            position: absolute;
+            top: 0.2rem;
+            right: -1px;
+          }
+        }
+      }
+      .the-input {
+        width: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        input {
+          width: 100%;
+          border: 1px solid lightgray;
+          outline: none;
+          padding: 0.1rem 1rem;
+          border-right: none;
+          font-size: 0.8rem;
+          &::placeholder {
+            color: lightgray;
+            font-size: 0.8rem;
+          }
+        }
+        span {
+          background: var(--bg-one);
+          border: 1px solid var(--bg-one);
+          padding: 0.2rem 1rem;
+          color: white;
+          transition: var(--transition);
+          cursor: pointer;
+          &:hover {
+            color: black;
+            background: var(--bg-logo);
+            transition: var(--transition);
+            border: 1px solid var(--bg-logo);
+            cursor: pointer;
+          }
+        }
+      }
+      .leftNav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        span {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 420px) {
+  }
+  @media screen and (max-width: 350px) {
   }
 `;
 export default AdminHeader;

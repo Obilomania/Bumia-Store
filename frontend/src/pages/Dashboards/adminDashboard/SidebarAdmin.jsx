@@ -7,8 +7,9 @@ import { BsHandbagFill } from "react-icons/bs";
 import { PiNotepadBold } from "react-icons/pi";
 import { RiCoupon5Line } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa";
+import { AiOutlineMenu } from "react-icons/ai";
 
-const SidebarAdmin = () => {
+const SidebarAdmin = ({sideBaOpen, toggleSideBar, setSideBarOpen}) => {
   const [productDropItDown, setProductDropItDown] = useState(false);
   const [orderDropDown, setOrderDropDown] = useState(false);
   const [categoryDropDown, setCategoryDropDown] = useState(false);
@@ -56,6 +57,9 @@ const SidebarAdmin = () => {
         <h3>
           Bumia<span>Store</span>.
         </h3>
+      </div>
+      <div className="mobile-hamburger" onClick={toggleSideBar}>
+        <AiOutlineMenu />
       </div>
       <div className="side-bar-content">
         <div className="sidbar-option">
@@ -164,6 +168,7 @@ const SidyBar = styled.div`
   height: 134vh;
   background: var(--bg-three);
   padding: 2rem 1rem;
+  position: relative;
   .logo {
     width: fit-content;
     margin: 0 auto;
@@ -188,11 +193,23 @@ const SidyBar = styled.div`
       color: var(--bg-logo);
     }
   }
+  .mobile-hamburger {
+    color: white;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 0.2rem;
+    right: 1rem;
+    cursor: pointer;
+    display: none;
+  }
   .side-bar-content {
     padding: 2rem 0rem;
     .sidbar-option {
       color: var(--bg-grey);
       width: 100%;
+      p {
+        font-size: 0.8rem;
+      }
       .option-normal {
         display: flex;
         align-items: center;
@@ -277,6 +294,43 @@ const SidyBar = styled.div`
         }
       }
     }
+  }
+  @media screen and (max-width: 1200px) {
+    .mobile-hamburger {
+      color: white;
+      font-size: 1.5rem;
+      position: absolute;
+      top: 0.2rem;
+      right: 1rem;
+      cursor: pointer;
+      display: block;
+    }
+  }
+  @media screen and (max-width: 900px) {
+    .mobile-hamburger {
+      color: white;
+      font-size: 1.5rem;
+      position: absolute;
+      top: 0.2rem;
+      right: 1rem;
+      cursor: pointer;
+      display: block;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .mobile-hamburger {
+      color: white;
+      font-size: 1.5rem;
+      position: absolute;
+      top: 0.2rem;
+      right: 1rem;
+      cursor: pointer;
+      display: block;
+    }
+  }
+  @media screen and (max-width: 420px) {
+  }
+  @media screen and (max-width: 350px) {
   }
 `;
 export default SidebarAdmin;
