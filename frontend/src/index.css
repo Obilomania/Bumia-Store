@@ -16,7 +16,7 @@
   --transition: 400ms all ease;
 }
 ::-webkit-scrollbar {
-  width: 0.9rem;
+  width: 0.5rem;
 }
 ::-webkit-scrollbar-track {
   border: 0.5rem solid var(--bg-one);

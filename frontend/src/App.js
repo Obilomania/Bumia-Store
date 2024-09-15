@@ -32,6 +32,7 @@ import EditProfile from "./pages/Authentication/EditProfile";
 import EditAddress from "./pages/Authentication/EditAddress";
 import AdminLanding from "./pages/Dashboards/adminDashboard/AdminLanding";
 import AdminLayout from "./pages/Dashboards/adminDashboard/Layout";
+import CreateProduct from "./pages/Dashboards/adminDashboard/Product/CreateProduct";
 
 export const ScrollToTop = () => {
   const location = useLocation();
@@ -109,6 +110,10 @@ function App() {
           </Route>
           <Route path="/admin-dashboard" element={<AdminLayout />}>
             <Route index element={<AdminLanding />} />
+            <Route
+              path="/admin-dashboard/admin-create-product"
+              element={<CreateProduct />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -8,8 +8,10 @@ import { PiNotepadBold } from "react-icons/pi";
 import { RiCoupon5Line } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa";
 import { AiOutlineMenu } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
-const SidebarAdmin = ({sideBaOpen, toggleSideBar, setSideBarOpen}) => {
+const SidebarAdmin = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
+  const navigate = useNavigate();
   const [productDropItDown, setProductDropItDown] = useState(false);
   const [orderDropDown, setOrderDropDown] = useState(false);
   const [categoryDropDown, setCategoryDropDown] = useState(false);
@@ -53,7 +55,7 @@ const SidebarAdmin = ({sideBaOpen, toggleSideBar, setSideBarOpen}) => {
 
   return (
     <SidyBar>
-      <div className="logo">
+      <div className="logo" onClick={() => navigate("/admin-dashboard")}>
         <h3>
           Bumia<span>Store</span>.
         </h3>
@@ -78,7 +80,11 @@ const SidebarAdmin = ({sideBaOpen, toggleSideBar, setSideBarOpen}) => {
               productDropItDown ? "dropDown-menu" : "dropDown-menu-close"
             }
           >
-            <li>Create Product</li>
+            <li
+              onClick={() => navigate("/admin-dashboard/admin-create-product")}
+            >
+              Create Product
+            </li>
             <li>View All Products</li>
           </ul>
         </div>
@@ -164,8 +170,7 @@ const SidebarAdmin = ({sideBaOpen, toggleSideBar, setSideBarOpen}) => {
 
 const SidyBar = styled.div`
   width: 100%;
-  min-height: 131.5vh;
-  height: 134vh;
+  height: 100vh;
   background: var(--bg-three);
   padding: 2rem 1rem;
   position: relative;
@@ -175,6 +180,7 @@ const SidyBar = styled.div`
     border: 1px solid var(--bg-logo);
     padding: 0.7rem 1rem 0rem 1rem;
     border-radius: 1rem;
+    cursor: pointer;
     h3 {
       display: flex;
       align-items: center;

@@ -42,6 +42,8 @@ const AdminLayoutPage = styled.div`
   width: 100%;
   height: fit-content;
   overflow: hidden;
+  background: var(--bg-three);
+
   .layout-container {
     display: flex;
     align-items: start;
@@ -108,7 +110,7 @@ const AdminLayoutPage = styled.div`
       }
     }
     .admin-outlet {
-      min-height: 150vh;
+      /* min-height: 150vh; */
       height: fit-content;
       background: var(--bg-grey);
       padding: 0rem;
@@ -147,7 +149,7 @@ const AdminLayoutPage = styled.div`
       }
     }
     .admin-outlet {
-      min-height: 150vh;
+      /* min-height: 150vh; */
       height: fit-content;
       background: var(--bg-grey);
       padding: 0rem;
@@ -186,7 +188,6 @@ const AdminLayoutPage = styled.div`
       }
     }
     .admin-outlet {
-      min-height: 150vh;
       height: fit-content;
       background: var(--bg-grey);
       padding: 0rem;
