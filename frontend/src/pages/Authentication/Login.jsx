@@ -67,7 +67,6 @@ const Login = () => {
         address,
         cart,
       } = response?.data;
-      console.log(role);
 
       dispatch(user_firstName(firstname));
       dispatch(user_lastName(lastname));

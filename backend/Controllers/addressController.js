@@ -28,8 +28,6 @@ const createAddress = asyncHandler(async (req, res) => {
 
 const updateAddress = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  console.log(id)
-  console.log(req.body)
   if (!id) {
     return res
       .status(404)

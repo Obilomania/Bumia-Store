@@ -1,60 +1,108 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import UploadImage from "../../../../components/UploadImage";
-// import uploadImage from "../../../../helpers/uploadImage";
 
 const CreateProduct = () => {
-  //   const [productData, setProductData] = useState({
-  //     title: "",
-  //     description: "",
-  //     slug: "",
-  //     category: "",
-  //     price: "",
-  //     quantity: "",
-  //     productImage: [],
-  //   });
+  const [productData, setProductData] = useState({
+    title: "",
+    description: "",
+    slug: "",
+    category: "",
+    price: "",
+    quantity: "",
+    productImage: [],
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProductData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
 
   return (
     <ProductCreation>
       <div className="create-container">
         <p className="sub-heading text-center">CREATE PRODUCT</p>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-div">
             <label>Product Name :</label>
-            <input type="text" className="form-input" />
+            <input
+              type="text"
+              className="form-input"
+              name="title"
+              value={productData.title}
+              onChange={handleInputChange}
+            />
           </div>
           <div className="form-div">
             <label>Product Description : </label>
-            <textarea name="" id="" rows={4} cols={30}></textarea>
+            <textarea
+              name="description"
+              value={productData.description}
+              onChange={handleInputChange}
+              id=""
+              rows={4}
+              cols={30}
+            ></textarea>
           </div>
           <div className="form-div">
             <label>Slug :</label>
-            <input type="text" className="form-input" />
+            <input
+              type="text"
+              className="form-input"
+              name="slug"
+              value={productData.slug}
+              onChange={handleInputChange}
+            />
           </div>
           <div className="form-div">
             <label>Price :</label>
-            <input type="text" className="form-input" />
+            <input
+              type="text"
+              name="price"
+              value={productData.price}
+              className="form-input"
+              onChange={handleInputChange}
+            />
           </div>
           <div className="form-div">
             <label>Category :</label>
-            <select name="" id="" className="form-input">
+            <select
+              id=""
+              className="form-input"
+              name="category"
+              value={productData.category}
+              onChange={handleInputChange}
+            >
               <option value="">Select A Category</option>
-              <option value="">Phone</option>
-              <option value="">Laptops</option>
-              <option value="">Accessories</option>
-              <option value="">Accessories</option>
+              <option value="Phones">Phones</option>
+              <option value="Laptops">Laptops</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Electronics">Electronics</option>
             </select>
           </div>
           <div className="form-div">
             <label>Brand :</label>
-            <select name="" id="" className="form-input">
+            <select
+              name="brand"
+              value={productData.brand}
+              onChange={handleInputChange}
+              id=""
+              className="form-input"
+            >
               <option value="">Select A Brand</option>
-              <option value="">Apple</option>
-              <option value="">Samsung</option>
-              <option value="">LG</option>
-              <option value="">Techno</option>
-              <option value="">Others</option>
+              <option value="Apple">Apple</option>
+              <option value="Samsung">Samsung</option>
+              <option value="LG">LG</option>
+              <option value="Techno">Techno</option>
+              <option value="Others">Others</option>
             </select>
           </div>
           <div className="form-div">

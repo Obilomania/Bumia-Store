@@ -33,6 +33,8 @@ import EditAddress from "./pages/Authentication/EditAddress";
 import AdminLanding from "./pages/Dashboards/adminDashboard/AdminLanding";
 import AdminLayout from "./pages/Dashboards/adminDashboard/Layout";
 import CreateProduct from "./pages/Dashboards/adminDashboard/Product/CreateProduct";
+import CreateCategory from "./pages/Dashboards/adminDashboard/Category/CreateCategory";
+import CategoryList from "./pages/Dashboards/adminDashboard/Category/CategoryList";
 
 export const ScrollToTop = () => {
   const location = useLocation();
@@ -113,6 +115,14 @@ function App() {
             <Route
               path="/admin-dashboard/admin-create-product"
               element={<CreateProduct />}
+            />
+            <Route
+              path="/admin-dashboard/admin-create-category"
+              element={<CreateCategory />}
+            />
+            <Route
+              path="/admin-dashboard/admin-list-categories"
+              element={<CategoryList />}
             />
           </Route>
         </Routes>

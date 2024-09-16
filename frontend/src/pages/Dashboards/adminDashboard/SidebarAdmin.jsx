@@ -105,8 +105,16 @@ const SidebarAdmin = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
               categoryDropDown ? "dropDown-menu" : "dropDown-menu-close"
             }
           >
-            <li>Create New Category</li>
-            <li>View All Categories</li>
+            <li
+              onClick={() => navigate("/admin-dashboard/admin-create-category")}
+            >
+              Create New Category
+            </li>
+            <li
+              onClick={() => navigate("/admin-dashboard/admin-list-categories")}
+            >
+              View All Categories
+            </li>
           </ul>
         </div>
         {/* *******************ORDERS***************************** */}

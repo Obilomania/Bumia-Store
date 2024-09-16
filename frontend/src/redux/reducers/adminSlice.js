@@ -1,7 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   filteredUsers: [],
+  allCategories: [],
+  categoryID : ""
 };
 
 const adminSlice = createSlice({
@@ -17,9 +19,15 @@ const adminSlice = createSlice({
       );
       state.filteredUsers = tempUsers;
     },
+    all_categories: (state, action) => {
+      state.allCategories = action.payload;
+    },
+    category_id: (state, action) => {
+      state.categoryID = action.payload;
+    },
   },
 });
 
-export const {filtered_users} = adminSlice.actions
+export const { filtered_users, all_categories,category_id } = adminSlice.actions;
 
-export const adminReducer = adminSlice.reducer
+export const adminReducer = adminSlice.reducer;

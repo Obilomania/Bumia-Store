@@ -5,7 +5,7 @@ const Category = require("../Models/categoryModel");
 //Create a Category
 const createCategory = asyncHandler(async (req, res) => {
   const { title } = req.body;
-  const titleExist = await Category.findOne({ title })
+  const titleExist = await Category.findOne({ title });
   if (titleExist) {
     res.status(400);
     throw new Error("Title already exists");
@@ -40,25 +40,40 @@ const getAllCategories = asyncHandler(async (req, res) => {
 
 //Update a Category
 const updateCategory = asyncHandler(async (req, res) => {
-  const category = await Category.findById(req.params._id);
-  if (category) {
-    const { title } = req.body;
-    category.title = req.body.title || title;
-
-    const updatedCategory = await category.save();
-    res.status(200).json({
-      _id: updatedCategory._id,
-      title: updatedCategory.title,
-    });
-  } else {
-    res.status(404);
-    throw new Error("Category Not Found!!!");
+  const { _id } = req.params;
+  if (!_id) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Unable to retrieve Category" });
   }
+  const updateCategory = await Category.findByIdAndUpdate(
+    { _id },
+    {
+      title: req.body.title,
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+  if (!updateCategory) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Error Updating Category" });
+  }
+  return res.status(200).json({ success: true, updateCategory });
 });
 
 //Delete a Category
 const deleteCategory = asyncHandler(async (req, res) => {
-  const category = await Category.findByIdAndDelete(req.params._id);
+  const { _id } = req.params;
+  console.log(_id)
+  if (!_id) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Unable to retrieve Category" });
+  }
+  const category = await Category.findByIdAndDelete(_id);
   if (!category) {
     res.status(404);
     throw new Error("Category Not Found!!!");
