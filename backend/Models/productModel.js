@@ -31,13 +31,13 @@ const productSchema = mongoose.Schema(
       type: Number,
     },
     category: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
+      type: String,
+      required: true,
     },
     isFeatured: {
       type: Boolean,
-      default:false
-    }, 
+      default: false,
+    },
     brand: {
       type: String,
       required: true,

@@ -35,6 +35,12 @@ import AdminLayout from "./pages/Dashboards/adminDashboard/Layout";
 import CreateProduct from "./pages/Dashboards/adminDashboard/Product/CreateProduct";
 import CreateCategory from "./pages/Dashboards/adminDashboard/Category/CreateCategory";
 import CategoryList from "./pages/Dashboards/adminDashboard/Category/CategoryList";
+import CreateBrand from "./pages/Dashboards/adminDashboard/Brand/CreateBrand";
+import BrandsList from "./pages/Dashboards/adminDashboard/Brand/BrandsList";
+
+
+axios.defaults.withCredentials = true;
+
 
 export const ScrollToTop = () => {
   const location = useLocation();
@@ -123,6 +129,14 @@ function App() {
             <Route
               path="/admin-dashboard/admin-list-categories"
               element={<CategoryList />}
+            />
+            <Route
+              path="/admin-dashboard/admin-create-brand"
+              element={<CreateBrand />}
+            />
+            <Route
+              path="/admin-dashboard/admin-list-brands"
+              element={<BrandsList />}
             />
           </Route>
         </Routes>

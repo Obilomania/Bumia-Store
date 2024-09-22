@@ -13,24 +13,25 @@ import { base_Url } from "./BottomeHeader";
 import { resetUserState } from "../../redux/reducers/authSlice";
 import store from "../../redux/store";
 import toast from "react-hot-toast";
+import { resetAdminSlice } from "../../redux/reducers/adminSlice";
 
 const MiddleHeader = ({ toggleNavReveal }) => {
   const navigate = useNavigate();
   const userName = localStorage.getItem("userName");
-    const logOutUser = () => {
-      const response = axios.get(`${base_Url}user/logout`, {
-        withCredentials: true,
-      });
-      if (response.data) {
-        toast.success("User Logged Out");
-      } else if (response.error) {
-        return toast.error(response.error?.data?.message);
-      }
-      store.dispatch(resetUserState());
-
-      localStorage.clear();
-      navigate("/");
-    };
+  const logOutUser = () => {
+    const response = axios.get(`${base_Url}user/logout`, {
+      withCredentials: true,
+    });
+    if (response.data) {
+      toast.success("User Logged Out");
+    } else if (response.error) {
+      return toast.error(response.error?.data?.message);
+    }
+    store.dispatch(resetUserState());
+    store.dispatch(resetAdminSlice());
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <HeaderMiddle>
       <div className="main-container middle-content">

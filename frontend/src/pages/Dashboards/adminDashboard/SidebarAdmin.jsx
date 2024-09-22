@@ -17,12 +17,14 @@ const SidebarAdmin = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
   const [categoryDropDown, setCategoryDropDown] = useState(false);
   const [couponDropDown, setCouponDropDown] = useState(false);
   const [usersDropDown, setUsersDropDown] = useState(false);
+  const [brandDropDown, setBrandDropDown] = useState(false)
   const revealDropDown = () => {
     setProductDropItDown(!productDropItDown);
     setOrderDropDown(false);
     setCategoryDropDown(false);
     setCouponDropDown(false);
     setUsersDropDown(false);
+    setBrandDropDown(false);
   };
   const revealOrderDropDown = () => {
     setOrderDropDown(!orderDropDown);
@@ -30,6 +32,7 @@ const SidebarAdmin = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
     setCouponDropDown(false);
     setUsersDropDown(false);
     setProductDropItDown(false);
+    setBrandDropDown(false);
   };
   const revealCategoryDropDown = () => {
     setCategoryDropDown(!categoryDropDown);
@@ -37,6 +40,7 @@ const SidebarAdmin = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
     setOrderDropDown(false);
     setCouponDropDown(false);
     setUsersDropDown(false);
+    setBrandDropDown(false);
   };
   const revealCouponDropDown = () => {
     setCouponDropDown(!couponDropDown);
@@ -44,6 +48,7 @@ const SidebarAdmin = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
     setOrderDropDown(false);
     setUsersDropDown(false);
     setProductDropItDown(false);
+    setBrandDropDown(false);
   };
   const revealUsersDropDown = () => {
     setUsersDropDown(!usersDropDown);
@@ -51,7 +56,17 @@ const SidebarAdmin = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
     setOrderDropDown(false);
     setCategoryDropDown(false);
     setCouponDropDown(false);
+    setBrandDropDown(false);
   };
+
+  const revealBrandDropDown = () => {
+    setBrandDropDown(!brandDropDown);
+    setProductDropItDown(false);
+    setOrderDropDown(false);
+    setCategoryDropDown(false);
+    setCouponDropDown(false);
+    setUsersDropDown(false);
+  }
 
   return (
     <SidyBar>
@@ -114,6 +129,31 @@ const SidebarAdmin = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
               onClick={() => navigate("/admin-dashboard/admin-list-categories")}
             >
               View All Categories
+            </li>
+          </ul>
+        </div>
+        {/* **********************BRANDS********************************* */}
+        <div className="sidbar-option">
+          <p
+            className={categoryDropDown ? "option-clicked" : "option-normal"}
+            onClick={revealBrandDropDown}
+          >
+            <PiNotepadBold />
+            BRAND
+            <span>{brandDropDown ? <HiOutlineMinus /> : <IoAddSharp />}</span>
+          </p>
+          <ul
+            className={brandDropDown ? "dropDown-menu" : "dropDown-menu-close"}
+          >
+            <li
+              onClick={() => navigate("/admin-dashboard/admin-create-brand")}
+            >
+              Create Brand
+            </li>
+            <li
+              onClick={() => navigate("/admin-dashboard/admin-list-brands")}
+            >
+              View All Brands
             </li>
           </ul>
         </div>

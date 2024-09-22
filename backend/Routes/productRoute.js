@@ -31,7 +31,7 @@ router.get("/featured", getFeaturedProducts);
 router.get("/category/:category", getProductsByCategory);
 router.put("/featured/:_id", makeProductFeatured);
 router.post(
-  "/",
+  "/create-product",
   protect,
   isAdmin,
   uploadPhoto.array("images", 5),

@@ -58,7 +58,7 @@ const registerUser = asyncHandler(async (req, res) => {
   res.cookie("token", token, {
     path: "/",
     httpOnly: true,
-    expires: new Date(Date.now() + 1000 * 86400), //One Day
+    expires: new Date(Date.now() + 7000 * 86400), //One Day
     sameSite: "none",
     secure: true,
   });
@@ -136,7 +136,7 @@ const loginUser = asyncHandler(async (req, res) => {
   res.cookie("token", token, {
     path: "/",
     httpOnly: true,
-    expires: new Date(Date.now() + 1000 * 86400), //One Day
+    expires: new Date(Date.now() + 7000 * 86400), //One Day
     sameSite: "none",
     secure: true,
   });

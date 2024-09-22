@@ -11,6 +11,7 @@ import { resetUserState } from "../../../redux/reducers/authSlice";
 import { useNavigate } from "react-router-dom";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
+import { resetAdminSlice } from "../../../redux/reducers/adminSlice";
 
 const AdminHeader = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const AdminHeader = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
       return toast.error(response.error?.data?.message);
     }
     store.dispatch(resetUserState());
+    store.dispatch(resetAdminSlice());
 
     localStorage.clear();
     navigate("/");

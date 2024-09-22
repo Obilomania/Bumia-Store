@@ -23,13 +23,23 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: ["https://bitbyvest.onrender.com", "http://localhost:3000"], // List your allowed origins
+    origin: ["http://localhost:3000"], // List your allowed origins
     credentials: true, // Allow credentials (cookies)
-    methods: ["GET", "POST", "PUT","PATCH", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: [
+      "Content-Type",
+      "Origin",
+      "X-Requested-With",
+      "Accept",
+      "x-client-key",
+      "x-client-token",
+      "x-client-secret",
+      "Authorization",
+    ],
+    credentials: true,
   })
 );
 

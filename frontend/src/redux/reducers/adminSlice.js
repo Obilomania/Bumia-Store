@@ -3,7 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   filteredUsers: [],
   allCategories: [],
-  categoryID : ""
+  categoryID: "",
+  allBrands: [],
+  brandID: "",
 };
 
 const adminSlice = createSlice({
@@ -25,9 +27,22 @@ const adminSlice = createSlice({
     category_id: (state, action) => {
       state.categoryID = action.payload;
     },
+    all_brands: (state, action) => {
+      state.allBrands = action.payload;
+    },
+    brand_id: (state, action) => {
+      state.brandID = action.payload;
+    },
+    resetAdminSlice: (state) => {
+      state.filteredUsers = [];
+      state.allCategories = [];
+      state.categoryID = "";
+      state.allBrands = [];
+      state.brandID = "";
+    }
   },
 });
 
-export const { filtered_users, all_categories,category_id } = adminSlice.actions;
+export const { filtered_users, all_categories,category_id, all_brands, brand_id, resetAdminSlice } = adminSlice.actions;
 
 export const adminReducer = adminSlice.reducer;

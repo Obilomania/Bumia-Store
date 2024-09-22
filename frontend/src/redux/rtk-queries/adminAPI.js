@@ -47,11 +47,59 @@ const adminAPI = createApi({
       }),
       invalidatesTags: ["adminAPI"],
     }),
+    createBrand: builder.mutation({
+      query: (brand) => ({
+        url: "brand/",
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: brand,
+        credentials: "include",
+      }),
+      invalidatesTags: ["adminAPI"],
+    }),
+    getAllBrands: builder.query({
+      query: () => ({
+        url: "brand/",
+        credentials: "include",
+      }),
+      providesTags: ["adminAPI"],
+    }),
+    editBrand: builder.mutation({
+      query: ({ _id, title }) => ({
+        url: `brand/${_id}`,
+        method: "PUT",
+        body: title,
+        credentials: "include",
+      }),
+      invalidatesTags: ["adminAPI"],
+    }),
+    deleteBrand: builder.mutation({
+      query: (_id) => ({
+        url: `brand/${_id}`,
+        method: "DELETE",
+        credentials: "include",
+      }),
+      invalidatesTags: ["adminAPI"],
+    }),
+    createNewProduct: builder.mutation({
+      query: (theBody) => ({
+        url: "product/create-product",
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: theBody,
+        credentials: "include",
+      }),
+      invalidatesTags: ["adminAPI"],
+    }),
   }),
 });
 
 
 export const {
-useCreateCategoryMutation, useGetAllCategoriesQuery, useEditCategoryMutation,useDeleteCategoryMutation
+useCreateCategoryMutation, useGetAllCategoriesQuery, useEditCategoryMutation,useDeleteCategoryMutation, useCreateBrandMutation,useGetAllBrandsQuery, useEditBrandMutation, useDeleteBrandMutation, useCreateNewProductMutation
 } = adminAPI;
 export default adminAPI;

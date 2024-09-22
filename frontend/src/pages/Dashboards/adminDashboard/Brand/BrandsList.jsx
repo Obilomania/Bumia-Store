@@ -1,90 +1,84 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import {
-  useDeleteCategoryMutation,
-  useEditCategoryMutation,
-  useGetAllCategoriesQuery,
-} from "../../../../redux/rtk-queries/adminAPI";
-import Loader from "../../../../components/Loader";
-import { FaEdit } from "react-icons/fa";
-import { FaRegTrashCan } from "react-icons/fa6";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  all_categories,
-  category_id,
-} from "../../../../redux/reducers/adminSlice";
-import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import { useDeleteBrandMutation, useEditBrandMutation, useGetAllBrandsQuery } from '../../../../redux/rtk-queries/adminAPI';
+import { useDispatch, useSelector } from 'react-redux';
+import { all_brands, brand_id } from '../../../../redux/reducers/adminSlice';
+import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+import { FaRegTrashCan } from 'react-icons/fa6';
+import { FaEdit } from 'react-icons/fa';
+import Loader from '../../../../components/Loader';
 
-const CategoryList = () => {
-  const { data, isLoading } = useGetAllCategoriesQuery(null);
-  const dispatch = useDispatch();
-  const [editModal, setEditModal] = useState(false);
+const BrandsList = () => {
+      const { data, isLoading } = useGetAllBrandsQuery(null);
+      const dispatch = useDispatch();
+      const [editModal, setEditModal] = useState(false);
 
-  useEffect(() => {
-    if (!isLoading) {
-      dispatch(all_categories(data));
-    }
-  }, [data, dispatch, isLoading]);
+      useEffect(() => {
+        if (!isLoading) {
+          dispatch(all_brands(data));
+        }
+      }, [data, dispatch, isLoading]);
 
-  const revealEdit = (id) => {
-    dispatch(category_id(id));
-    setEditModal(true);
-  };
-  const closeRevealEdit = () => {
-    dispatch(category_id(""));
-    setEditModal(false);
-  };
+      const revealEdit = (id) => {
+        dispatch(brand_id(id));
+        setEditModal(true);
+      };
+      const closeRevealEdit = () => {
+        dispatch(brand_id(""));
+        setEditModal(false);
+      };
 
-  const allCategories = useSelector(
-    (state) => state?.persistedReducer?.admin?.allCategories
-  );
-  const theCategory_id = useSelector(
-    (state) => state?.persistedReducer?.admin?.categoryID
-  );
+      const allBrands = useSelector(
+        (state) => state?.persistedReducer?.admin?.allBrands
+      );
+      const theBrand_id = useSelector(
+        (state) => state?.persistedReducer?.admin?.categoryID
+      );
 
-  const theCategory = allCategories?.find(
-    (category) => category._id === theCategory_id
-  );
-  const [editCategory, setEditCategory] = useState({
-    title: "",
-  });
-  const handleInput = (e) => {
-    const { name, value } = e.target;
-    setEditCategory({ ...editCategory, [name]: value });
-  };
-  const [updateCategory, { isLoading: isUpdating }] = useEditCategoryMutation();
+      const theCategory = allBrands?.find(
+        (category) => category._id === theBrand_id
+      );
+      const [editCategory, setEditCategory] = useState({
+        title: "",
+      });
+      const handleInput = (e) => {
+        const { name, value } = e.target;
+        setEditCategory({ ...editCategory, [name]: value });
+      };
+      const [updateBrand, { isLoading: isUpdating }] =
+        useEditBrandMutation();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await updateCategory({
-      _id: theCategory._id,
-      title: editCategory,
-    });
-    if (res?.data) {
-      toast.success("Category Updated Successfully");
-      setEditModal(false);
-      setEditCategory("");
-    } else if (res?.error) {
-      return toast.error(res?.error?.data?.message);
-    }
-  };
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        const res = await updateBrand({
+          _id: theCategory._id,
+          title: editCategory,
+        });
+        if (res?.data) {
+          toast.success("Brand Updated Successfully");
+          setEditModal(false);
+          setEditCategory("");
+        } else if (res?.error) {
+          return toast.error(res?.error?.data?.message);
+        }
+      };
 
-  const [deleteCategory] = useDeleteCategoryMutation();
-  const handleCategoryDelete = async (_id) => {
-    const response = await deleteCategory(_id);
-    if (response?.data) {
-      toast.success("Category Deleted Successfully");
-    } else if (response?.error) {
-      return toast.error(response?.error?.data?.message);
-    }
-  };
+      const [deleteBrand] = useDeleteBrandMutation();
+      const handleBrandDelete = async (_id) => {
+        const response = await deleteBrand(_id);
+        if (response?.data) {
+          toast.success("Brand Deleted Successfully");
+        } else if (response?.error) {
+          return toast.error(response?.error?.data?.message);
+        }
+      };
   return (
-    <ListCategory>
+    <BrandListPage>
       {isLoading || (isUpdating && <Loader />)}
 
       <div className="user-list">
-        <h6 className="chart-heading text-center">CATEGORY LIST</h6>
+        <h6 className="chart-heading text-center">BRAND LIST</h6>
         <br />
         {editModal && (
           <>
@@ -108,10 +102,10 @@ const CategoryList = () => {
         )}
         <div className="toppers">
           <p>
-            <b>{data?.length}</b> &nbsp;<span>Categories</span>
+            <b>{data?.length}</b> &nbsp;<span>Brands</span>
           </p>
-          <Link to="/admin-dashboard/admin-create-category">
-            CREATE CATEGORY
+          <Link to="/admin-dashboard/admin-create-brand">
+            CREATE BRAND
           </Link>
         </div>
         <div className="top-order">
@@ -120,17 +114,17 @@ const CategoryList = () => {
           <p></p>
         </div>
         <div className="bottom-order">
-          {data?.map((category, index) => (
+          {data?.map((brand, index) => (
             <div className="bottom-order-content" key={index}>
               <p>{index + 1}</p>
-              <p>{category?.title}</p>
+              <p>{brand?.title}</p>
               <p className="edit-delete">
                 {!editModal ? (
                   <span>
-                    <FaEdit onClick={() => revealEdit(category?._id)} />
+                    <FaEdit onClick={() => revealEdit(brand?._id)} />
                   </span>
                 ) : null}
-                <span onClick={() => handleCategoryDelete(category?._id)}>
+                <span onClick={() => handleBrandDelete(brand?._id)}>
                   <FaRegTrashCan />
                 </span>
               </p>
@@ -138,11 +132,11 @@ const CategoryList = () => {
           ))}
         </div>
       </div>
-    </ListCategory>
+    </BrandListPage>
   );
-};
+}
 
-const ListCategory = styled.div`
+const BrandListPage = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
@@ -380,4 +374,4 @@ const ListCategory = styled.div`
   @media screen and (max-width: 350px) {
   }
 `;
-export default CategoryList;
+export default BrandsList

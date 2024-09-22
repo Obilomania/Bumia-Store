@@ -24,8 +24,11 @@ const createProduct = asyncHandler(async (req, res) => {
   let images = [];
   let imagePath = [];
   const files = req.files;
+
   try {
+
     for (const file of files) {
+     
       uploadedFile = await cloudinary.uploader.upload(file.path, {
         folder: "Bumia Store",
         resource_type: "image",
@@ -43,6 +46,7 @@ const createProduct = asyncHandler(async (req, res) => {
     res.status(500);
     throw new Error("Image could not be uploaded");
   }
+  console.log("I got here")
 
   const product = await Product.create({
     title,
@@ -55,6 +59,7 @@ const createProduct = asyncHandler(async (req, res) => {
     color,
     images,
   });
+  console.log(product)
   if (product) {
     return res.status(200).json({ success: true, product });
   } else {
@@ -139,14 +144,18 @@ const getProductsByCategory = asyncHandler(async (req, res) => {
   res.json(products);
 });
 
-
 //MAKE A PRODUCT FEATURED
 async function updateFeaturedProductsCache() {
   try {
-    const featuredProducts = await Product.find({ isFeatured: true, }).lean()
-    await redisClient.set("featured_products", JSON.stringify(featuredProducts),"EX", 60 * 60 * 24);
+    const featuredProducts = await Product.find({ isFeatured: true }).lean();
+    await redisClient.set(
+      "featured_products",
+      JSON.stringify(featuredProducts),
+      "EX",
+      60 * 60 * 24
+    );
   } catch (error) {
-    console.log("Error in updating cache")
+    console.log("Error in updating cache");
   }
 }
 const makeProductFeatured = asyncHandler(async (req, res) => {

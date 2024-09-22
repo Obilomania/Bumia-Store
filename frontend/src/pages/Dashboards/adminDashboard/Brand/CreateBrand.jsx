@@ -1,47 +1,43 @@
-import React, { useState } from "react";
-import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import {
-  useCreateCategoryMutation
-} from "../../../../redux/rtk-queries/adminAPI";
-import Loader from "../../../../components/Loader";
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import Loader from '../../../../components/Loader';
+import { useCreateBrandMutation } from '../../../../redux/rtk-queries/adminAPI';
+import { Link, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
-const CreateCategory = () => {
-  const [category, setCategory] = useState("");
-  const [createCategory, { isLoading }] = useCreateCategoryMutation();
-  const navigate = useNavigate();
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (category === "") {
-      return toast.error("Please fill all Inputs");
-    }
-    const response = await createCategory({ title: category });
-    if (response?.data) {
-      toast.success("Category Created Successfully");
-      setCategory("");
-      navigate("/admin-dashboard/admin-list-categories");
-    } else if (response?.error) {
-      return toast.error(response?.error?.data?.message);
-    }
-  };
-
+const CreateBrand = () => {
+    const [brand, setBrand] = useState("")
+     const [createBraand, { isLoading }] = useCreateBrandMutation();
+    const navigate = useNavigate();
+    
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      if (brand === "") {
+        return toast.error("Please fill all Inputs");
+      }
+      const response = await createBraand({ title: brand });
+      if (response?.data) {
+        toast.success("Brand Created Successfully");
+        setBrand("");
+        navigate("/admin-dashboard/admin-list-brands");
+      } else if (response?.error) {
+        return toast.error(response?.error?.data?.message);
+      }
+    };
   return (
-    <TheCategory>
+    <CreateBrandPage>
       {isLoading && <Loader />}
       <div className="create-container">
-        <p className="sub-heading text-center">CREATE CATEGORY</p>
+        <p className="sub-heading text-center">CREATE BRAND</p>
         <form onSubmit={handleSubmit}>
           <div className="form-div">
-            <label>Category Name :</label>
+            <label>Brand Name :</label>
             <input
               type="text"
               className="form-input"
               name="category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              value={brand}
+              onChange={(e) => setBrand(e.target.value)}
             />
           </div>{" "}
           <div className="call-to-action">
@@ -50,11 +46,12 @@ const CreateCategory = () => {
           </div>
         </form>
       </div>
-    </TheCategory>
+    </CreateBrandPage>
   );
-};
+}
 
-const TheCategory = styled.div`
+
+const CreateBrandPage = styled.div`
   width: 100%;
   height: 100%;
   padding-top: 4rem;
@@ -224,4 +221,4 @@ const TheCategory = styled.div`
   @media screen and (max-width: 350px) {
   }
 `;
-export default CreateCategory;
+export default CreateBrand
