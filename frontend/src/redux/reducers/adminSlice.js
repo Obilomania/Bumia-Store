@@ -6,6 +6,7 @@ const initialState = {
   categoryID: "",
   allBrands: [],
   brandID: "",
+  allProducts: [],
 };
 
 const adminSlice = createSlice({
@@ -33,16 +34,28 @@ const adminSlice = createSlice({
     brand_id: (state, action) => {
       state.brandID = action.payload;
     },
+    all_products: (state, action) => {
+      state.allProducts = action.payload;
+    },
     resetAdminSlice: (state) => {
       state.filteredUsers = [];
       state.allCategories = [];
       state.categoryID = "";
       state.allBrands = [];
       state.brandID = "";
-    }
+      state.allProducts = [];
+    },
   },
 });
 
-export const { filtered_users, all_categories,category_id, all_brands, brand_id, resetAdminSlice } = adminSlice.actions;
+export const {
+  filtered_users,
+  all_categories,
+  category_id,
+  all_brands,
+  brand_id,
+  all_products,
+  resetAdminSlice,
+} = adminSlice.actions;
 
 export const adminReducer = adminSlice.reducer;

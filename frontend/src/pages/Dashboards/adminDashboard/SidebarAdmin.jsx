@@ -100,7 +100,11 @@ const SidebarAdmin = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
             >
               Create Product
             </li>
-            <li>View All Products</li>
+            <li
+              onClick={() => navigate("/admin-dashboard/admin-product-list")}
+            >
+              View All Products
+            </li>
           </ul>
         </div>
         {/* **********************CATEGORIES********************************* */}
@@ -145,14 +149,10 @@ const SidebarAdmin = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
           <ul
             className={brandDropDown ? "dropDown-menu" : "dropDown-menu-close"}
           >
-            <li
-              onClick={() => navigate("/admin-dashboard/admin-create-brand")}
-            >
+            <li onClick={() => navigate("/admin-dashboard/admin-create-brand")}>
               Create Brand
             </li>
-            <li
-              onClick={() => navigate("/admin-dashboard/admin-list-brands")}
-            >
+            <li onClick={() => navigate("/admin-dashboard/admin-list-brands")}>
               View All Brands
             </li>
           </ul>

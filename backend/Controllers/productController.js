@@ -59,7 +59,6 @@ const createProduct = asyncHandler(async (req, res) => {
     color,
     images,
   });
-  console.log(product)
   if (product) {
     return res.status(200).json({ success: true, product });
   } else {

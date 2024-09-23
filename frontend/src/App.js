@@ -37,10 +37,9 @@ import CreateCategory from "./pages/Dashboards/adminDashboard/Category/CreateCat
 import CategoryList from "./pages/Dashboards/adminDashboard/Category/CategoryList";
 import CreateBrand from "./pages/Dashboards/adminDashboard/Brand/CreateBrand";
 import BrandsList from "./pages/Dashboards/adminDashboard/Brand/BrandsList";
-
+import ProductList from "./pages/Dashboards/adminDashboard/Product/ProductList";
 
 axios.defaults.withCredentials = true;
-
 
 export const ScrollToTop = () => {
   const location = useLocation();
@@ -121,6 +120,10 @@ function App() {
             <Route
               path="/admin-dashboard/admin-create-product"
               element={<CreateProduct />}
+            />
+            <Route
+              path="/admin-dashboard/admin-product-list"
+              element={<ProductList />}
             />
             <Route
               path="/admin-dashboard/admin-create-category"

@@ -103,7 +103,7 @@ const CreateProduct = () => {
     const res = await createNewProduct(formData);
     if (res.success) {
       toast.success("Product created successfully");
-      navigate("/admin/products");
+      navigate("/admin-dashboard/admin-product-list");
       setIsLoading(false);
     } else {
       setIsLoading(false);
