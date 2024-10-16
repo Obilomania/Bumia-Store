@@ -18,7 +18,7 @@ export const createNewProduct = async (formData) => {
       }
     );
     if (response.status === 201) {
-      toast.success("Registration successful, Please Login");
+      toast.success("Created Successfully");
     }
     return response.data;
   } catch (error) {
@@ -29,6 +29,33 @@ export const createNewProduct = async (formData) => {
     return toast.error(message);
   }
 };
+
+
+
+export const editProduct = async (formData, _id) => {
+  try {
+    const response = await axios.put(
+      `${baseURL}product/${_id}`,
+      formData,
+      {
+        withCredentials: true,
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
+    console.log(response)
+    if (response.data) {
+      toast.success(response.data.message);
+    }
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return toast.error(message);
+  }
+};
+
 
 export const getOneProductByAdmin = async (_id) => {
   try {

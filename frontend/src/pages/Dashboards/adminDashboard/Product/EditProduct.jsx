@@ -1,5 +1,5 @@
-import React, {  useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import {
   useGetAllBrandsQuery,
@@ -13,13 +13,18 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { baseURL } from "../../../../redux/rtk-queries/authAPI";
+import {  editProduct } from "../../../../redux/axiosCalls/productAPI";
 
 const EditProduct = () => {
   const { id: _id } = useParams();
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+
   const { data: categoryList, isLoading: isLoadingCategories } =
     useGetAllCategoriesQuery(null);
-  const { data: brandList, isLoading } = useGetAllBrandsQuery(null);
-  const { data: oneProduct, isLoading: isLoadingOneProduct } = useGetOneProductsQuery(_id);
+  const { data: brandList, isLoading: isLoadingBrands } = useGetAllBrandsQuery(null);
+  const { data: oneProduct, isLoading: isLoadingOneProduct } =
+    useGetOneProductsQuery(_id);
   const [productData, setProductData] = useState({
     title: "",
     description: "",
@@ -65,11 +70,7 @@ const EditProduct = () => {
     const file = e.target.files[0]; // Get the first file selected
     if (!file) return;
 
-    // Allow only up to 5 images
-    if (images.length >= 5) {
-      alert("You can only upload up to 5 images");
-      return;
-    }
+ 
 
     // Create a preview URL for the image
     const previewUrl = URL.createObjectURL(file);
@@ -83,30 +84,83 @@ const EditProduct = () => {
   };
 
   const handleImageRemove = async (index) => {
-    // Remove the image and its preview by index
-    const res = await axios.delete(
-      `${baseURL}product/${_id}/images/${images[index]?._id}`
-    );
-    console.log(res);
-    if (res?.data) {
-      toast.success(res?.data?.message);
+    if (images[index]?._id) {
+      const res = await axios.delete(
+        `${baseURL}product/${_id}/images/${images[index]?._id}`
+      );
+      if (res?.data) {
+        toast.success(res?.data?.message);
+        setImages(images.filter((_, i) => i !== index));
+        setPreviews(previews.filter((_, i) => i !== index));
+      } else if (res?.error) {
+        return toast.error(res?.error?.data?.message);
+      }
+    } else {
+      toast.success("Image Deleted Successfully");
       setImages(images.filter((_, i) => i !== index));
       setPreviews(previews.filter((_, i) => i !== index));
-    } else if (res?.error) {
-      return toast.error(res?.error?.data?.message);
     }
-    setImages(images.filter((_, i) => i !== index));
-    setPreviews(previews.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = async (e) => {};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    if (
+      !productData.title ||
+      !productData.description ||
+      !productData.price ||
+      !productData.slug ||
+      !productData.category ||
+      !productData.quantity
+    ) {
+      setIsLoading(false);
+      return toast.error("Please fill in all the fields");
+    }
+    if (images.length <= 0) {
+      toast.error("Please at an image");
+      setIsLoading(false);
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("title", productData.title);
+    formData.append("description", productData.description);
+    formData.append("slug", productData.slug);
+    formData.append("category", productData.category);
+    formData.append("brand", productData.brand);
+    formData.append("color", productData.color);
+    formData.append("price", productData.price);
+    formData.append("quantity", productData.quantity);
+    images.forEach((image) => {
+      formData.append("images", image);
+    });
+
+    console.log(images)
+    const res = await editProduct(formData, _id);
+    if (res.success) {
+      // toast.success("Product Edited successfully");
+      navigate("/admin-dashboard/admin-product-list");
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+      console.log(res.message)
+      toast.error(res.message);
+    }
+    setIsLoading(false);
+  };
   if (!oneProduct || !oneProduct.images || !previews) {
+    return <Loader />;
+  }
+  if (isLoading) {
     return <Loader />;
   }
 
   return (
     <ProductEdit>
-      {isLoading || isLoadingOneProduct || (isLoadingCategories && <Loader />)}
+      {
+        isLoadingOneProduct ||
+        isLoadingBrands|| (isLoadingCategories && <Loader />)}
       <div className="create-container">
         <p className="sub-heading text-center">EDIT PRODUCT</p>
         <form onSubmit={handleSubmit}>
@@ -265,8 +319,8 @@ const ProductEdit = styled.div`
   .sub-heading {
     font-weight: 500;
   }
-  b{
-    color:red;
+  b {
+    color: red;
   }
   form {
     width: 60%;

@@ -26,9 +26,7 @@ const createProduct = asyncHandler(async (req, res) => {
   const files = req.files;
 
   try {
-
     for (const file of files) {
-     
       uploadedFile = await cloudinary.uploader.upload(file.path, {
         folder: "Bumia Store",
         resource_type: "image",
@@ -46,7 +44,7 @@ const createProduct = asyncHandler(async (req, res) => {
     res.status(500);
     throw new Error("Image could not be uploaded");
   }
-  console.log("I got here")
+  console.log("I got here");
 
   const product = await Product.create({
     title,
@@ -66,8 +64,6 @@ const createProduct = asyncHandler(async (req, res) => {
     throw new Error("Error Creating Product, Please try again");
   }
 });
-
-
 
 //Get a Product
 const getAProduct = asyncHandler(async (req, res) => {
@@ -173,9 +169,44 @@ const makeProductFeatured = asyncHandler(async (req, res) => {
 
 //Update a Product
 const updateProduct = asyncHandler(async (req, res) => {
-  const singleProduct = await Product.findById(req.params._id);
-  if (singleProduct) {
-    const {
+  const { title, description, slug, price, category, brand, quantity, color } =
+    req.body;
+  const { _id } = req.params;
+  const product = await Product.findById(_id);
+  if (!product) {
+    res.status(404);
+    throw new Error("Product Not Found!!!");
+  }
+
+  let someImages = [];
+  let imagePath = [];
+  const files = req.files;
+  try {
+    for (const file of files) {
+      uploadedFile = await cloudinary.uploader.upload(file.path, {
+        folder: "Bumia Store",
+        resource_type: "image",
+      });
+      imagePath.push({
+        url: uploadedFile.secure_url,
+        public_id: uploadedFile.public_id,
+      });
+      fs.unlinkSync(file.path);
+    }
+    imagePath.forEach((imgPath) => {
+      someImages.push(imgPath);
+    });
+  } catch (error) {
+    res.status(500);
+    throw new Error("Image could not be uploaded");
+  }
+
+  someImages.push(...product.images);
+  
+
+  const updateProduct = await Product.findByIdAndUpdate(
+    { _id },
+    {
       title,
       description,
       slug,
@@ -184,52 +215,24 @@ const updateProduct = asyncHandler(async (req, res) => {
       brand,
       quantity,
       color,
-    } = singleProduct;
-
-    let images = [];
-    let imagePath = [];
-    const files = req.files;
-    try {
-      for (const file of files) {
-        uploadedFile = await cloudinary.uploader.upload(file.path, {
-          folder: "Bumia Store",
-          resource_type: "image",
-        });
-        imagePath.push({
-          url: uploadedFile.secure_url,
-          public_id: uploadedFile.public_id,
-        });
-        fs.unlinkSync(file.path);
-      }
-      imagePath.forEach((imgPath) => {
-        images.push(imgPath);
-      });
-    } catch (error) {
-      res.status(500);
-      throw new Error("Image could not be uploaded");
+      images:
+        Object.keys(someImages).length === 0 ? product.images : someImages,
+    },
+    {
+      new: true,
+      runValidators: true,
     }
+  );
 
-    singleProduct.title = req.body.title || title;
-    singleProduct.description = req.body.description || description;
-    singleProduct.slug = req.body.title || slug;
-    singleProduct.price = req.body.price || price;
-    singleProduct.category = req.body.category || category;
-    singleProduct.brand = req.body.brand || brand;
-    singleProduct.quantity = req.body.quantity || quantity;
-    singleProduct.images = req.body.images || images;
-    singleProduct.color = req.body.color || color;
-
-    const updatedProduct = await singleProduct.save();
-    if (updatedProduct) {
-      res.status(200).json({
-        success: true,
-        message: "Product Updated Successfully",
-        data: updateProduct,
-      });
-    } else {
-      res.status(400);
-      throw new Error("Product Not Found!!!");
-    }
+  if (updateProduct) {
+    res.status(200).json({
+      success: true,
+      message: "Product Updated Successfully",
+      data: updateProduct,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Product Not Found!!!");
   }
 });
 
@@ -282,7 +285,6 @@ const uploadImages = asyncHandler(async (req, res) => {
 const deleteProductImage = asyncHandler(async (req, res) => {
   try {
     const { prodId, imageId } = req.params;
-    console.log(prodId, imageId);
     const product = await Product.findById(prodId);
     if (!product)
       return res
