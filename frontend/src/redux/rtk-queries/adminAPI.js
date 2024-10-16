@@ -108,12 +108,20 @@ const adminAPI = createApi({
         credentials: "include",
       }),
       providesTags: ["adminAPI"],
+    }),
+    deleteProduct: builder.mutation({
+      query: (_id) => ({
+        url: `product/${_id}`,
+        method: "DELETE",
+        credentials: "include",
+      }),
+      invalidatesTags: ["adminAPI"],
     })
   }),
 });
 
 
 export const {
-useCreateCategoryMutation, useGetAllCategoriesQuery, useEditCategoryMutation,useDeleteCategoryMutation, useCreateBrandMutation,useGetAllBrandsQuery, useEditBrandMutation, useDeleteBrandMutation, useCreateNewProductMutation, useGetAllProductsQuery, useGetOneProductsQuery
+useCreateCategoryMutation, useGetAllCategoriesQuery, useEditCategoryMutation,useDeleteCategoryMutation, useCreateBrandMutation,useGetAllBrandsQuery, useEditBrandMutation, useDeleteBrandMutation, useCreateNewProductMutation, useGetAllProductsQuery, useGetOneProductsQuery, useDeleteProductMutation
 } = adminAPI;
 export default adminAPI;

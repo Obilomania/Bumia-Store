@@ -2,12 +2,17 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useGetAllProductsQuery } from "../../../../redux/rtk-queries/adminAPI";
+import {
+  useGetAllProductsQuery,
+  useDeleteProductMutation,
+} from "../../../../redux/rtk-queries/adminAPI";
 import { all_products } from "../../../../redux/reducers/adminSlice";
 import Loader from "../../../../components/Loader";
 import { FaEdit } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import toast from "react-hot-toast";
+
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -19,6 +24,17 @@ const ProductList = () => {
       dispatch(all_products(data));
     }
   }, [data, dispatch, isLoading]);
+
+  const [deleteProduct] = useDeleteProductMutation();
+
+  const handleProductDelete = async (_id) => {
+    const response = await deleteProduct(_id)
+     if (response?.data) {
+       toast.success("Product Deleted Successfully");
+     } else if (response?.error) {
+       return toast.error(response?.error?.data?.message);
+     }
+  }
   return (
     <ListProduct>
       {isLoading && <Loader />}
@@ -65,7 +81,7 @@ const ProductList = () => {
                 >
                   <FaEdit />
                 </span>
-                <span>
+                <span onClick={() => handleProductDelete(product?._id)}>
                   <FaRegTrashCan />
                 </span>
               </p>
