@@ -29,3 +29,21 @@ export const createNewProduct = async (formData) => {
     return toast.error(message);
   }
 };
+
+export const getOneProductByAdmin = async (_id) => {
+  try {
+    const response = await axios.get(`${baseURL}product/${_id}`, {
+      withCredentials: true,
+    }).then((response) => {
+      return response.data;
+    });
+    
+    return response;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    console.log(message);
+  }
+};

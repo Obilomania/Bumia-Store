@@ -12,6 +12,7 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 const ProductList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { data, isLoading } = useGetAllProductsQuery(null);
   useEffect(() => {
     if (!isLoading) {
@@ -29,9 +30,7 @@ const ProductList = () => {
           <p>
             <b>{data?.length}</b> &nbsp;<span>Products</span>
           </p>
-          <Link to="/admin-dashboard/admin-create-product">
-            CREATE PRODUCT
-          </Link>
+          <Link to="/admin-dashboard/admin-create-product">CREATE PRODUCT</Link>
         </div>
         <div className="top-order">
           <p>No.</p>
@@ -52,8 +51,14 @@ const ProductList = () => {
                   <MdOutlineRemoveRedEye />
                 </span>
                 <span>
-                  <FaEdit />
-                  {/* <FaEdit onClick={() => revealEdit(category?._id)} /> */}
+                  {/* <FaEdit /> */}
+                  <FaEdit
+                    onClick={() =>
+                      navigate(
+                        `/admin-dashboard/admin-edit-product/${product?._id}`
+                      )
+                    }
+                  />
                 </span>
                 <span>
                   <FaRegTrashCan />

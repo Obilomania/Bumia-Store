@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { FaRegTrashCan } from "react-icons/fa6";
 
-const UploadImage = ({ previewUrl, handleImageRemove,index }) => {
+const UploadImage = ({ previewUrl, handleImageRemove, index }) => {
+
   return (
     <ImageUploadComponent>
       <div className="image-uploader" key={index}>
         <div className={previewUrl ? "image-preview" : "image-preview-close"}>
-          <img src={previewUrl} alt="prod-img" />
+          <img src={previewUrl.url || previewUrl  } alt="prod-img" />
           <span onClick={() => handleImageRemove(index)}>
             <FaRegTrashCan />
           </span>

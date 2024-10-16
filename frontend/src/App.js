@@ -38,6 +38,7 @@ import CategoryList from "./pages/Dashboards/adminDashboard/Category/CategoryLis
 import CreateBrand from "./pages/Dashboards/adminDashboard/Brand/CreateBrand";
 import BrandsList from "./pages/Dashboards/adminDashboard/Brand/BrandsList";
 import ProductList from "./pages/Dashboards/adminDashboard/Product/ProductList";
+import EditProduct from "./pages/Dashboards/adminDashboard/Product/EditProduct";
 
 axios.defaults.withCredentials = true;
 
@@ -124,6 +125,10 @@ function App() {
             <Route
               path="/admin-dashboard/admin-product-list"
               element={<ProductList />}
+            />
+            <Route
+              path="/admin-dashboard/admin-edit-product/:id"
+              element={<EditProduct />}
             />
             <Route
               path="/admin-dashboard/admin-create-category"

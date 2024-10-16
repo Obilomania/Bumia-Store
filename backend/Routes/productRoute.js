@@ -16,6 +16,7 @@ const {
   getFeaturedProducts,
   getProductsByCategory,
   makeProductFeatured,
+  deletePhoto,
 } = require("../Controllers/productController");
 const {
   imageSizeResize,

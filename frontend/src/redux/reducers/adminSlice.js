@@ -7,6 +7,7 @@ const initialState = {
   allBrands: [],
   brandID: "",
   allProducts: [],
+  productID:""
 };
 
 const adminSlice = createSlice({
@@ -37,6 +38,9 @@ const adminSlice = createSlice({
     all_products: (state, action) => {
       state.allProducts = action.payload;
     },
+    product_id: (state, action) => {
+      state.productID = action.payload;
+    },
     resetAdminSlice: (state) => {
       state.filteredUsers = [];
       state.allCategories = [];
@@ -44,6 +48,7 @@ const adminSlice = createSlice({
       state.allBrands = [];
       state.brandID = "";
       state.allProducts = [];
+      state.productID = "";
     },
   },
 });
@@ -55,6 +60,7 @@ export const {
   all_brands,
   brand_id,
   all_products,
+  product_id,
   resetAdminSlice,
 } = adminSlice.actions;
 

@@ -22,8 +22,8 @@ const UsersList = () => {
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(filteredUserList.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(filteredUserList.length / itemsPerPage));
+    setCurrentItems(filteredUserList?.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(filteredUserList?.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, filteredUserList]);
 
   const handlePageClick = (event) => {

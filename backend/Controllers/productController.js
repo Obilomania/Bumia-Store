@@ -6,7 +6,7 @@ const multer = require("multer");
 const { fileSizeFormatter } = require("../Config/fileUpload");
 const cloudinary = require("cloudinary").v2;
 const fs = require("fs");
-const { redisClient } = require("../Config/redis");
+// const { redisClient } = require("../Config/redis");
 
 //Create a product
 const createProduct = asyncHandler(async (req, res) => {
@@ -66,6 +66,8 @@ const createProduct = asyncHandler(async (req, res) => {
     throw new Error("Error Creating Product, Please try again");
   }
 });
+
+
 
 //Get a Product
 const getAProduct = asyncHandler(async (req, res) => {
@@ -280,7 +282,7 @@ const uploadImages = asyncHandler(async (req, res) => {
 const deleteProductImage = asyncHandler(async (req, res) => {
   try {
     const { prodId, imageId } = req.params;
-
+    console.log(prodId, imageId);
     const product = await Product.findById(prodId);
     if (!product)
       return res
