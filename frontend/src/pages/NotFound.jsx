@@ -1,7 +1,7 @@
-import React from 'react'
-import { Helmet } from 'react-helmet';
-import styled from 'styled-components'
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Helmet } from "react-helmet";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
@@ -13,13 +13,12 @@ const NotFound = () => {
       {/* <BreadCrumb title="Reset Password" /> */}
 
       <div className="notfound-page-container">
-              <h1>PAGE NOT FOUND &#128532;</h1>
-              <Link to="/">HOME</Link>
+        <h1>PAGE NOT FOUND &#128532;</h1>
+        <Link to="/">HOME</Link>
       </div>
     </CantFindPage>
   );
-}
-
+};
 
 const CantFindPage = styled.div`
   width: 100%;
@@ -53,4 +52,4 @@ const CantFindPage = styled.div`
     }
   }
 `;
-export default NotFound
+export default NotFound;

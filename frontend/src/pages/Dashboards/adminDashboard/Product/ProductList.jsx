@@ -47,18 +47,23 @@ const ProductList = () => {
               <p>{product?.brand}</p>
               <p>{product?.category}</p>
               <p className="edit-delete">
-                <span>
+                <span
+                  onClick={() =>
+                    navigate(
+                      `/admin-dashboard/admin-view-product/${product?._id}`
+                    )
+                  }
+                >
                   <MdOutlineRemoveRedEye />
                 </span>
-                <span>
-                  {/* <FaEdit /> */}
-                  <FaEdit
-                    onClick={() =>
-                      navigate(
-                        `/admin-dashboard/admin-edit-product/${product?._id}`
-                      )
-                    }
-                  />
+                <span
+                  onClick={() =>
+                    navigate(
+                      `/admin-dashboard/admin-edit-product/${product?._id}`
+                    )
+                  }
+                >
+                  <FaEdit />
                 </span>
                 <span>
                   <FaRegTrashCan />
