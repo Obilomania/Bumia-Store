@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { IoEyeOutline } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components'
-import { applicationUsers } from './chartData';
 import ReactPaginate from 'react-paginate';
 import { filtered_users } from '../../../redux/reducers/adminSlice';
+import { useGetAllAppUsersQuery } from '../../../redux/rtk-queries/adminAPI';
+import Loader from '../../../components/Loader';
 
 const UsersList = () => {
+  const { data: appUsers, isLoading } = useGetAllAppUsersQuery(null)
     const [searchUsers, setSearchUsers] = useState("");
     const dispatch = useDispatch();
     const filteredUserList = useSelector(
@@ -35,12 +37,15 @@ const UsersList = () => {
   //End of Pagination
 
     useEffect(() => {
-        dispatch(
-          filtered_users({ users: applicationUsers, searchUser: searchUsers })
-        );
-    },[dispatch, searchUsers])
+        dispatch(filtered_users({ users: appUsers, searchUser: searchUsers }));
+    },[appUsers, dispatch, searchUsers])
     
+  
+  const blockedUser = appUsers?.filter((user) => user.isBlocked === true);
 
+  if (isLoading || !appUsers) {
+    return <Loader/>
+  }
   return (
     <TheUsersList>
       <div className="user-list">
@@ -49,13 +54,13 @@ const UsersList = () => {
           <p>
             Total Users :{" "}
             <span>
-              <b>20</b>
+              <b>{appUsers?.length}</b>
             </span>
           </p>
           <p>
             Blocked Users :{" "}
             <span className="text-danger">
-              <b>5</b>
+              <b>{blockedUser?.length}</b>
             </span>
           </p>
           <div className="search">
@@ -74,17 +79,17 @@ const UsersList = () => {
           <p>Name</p>
           <p>Email</p>
           <p>Role</p>
-         
+
           <p></p>
         </div>
         <div className="bottom-order">
           {currentItems?.map((user, index) => (
             <div className="bottom-order-content" key={user?.id}>
               <p>{index + 1}</p>
-              <p>{user?.name}</p>
+              <p>{`${user?.firstname} ${user?.lastname}`}</p>
               <p>{user?.email}</p>
               <p>{user?.role}</p>
-              
+
               <p>
                 <IoEyeOutline />
               </p>

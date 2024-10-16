@@ -99,6 +99,7 @@ const authAPI = createApi({
       }),
       validatesTags: ["authAPI"],
     }),
+    
   }),
 });
 

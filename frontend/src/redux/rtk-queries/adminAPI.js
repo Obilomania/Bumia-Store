@@ -116,12 +116,20 @@ const adminAPI = createApi({
         credentials: "include",
       }),
       invalidatesTags: ["adminAPI"],
-    })
+    }),
+    getAllAppUsers: builder.query({
+      query: (id) => ({
+        url: "user/alluser",
+        method: "GET",
+        credentials: "include",
+      }),
+      validatesTags: ["adminAPI"],
+    }),
   }),
 });
 
 
 export const {
-useCreateCategoryMutation, useGetAllCategoriesQuery, useEditCategoryMutation,useDeleteCategoryMutation, useCreateBrandMutation,useGetAllBrandsQuery, useEditBrandMutation, useDeleteBrandMutation, useCreateNewProductMutation, useGetAllProductsQuery, useGetOneProductsQuery, useDeleteProductMutation
+useCreateCategoryMutation, useGetAllCategoriesQuery, useEditCategoryMutation,useDeleteCategoryMutation, useCreateBrandMutation,useGetAllBrandsQuery, useEditBrandMutation, useDeleteBrandMutation, useCreateNewProductMutation, useGetAllProductsQuery, useGetOneProductsQuery, useDeleteProductMutation, useGetAllAppUsersQuery
 } = adminAPI;
 export default adminAPI;

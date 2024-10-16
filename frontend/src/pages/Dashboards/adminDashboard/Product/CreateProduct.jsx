@@ -112,6 +112,10 @@ const CreateProduct = () => {
     setIsLoading(false);
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <ProductCreation>
       {isLoading || isLoadingCategories || (isLoadingBrands && <Loader />)}

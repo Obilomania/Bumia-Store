@@ -16,7 +16,7 @@ const adminSlice = createSlice({
   reducers: {
     filtered_users: (state, action) => {
       const { users, searchUser } = action.payload;
-      const tempUsers = users.filter(
+      const tempUsers = users?.filter(
         (user) =>
           user.name?.toLowerCase().includes(searchUser?.toLowerCase()) ||
           user.email?.toLowerCase().includes(searchUser?.toLowerCase())

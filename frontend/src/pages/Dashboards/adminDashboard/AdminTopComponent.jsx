@@ -16,6 +16,12 @@ const AdminTopComponent = () => {
   const [searchOrder, setSearchOrder] = useState("");
   const dispatch = useDispatch();
   const filteredOrderList = useSelector((state) => state.order.filteredOrders);
+  const allApplicationUsers = useSelector(
+    (state) => state.persistedReducer.admin.filteredUsers
+  )
+  const allProducts = useSelector(
+    (state) => state.persistedReducer.admin.allProducts
+  )
 
   //Beginning of Pagination
   const [currentItems, setCurrentItems] = useState([]);
@@ -59,7 +65,7 @@ const AdminTopComponent = () => {
               </p>
             </div>
             <p className="card-heading">Users</p>
-            <p className="card-value">298</p>
+            <p className="card-value">{allApplicationUsers?.length}</p>
           </div>
           <div className="card">
             <div className="card-icon">
@@ -68,7 +74,7 @@ const AdminTopComponent = () => {
               </p>
             </div>
             <p className="card-heading">Total Products</p>
-            <p className="card-value">1854</p>
+            <p className="card-value">{allProducts?.length}</p>
           </div>
           <div className="card">
             <div className="card-icon">

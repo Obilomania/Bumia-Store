@@ -44,7 +44,6 @@ const createProduct = asyncHandler(async (req, res) => {
     res.status(500);
     throw new Error("Image could not be uploaded");
   }
-  console.log("I got here");
 
   const product = await Product.create({
     title,
