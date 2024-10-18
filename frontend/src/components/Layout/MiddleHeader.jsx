@@ -14,10 +14,15 @@ import { resetUserState } from "../../redux/reducers/authSlice";
 import store from "../../redux/store";
 import toast from "react-hot-toast";
 import { resetAdminSlice } from "../../redux/reducers/adminSlice";
+import { resetOrderState } from "../../redux/reducers/orderSlice";
+import { resetCartSlice } from "../../redux/reducers/cartSlice";
+import { useSelector } from "react-redux";
 
 const MiddleHeader = ({ toggleNavReveal }) => {
   const navigate = useNavigate();
   const userName = localStorage.getItem("userName");
+  const ItemInCart = useSelector(state => state.persistedReducer.cart.cartItems);
+
   const logOutUser = () => {
     const response = axios.get(`${base_Url}user/logout`, {
       withCredentials: true,
@@ -29,6 +34,8 @@ const MiddleHeader = ({ toggleNavReveal }) => {
     }
     store.dispatch(resetUserState());
     store.dispatch(resetAdminSlice());
+    store.dispatch(resetOrderState());
+    store.dispatch(resetCartSlice());
     localStorage.clear();
     navigate("/");
   };
@@ -88,7 +95,9 @@ const MiddleHeader = ({ toggleNavReveal }) => {
           <Link to={"/cart"} className="cart">
             <img src={cartIMG} alt="compare-img" />
             <div className="write-up">
-              <p className="font-small cart-number">0</p>
+              <p className="font-small cart-number">
+                {ItemInCart ? ItemInCart.length : 0}
+              </p>
               <p className="font-small">&#x20A6; 0.00</p>
             </div>
           </Link>

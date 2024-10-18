@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { CiSearch } from "react-icons/ci";
 import { resetAdminSlice } from "../../../redux/reducers/adminSlice";
+import { resetOrderState } from "../../../redux/reducers/orderSlice";
+import { resetCartSlice } from "../../../redux/reducers/cartSlice";
 
 const AdminHeader = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
   const navigate = useNavigate();
@@ -26,8 +28,11 @@ const AdminHeader = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
     } else if (response.error) {
       return toast.error(response.error?.data?.message);
     }
-    store.dispatch(resetUserState());
-    store.dispatch(resetAdminSlice());
+   store.dispatch(resetUserState());
+   store.dispatch(resetAdminSlice());
+   store.dispatch(resetOrderState());
+   store.dispatch(resetCartSlice());
+   localStorage.clear();
 
     localStorage.clear();
     navigate("/");

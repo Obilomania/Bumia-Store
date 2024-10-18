@@ -17,18 +17,18 @@ export const sliderData = [
 
 
 export const featuredProducts = [
-  { id: 1, name: "Samsung Tab 10", brand:"Samsung", image:"/images/tab.jpg", price:"250,000"},
-  { id: 2, name: "Google Pixel", brand:"Google", image:"/images/google-pixel.png", price:"245,000"},
-  { id: 3, name: "Canon EOS", brand:"Sony", image:"/images/EOS.png", price:"867,000"},
-  { id: 4, name: "Apple Series 5", brand:"Apple", image:"/images/Series.png", price:"230,590"},
-  { id: 5, name: "Techno Spark 2024",brand:"Techno" , image:"/images/techno.png", price:"549,970"},
-  { id: 6, name: "Iphone 15 pro Max",brand:"Apple" , image:"/images/iphone15.png", price:"1,680,000"},
-  { id: 7, name: "Laptop Bag", brand:"Izzy", image:"/images/lapBag.png", price:"54,000"},
-  { id: 8, name: "LG Smart TV", brand:"LG", image:"/images/tv.jpg", price:"1,230,000"},
-  { id: 9, name: "Oraimo Earpods", brand:"Oraimo", image:"/images/oraimo.png", price:"23,000"},
-  { id: 10, name: "Samsung Tablet", brand:"Samsung", image:"/images/samUltra.png", price:"680,000"},
-  { id: 11, name: "Itel Phones", brand:"Itel", image:"/images/itelP.png", price:"285,000"},
-  { id: 12, name: "Generic Tablet", brand:"Generic", image:"/images/genericT.png", price:"85,000"},
+  { id: 1, name: "Samsung Tab 10", brand:"Samsung", image:"/images/tab.jpg", price:"250000"},
+  { id: 2, name: "Google Pixel", brand:"Google", image:"/images/google-pixel.png", price:"245000"},
+  { id: 3, name: "Canon EOS", brand:"Sony", image:"/images/EOS.png", price:"867000"},
+  { id: 4, name: "Apple Series 5", brand:"Apple", image:"/images/Series.png", price:"230590"},
+  { id: 5, name: "Techno Spark 2024",brand:"Techno" , image:"/images/techno.png", price:"549970"},
+  { id: 6, name: "Iphone 15 pro Max",brand:"Apple" , image:"/images/iphone15.png", price:"1680000"},
+  { id: 7, name: "Laptop Bag", brand:"Izzy", image:"/images/lapBag.png", price:"54000"},
+  { id: 8, name: "LG Smart TV", brand:"LG", image:"/images/tv.jpg", price:"1230000"},
+  { id: 9, name: "Oraimo Earpods", brand:"Oraimo", image:"/images/oraimo.png", price:"23000"},
+  { id: 10, name: "Samsung Tablet", brand:"Samsung", image:"/images/samUltra.png", price:"680000"},
+  { id: 11, name: "Itel Phones", brand:"Itel", image:"/images/itelP.png", price:"285000"},
+  { id: 12, name: "Generic Tablet", brand:"Generic", image:"/images/genericT.png", price:"85000"},
 ];
 
 
@@ -40,7 +40,7 @@ export const specialProducts = [
     mainImage: "/images/bluetooth1.jpg",
     subImageOne: "/images/bluetooth2.jpg",
     subImageTwo: "/images/bluetooth3.jpg",
-    price: "80,000",
+    price: "80000",
   },
   {
     id: 2,
@@ -49,7 +49,7 @@ export const specialProducts = [
     mainImage: "/images/CameraZoom1.jpg",
     subImageOne: "/images/CameraZoom2.jpg",
     subImageTwo: "/images/CameraZoom3.jpg",
-    price: "245,000",
+    price: "245000",
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ export const specialProducts = [
     mainImage: "/images/charger1.jpg",
     subImageOne: "/images/charger2.jpg",
     subImageTwo: "/images/charger3.jpg",
-    price: "15,000",
+    price: "15000",
   },
   {
     id: 4,
@@ -67,7 +67,7 @@ export const specialProducts = [
     mainImage: "/images/clipper1.jpg",
     subImageOne: "/images/clipper2.jpg",
     subImageTwo: "/images/clipper3.jpg",
-    price: "38,000",
+    price: "38000",
   },
   {
     id: 5,
@@ -76,7 +76,7 @@ export const specialProducts = [
     mainImage: "/images/galaxy1.jpg",
     subImageOne: "/images/galaxy2.jpg",
     subImageTwo: "/images/galaxy3.jpg",
-    price: "538,000",
+    price: "538000",
   },
   {
     id: 6,
@@ -85,7 +85,7 @@ export const specialProducts = [
     mainImage: "/images/headphone1.jpg",
     subImageOne: "/images/headphone2.jpg",
     subImageTwo: "/images/headphone3.jpg",
-    price: "208,000",
+    price: "208000",
   },
   {
     id: 7,
@@ -94,7 +94,7 @@ export const specialProducts = [
     mainImage: "/images/keys1.jpg",
     subImageOne: "/images/keys2.jpg",
     subImageTwo: "/images/keys3.jpg",
-    price: "68,090",
+    price: "68090",
   },
   {
     id: 8,
@@ -103,7 +103,7 @@ export const specialProducts = [
     mainImage: "/images/lappy1.jpg",
     subImageOne: "/images/lappy2.jpg",
     subImageTwo: "/images/lappy3.jpg",
-    price: "1,068,090",
+    price: "1068090",
   },
   {
     id: 9,
@@ -112,7 +112,7 @@ export const specialProducts = [
     mainImage: "/images/lappyBag1.jpg",
     subImageOne: "/images/lappyBag2.jpg",
     subImageTwo: "/images/lappyBag3.jpg",
-    price: "1,068,090",
+    price: "1068090",
   },
   {
     id: 10,
@@ -121,7 +121,7 @@ export const specialProducts = [
     mainImage: "/images/lenovo1.jpg",
     subImageOne: "/images/lenovo2.jpg",
     subImageTwo: "/images/lenovo3.jpg",
-    price: "2,068,090",
+    price: "2068090",
   },
   {
     id: 11,
@@ -130,7 +130,7 @@ export const specialProducts = [
     mainImage: "/images/microWave1.jpg",
     subImageOne: "/images/microWave2.jpg",
     subImageTwo: "/images/microWave3.jpg",
-    price: "88,090",
+    price: "88090",
   },
   {
     id: 12,
@@ -139,7 +139,7 @@ export const specialProducts = [
     mainImage: "/images/military1.jpg",
     subImageOne: "/images/military2.jpg",
     subImageTwo: "/images/military3.jpg",
-    price: "168,090",
+    price: "168090",
   },
   {
     id: 13,
@@ -148,7 +148,7 @@ export const specialProducts = [
     mainImage: "/images/miniKeys1.jpg",
     subImageOne: "/images/miniKeys2.jpg",
     subImageTwo: "/images/miniKeys3.jpg",
-    price: "59,090",
+    price: "59090",
   },
   {
     id: 14,
@@ -157,7 +157,7 @@ export const specialProducts = [
     mainImage: "/images/pinkCam1.jpg",
     subImageOne: "/images/pinkCam2.jpg",
     subImageTwo: "/images/pinkCam3.jpg",
-    price: "70,000",
+    price: "70000",
   },
   {
     id: 15,
@@ -166,7 +166,7 @@ export const specialProducts = [
     mainImage: "/images/PS1.jpg",
     subImageOne: "/images/PS2.jpg",
     subImageTwo: "/images/PS3.jpg",
-    price: "650,000",
+    price: "650000",
   },
   {
     id: 16,
@@ -175,7 +175,7 @@ export const specialProducts = [
     mainImage: "/images/security1.jpg",
     subImageOne: "/images/security2.jpg",
     subImageTwo: "/images/security3.jpg",
-    price: "178,000",
+    price: "178000",
   },
   {
     id: 17,
@@ -184,7 +184,7 @@ export const specialProducts = [
     mainImage: "/images/soundSystem1.jpg",
     subImageOne: "/images/soundSystem2.jpg",
     subImageTwo: "/images/soundSystem3.jpg",
-    price: "350,000",
+    price: "350000",
   },
   {
     id: 18,
@@ -193,7 +193,7 @@ export const specialProducts = [
     mainImage: "/images/spectre1.jpg",
     subImageOne: "/images/spectr2.jpg",
     subImageTwo: "/images/spectr3.jpg",
-    price: "458,200",
+    price: "458200",
   },
   {
     id: 19,
@@ -202,7 +202,7 @@ export const specialProducts = [
     mainImage: "/images/whoop1.jpg",
     subImageOne: "/images/whoop2.jpg",
     subImageTwo: "/images/whoop3.jpg",
-    price: "168,200",
+    price: "168200",
   },
 ];
 

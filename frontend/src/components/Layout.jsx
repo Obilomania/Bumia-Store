@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
+
   return (
     <TheMainLayout>
       <Header />

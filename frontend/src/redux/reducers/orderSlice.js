@@ -17,9 +17,12 @@ const orderSlice = createSlice({
       );
       state.filteredOrders = tempOrders;
     },
+    resetOrderState(state) {
+      state.filteredOrders = [];
+    },
   },
 });
 
-export const { FILTER_PRODUCTS } = orderSlice.actions;
+export const { FILTER_PRODUCTS, resetOrderState } = orderSlice.actions;
 
 export const orderReducer = orderSlice.reducer;

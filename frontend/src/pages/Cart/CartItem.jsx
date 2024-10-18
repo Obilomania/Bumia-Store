@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { FaRegTrashCan } from "react-icons/fa6";
-import productImage from "../../assets/images/tab.jpg";
+import { useDispatch } from "react-redux";
+import { ADD_CART_ITEM, CALCULATE_SUB_TOTAL, CALCULATE_TOTAL_QUANTITY, CLEAR_CART, DECREASE_CART_ITEM, DELETE_CART_ITEM, SAVE_URL } from "../../redux/reducers/cartSlice";
 
-const CartItem = ({ addCount, reduceCount, count }) => {
+const CartItem = ({ addCount, reduceCount, count, item }) => {
+  const dispatch = useDispatch();
+ 
+  const url = window.location.href;
+  const increaseCart = (cartItem) => {
+    dispatch(ADD_CART_ITEM(cartItem));
+  };
+  const decreaseCart = (cartItem) => {
+    dispatch(DECREASE_CART_ITEM(cartItem));
+  };
+
+  const removeFromCart = (cartItem) => {
+    dispatch(DELETE_CART_ITEM(cartItem));
+  };
+
+  const clearCart = () => {
+    dispatch(CLEAR_CART());
+  };
+
+  useEffect(() => {
+    dispatch(CALCULATE_SUB_TOTAL());
+    dispatch(CALCULATE_TOTAL_QUANTITY());
+    dispatch(SAVE_URL(""));
+  }, []);
+
   return (
     <MyCart>
       <div className="store-wrapper py-5 home-wrapper">
@@ -12,27 +37,30 @@ const CartItem = ({ addCount, reduceCount, count }) => {
             <div className="list-body">
               <div className="the-product ">
                 <div className="prod-image">
-                  <img src={productImage} alt="prode-img" />{" "}
+                  <img src={item?.image} alt="prode-img" />{" "}
                 </div>
                 <div className="the-product-content ">
-                  <p>This is a chilling samsung garget</p>
+                  <p>{item?.name}</p>
                   <p>
-                    Size : <span>S</span>
-                  </p>
-                  <p>
-                    Color : <span>Red</span>
+                    Brand : <span>{item?.brand}</span>
                   </p>
                 </div>
               </div>
-              <p className="the-price">&#x20A6; 250,000</p>
+              <p className="the-price">&#x20A6; {item?.price}</p>
               <div className="the-quantity">
                 <div className="counter">
                   <div className="signs">
-                    <button className="add-reduce" onClick={reduceCount}>
+                    <button
+                      className="add-reduce"
+                      onClick={() => decreaseCart(item)}
+                    >
                       -
                     </button>
                     <p className="count">{count}</p>
-                    <button className="add-reduce" onClick={addCount}>
+                    <button
+                      className="add-reduce"
+                      onClick={() => increaseCart(item)}
+                    >
                       +
                     </button>
                   </div>

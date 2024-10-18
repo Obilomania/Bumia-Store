@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
 import BreadCrumb from "../../components/BreadCrumb";
 import styled from "styled-components";
-import withAuth from "../../HOC/withAuth";
+import WithAuth from "../../HOC/withAuth";
 import store from "../../redux/store";
 
 const EditAddress = () => {
@@ -293,4 +293,4 @@ const AddressPage = styled.div`
     }
   }
 `;
-export default withAuth(EditAddress);
+export default WithAuth(EditAddress);

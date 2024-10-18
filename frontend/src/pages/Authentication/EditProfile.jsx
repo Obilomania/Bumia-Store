@@ -13,7 +13,7 @@ import {
   user_phone,
 } from "../../redux/reducers/authSlice";
 import Loader from "../../components/Loader";
-import withAuth from "../../HOC/withAuth";
+import WithAuth from "../../HOC/withAuth";
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -308,4 +308,4 @@ const EditPro = styled.div`
     }
   }
 `;
-export default withAuth(EditProfile);
+export default WithAuth(EditProfile);

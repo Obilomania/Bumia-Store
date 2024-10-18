@@ -12,6 +12,9 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import store from "../../redux/store";
 import { resetUserState } from "../../redux/reducers/authSlice";
+import { resetOrderState } from "../../redux/reducers/orderSlice";
+import { resetAdminSlice } from "../../redux/reducers/adminSlice";
+import { resetCartSlice } from "../../redux/reducers/cartSlice";
 
 export const base_Url = "http://localhost:5000/api/";
 
@@ -33,7 +36,9 @@ const BottomeHeader = () => {
       return toast.error(response.error?.data?.message);
     }
     store.dispatch(resetUserState());
-
+    store.dispatch(resetAdminSlice());
+    store.dispatch(resetOrderState());
+    store.dispatch(resetCartSlice());
     localStorage.clear();
     navigate("/");
   };

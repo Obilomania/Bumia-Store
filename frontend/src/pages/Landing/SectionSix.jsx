@@ -3,10 +3,19 @@ import styled from "styled-components";
 import FeaturedProduct from "../../components/FeaturedProduct";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import { featuredProducts } from "../../assets/dummyData";
+import { useDispatch, useSelector } from 'react-redux';
+import { ADD_CART_ITEM } from "../../redux/reducers/cartSlice";
+import toast from "react-hot-toast";
+
 
 const SectionSix = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const productLength = featuredProducts.length;
+    const ItemInCart = useSelector(
+      (state) => state.persistedReducer.cart.cartItems
+  );
+  
+  const dispatch = useDispatch();
   const handleNext = () => {
     setCurrentSlide(currentSlide === productLength - 6 ? 0 : currentSlide + 1);
   };
@@ -14,6 +23,15 @@ const SectionSix = () => {
   const handlePrev = () => {
     setCurrentSlide(currentSlide === 0 ? productLength - 6 : currentSlide - 1);
   };
+
+  const addItem = (product) => {
+    const theCartItem = ItemInCart.find((item) => item.id === product.id);
+    if (theCartItem) {
+      toast.error("Item Already In Cart"); 
+      return
+    }
+     dispatch(ADD_CART_ITEM(product));
+   };
   return (
     <SixthSection>
       <section className="blog-wrapper py-5 home-wrapper-2">
@@ -33,7 +51,7 @@ const SectionSix = () => {
             {featuredProducts
               .slice(currentSlide, currentSlide + 6)
               .map((product) => (
-                <FeaturedProduct product={product} key={product.id} />
+                <FeaturedProduct product={product} key={product.id} addItem={addItem}/>
               ))}
           </div>
           <div className="featured-cards-mobile-scrren">

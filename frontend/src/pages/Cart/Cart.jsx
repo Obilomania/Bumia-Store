@@ -4,9 +4,19 @@ import styled from "styled-components";
 import BreadCrumb from "../../components/BreadCrumb";
 import CartItem from "./CartItem";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
+  //  const cartTotalAmount = useSelector(
+  //    (state) => state.PersistedReducer.cart.cartTotalAmount
+  //  );
+  //  const cartQuantity = useSelector(
+  //    (state) => state.persistedReducer.cart.cartTotalQuantity
+  //  );
   const navigate = useNavigate();
+    const ItemInCart = useSelector(
+      (state) => state.persistedReducer.cart.cartItems
+    );
   const [count, setCount] = useState(1);
   const addCount = () => {
     setCount(count + 1);
@@ -33,21 +43,16 @@ const Cart = () => {
             <p className="the-quantity">QUANTITY</p>
             <p className="the-total">TOTAL</p>
           </div>
-          <CartItem
-            addCount={addCount}
-            reduceCount={reduceCount}
-            count={count}
-          />
-          <CartItem
-            addCount={addCount}
-            reduceCount={reduceCount}
-            count={count}
-          />
-          <CartItem
-            addCount={addCount}
-            reduceCount={reduceCount}
-            count={count}
-          />
+          {ItemInCart.map((item, index) => (
+            <div key={index} className="cart-component">
+              <CartItem
+                addCount={addCount}
+                reduceCount={reduceCount}
+                count={count}
+                item={item}
+              />
+            </div>
+          ))}
         </div>
         <div className="checkout-to-action">
           <Link to={"/"} className="left-checkout">
@@ -78,6 +83,9 @@ const TheMainCart = styled.div`
   .page-container {
     width: 100%;
     padding: 0rem 8rem;
+  }
+  .cart-component{
+    width:100%;
   }
   .cart-list {
     padding-top: 1rem;

@@ -53,6 +53,7 @@ export const ScrollToTop = () => {
 
 function App() {
   const dispatch = useDispatch();
+  
   useEffect(() => {
     async function authStatus() {
       try {

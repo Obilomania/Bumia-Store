@@ -4,7 +4,7 @@ import AdminHeader from "./AdminHeader";
 import { Outlet } from "react-router-dom";
 import AdminFooter from "./AdminFooter";
 import SidebarAdmin from "./SidebarAdmin";
-import withAdminAuth from "../../../HOC/withAdminAuth";
+import WithAdminAuth from "../../../HOC/withAdminAuth";
 
 const AdminLayout = () => {
   const [sideBarOpen, setSideBarOpen] = useState(false);
@@ -196,4 +196,4 @@ const AdminLayoutPage = styled.div`
   @media screen and (max-width: 350px) {
   }
 `;
-export default withAdminAuth(AdminLayout);
+export default WithAdminAuth(AdminLayout);

@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose");
+ const { default: mongoose } = require("mongoose");
 
 const cartSchema = mongoose.Schema(
   {
@@ -12,9 +12,7 @@ const cartSchema = mongoose.Schema(
           type: mongoose.Schema.Types.ObjectId,
           ref: "Product",
         },
-        count: Number,
-        color: String,
-        price: Number,
+        quantity: { type: Number, required: true, default: 1 },
       },
     ],
     cartTotal: { type: Number },

@@ -7,7 +7,7 @@ import BreadCrumb from "../../components/BreadCrumb";
 import store from "../../redux/store";
 import { user_address } from "../../redux/reducers/authSlice";
 import { Link, useNavigate } from "react-router-dom";
-import withAuth from "../../HOC/withAuth";
+import WithAuth from "../../HOC/withAuth";
 
 const MyProfile = () => {
   const userInfo = useSelector((state) => state.persistedReducer.auth);
@@ -338,4 +338,4 @@ const ProfilePage = styled.div`
   @media screen and (max-width: 350px) {
   }
 `;
-export default withAuth(MyProfile);
+export default WithAuth(MyProfile);

@@ -84,7 +84,7 @@ const UsersList = () => {
         </div>
         <div className="bottom-order">
           {currentItems?.map((user, index) => (
-            <div className="bottom-order-content" key={user?.id}>
+            <div className="bottom-order-content" key={index}>
               <p>{index + 1}</p>
               <p>{`${user?.firstname} ${user?.lastname}`}</p>
               <p>{user?.email}</p>

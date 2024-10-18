@@ -3,7 +3,7 @@ import BreadCrumb from "../../components/BreadCrumb";
 import { Helmet } from "react-helmet";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import withAuth from "../../HOC/withAuth";
+import WithAuth from "../../HOC/withAuth";
 import { useUserChangePasswordMutation } from "../../redux/rtk-queries/authAPI";
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader";
@@ -256,4 +256,4 @@ const ResetP = styled.div`
     }
   }
 `;
-export default withAuth(ChangePassword);
+export default WithAuth(ChangePassword);
