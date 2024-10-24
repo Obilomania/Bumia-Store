@@ -58,7 +58,7 @@ const userSchema = new mongoose.Schema({
   isBlocked: { type: Boolean, default: false },
   cart: [
     {
-      quantity: {
+      count: {
         type: Number,
         default: 1,
       },

@@ -6,67 +6,87 @@ const Cart = require("../Models/cartModel");
 const getCartItems = asyncHandler(async (req, res) => {
   const user = req.user;
   const userId = user._id.toHexString();
-  const cart = await Cart.findOne({ user }).populate("products.product");
-  if (!cart) {
-    return res.status(404).json({ message: "Cart not found" });
+  const theUser = await User.findById(userId);
+  if (!theUser) {
+    return res.status(404).json({ message: "User not found" });
   }
-  return res.status(200).json(cart);
+  if (theUser.cart.length === 0 || !theUser.cart) {
+    return res.status(400).json({ message: "Cart is Empty" });
+  }
+  
 });
+
+// const addToCart = asyncHandler(async (req, res) => {
+//   const { cart } = req.body;
+//   console.log(cart)
+//   const user = req.user;
+//   const userId = user._id.toHexString();
+//   try {
+//     let products = [];
+//     const alreadyExistInCart = await Cart.findOne({ userId });
+//     if (alreadyExistInCart) {
+//       alreadyExistInCart.remove();
+//     }
+//     for (let i = 0; i < cart.length; i++) {
+//       let cartObject = {};
+//       cartObject.product = cart[i]._id;
+//       cartObject.count = cart[1].count;
+//       let getPrice = await Product.findById(cart[i]._id).select("price").exec();
+//       cartObject.price = getPrice.price;
+//       products.push(cartObject);
+//     }
+//     let cartTotal = 0;
+//     for (let i = 0; i < products.length; i++) {
+//       cartTotal = cartTotal + products[i].price * products[i].count;
+//     }
+//     let newCart = await new Cart({
+//       user: userId,
+//       products,
+//       cartTotal,
+//     }).save();
+
+//     return res.status(200).json(newCart);
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// });
 
 const addToCart = asyncHandler(async (req, res) => {
   const { cart } = req.body;
+  const { product, count } = cart;
   const user = req.user;
-  const userId = user._id.toHexString();
-  try {
-    let products = [];
-    const alreadyExistInCart = await Cart.findOne({ userId });
-    if (alreadyExistInCart) {
-      alreadyExistInCart.remove();
-    }
-    for (let i = 0; i < cart.length; i++) {
-      let cartObject = {};
-      cartObject.product = cart[i]._id;
-      cartObject.count = cart[1].count;
-      let getPrice = await Product.findById(cart[i]._id).select("price").exec();
-      cartObject.price = getPrice.price;
-      products.push(cartObject);
-    }
-    let cartTotal = 0;
-    for (let i = 0; i < products.length; i++) {
-      cartTotal = cartTotal + products[i].price * products[i].count;
-    }
-    let newCart = await new Cart({
-      user: userId,
-      products,
-      cartTotal,
-    }).save();
-
-    return res.status(200).json(newCart);
-  } catch (error) {
-    throw new Error(error);
+  const existingProductIndex = user.cart.findIndex(
+    (item) => item.product.toString() === product
+  );
+  if (existingProductIndex !== -1) {
+    // If product exists, update its count by adding the new count
+    user.cart[existingProductIndex].count += count;
+  } else {
+    user.cart.push(cart);
   }
+  // await user.save();
+
+  res.status(200).json(user.cart);
 });
 
+
+
+
 const emptyTheCart = asyncHandler(async (req, res) => {
-  const {_id} = req.user
+  const { _id } = req.user;
   // const userId = user._id.toHexString();
   const theUser = await User.findOne({ _id });
   if (!theUser) {
     res.status(404);
     throw new Error("User Not Found!!!");
   }
-  console.log("theUser", theUser);
-  const myCart = await Cart.findOneAndRemove({user:theUser._id });
+  const myCart = await Cart.findOneAndRemove({ user: theUser._id });
   if (!myCart) {
     res.status(400);
     throw new Error("Unable to delete cart, Please try again!");
   }
   return res.status(200).json({ success: true, message: "Cart is empty" });
 });
-
-
-
-
 
 const updateCartItemQuantity = asyncHandler(async (req, res) => {
   const { productId, quantity } = req.body;
