@@ -13,7 +13,7 @@ const getCartItems = asyncHandler(async (req, res) => {
   if (theUser.cart.length === 0 || !theUser.cart) {
     return res.status(400).json({ message: "Cart is Empty" });
   }
-  
+  res.status(201).json(theUser.cart);
 });
 
 // const addToCart = asyncHandler(async (req, res) => {
@@ -64,37 +64,58 @@ const addToCart = asyncHandler(async (req, res) => {
   } else {
     user.cart.push(cart);
   }
-  // await user.save();
+  await user.save();
 
-  res.status(200).json(user.cart);
+  res.status(201).json(user.cart);
 });
 
+// const increaseCartItemCount = asyncHandler(async (req, res) => {
+//   const { id: productId } = req.params;
+//   const { count } = req.body;
+//   const user = req.user;
+//   const userId = user._id.toHexString();
+//   const theUser = await User.findById(userId);
+//   const theUserCart = theUser.cart;
+//   const theProductToIncrease = theUserCart.find(
+//     (item) => item._id === productId
+//   );
+//   if (!theProductToIncrease) {
+//     return res.status(404).json({ message: "Product Not Found" });
+//   }
+//   theProductToIncrease.count += count;
+//   await theUser.save();
+//   return res.status(200).json({ success: true, message: "Cart Updated" });
+// });
 
-
+// const decreaseCartItemCount = asyncHandler(async (req, res) => {});
 
 const emptyTheCart = asyncHandler(async (req, res) => {
-  const { _id } = req.user;
-  // const userId = user._id.toHexString();
-  const theUser = await User.findOne({ _id });
-  if (!theUser) {
-    res.status(404);
-    throw new Error("User Not Found!!!");
+  const user = req.user; // Assuming req.user is populated with the user's data
+  try {
+    user.cart = [];
+    await user.save();
+    res
+      .status(200)
+      .json({
+        success: true,
+        message: "Cart cleared successfully",
+        cart: user.cart,
+      });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ success: false, message: "Error clearing cart", error });
   }
-  const myCart = await Cart.findOneAndRemove({ user: theUser._id });
-  if (!myCart) {
-    res.status(400);
-    throw new Error("Unable to delete cart, Please try again!");
-  }
-  return res.status(200).json({ success: true, message: "Cart is empty" });
 });
 
-const updateCartItemQuantity = asyncHandler(async (req, res) => {
-  const { productId, quantity } = req.body;
-  const user = req.user;
-  const userId = user._id.toHexString();
-  const cart = await Cart.findOne({ userId });
-  console.log("cart", cart);
-});
+
+// const updateCartItemQuantity = asyncHandler(async (req, res) => {
+//   const { productId, quantity } = req.body;
+//   const user = req.user;
+//   const userId = user._id.toHexString();
+//   const cart = await Cart.findOne({ userId });
+//   console.log("cart", cart);
+// });
 // const updateCartItemQuantity = asyncHandler(async (req, res) => {
 //   const { id: productId } = req.params;
 //   const { quantity } = req.body;
@@ -117,6 +138,5 @@ const updateCartItemQuantity = asyncHandler(async (req, res) => {
 module.exports = {
   getCartItems,
   addToCart,
-  emptyTheCart,
-  updateCartItemQuantity,
+  emptyTheCart
 };
