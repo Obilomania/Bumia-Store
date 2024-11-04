@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import mainBannerIMG from "../../assets/images/main-banner-1.jpg";
 import smallBannerOneIMG from "../../assets/images/catbanner-01.jpg";
 import smallBannerTwoIMG from "../../assets/images/catbanner-02.jpg";
 import smallBannerThreeIMG from "../../assets/images/catbanner-03.jpg";
 import smallBannerFourIMG from "../../assets/images/catbanner-04.jpg";
+import { useGetAllProductsQuery } from "../../redux/rtk-queries/adminAPI";
+import { useDispatch } from "react-redux";
+import { all_products } from "../../redux/reducers/adminSlice";
 // import { Link } from "react-router-dom";
 
+
 const SectionOne = () => {
+  const dispatch = useDispatch();
+  const { data, isLoading, isError } = useGetAllProductsQuery(null);
+  useEffect(() => {
+    if(!isLoading && !isError) {
+      dispatch(all_products(data))
+    }
+  },[data, dispatch, isError, isLoading])
   return (
     <FirstSection>
       <div className="left">

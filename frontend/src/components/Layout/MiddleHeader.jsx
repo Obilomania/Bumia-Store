@@ -21,7 +21,9 @@ import { useSelector } from "react-redux";
 const MiddleHeader = ({ toggleNavReveal }) => {
   const navigate = useNavigate();
   const userName = localStorage.getItem("userName");
-  const ItemInCart = useSelector(state => state.persistedReducer.cart.cartItems);
+  const ItemInCart = useSelector(
+    (state) => state.persistedReducer.cart.cartItems
+  );
 
   const logOutUser = () => {
     const response = axios.get(`${base_Url}user/logout`, {
@@ -98,7 +100,7 @@ const MiddleHeader = ({ toggleNavReveal }) => {
               <p className="font-small cart-number">
                 {ItemInCart ? ItemInCart.length : 0}
               </p>
-              <p className="font-small">&#x20A6; 0.00</p>
+              {/* <p className="font-small">&#x20A6; 0.00</p> */}
             </div>
           </Link>
         </div>
@@ -243,7 +245,7 @@ const HeaderMiddle = styled.div`
           display: flex;
           flex-direction: column;
           align-items: start;
-          overflow: hidden;
+          /* overflow: hidden; */
           .cart-number {
             background: white;
             width: 2rem;
@@ -252,6 +254,8 @@ const HeaderMiddle = styled.div`
             border-radius: 30%;
             font-weight: 500;
             font-size: 0.6rem;
+            margin-top: -1rem;
+            margin-left: -.6rem;
           }
         }
         &:hover {

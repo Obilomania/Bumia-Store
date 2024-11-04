@@ -2,12 +2,19 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { FaRegTrashCan } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
-import { ADD_CART_ITEM, CALCULATE_SUB_TOTAL, CALCULATE_TOTAL_QUANTITY, CLEAR_CART, DECREASE_CART_ITEM, DELETE_CART_ITEM, SAVE_URL } from "../../redux/reducers/cartSlice";
+import {
+  ADD_CART_ITEM,
+  CALCULATE_SUB_TOTAL,
+  CALCULATE_TOTAL_COUNT,
+  DECREASE_CART_ITEM,
+  DELETE_CART_ITEM,
+  SAVE_URL,
+} from "../../redux/reducers/cartSlice";
 
 const CartItem = ({ addCount, reduceCount, count, item }) => {
   const dispatch = useDispatch();
- 
-  const url = window.location.href;
+
+  // const url = window.location.href;
   const increaseCart = (cartItem) => {
     dispatch(ADD_CART_ITEM(cartItem));
   };
@@ -19,16 +26,22 @@ const CartItem = ({ addCount, reduceCount, count, item }) => {
     dispatch(DELETE_CART_ITEM(cartItem));
   };
 
-  const clearCart = () => {
-    dispatch(CLEAR_CART());
-  };
+  // const clearCart = () => {
+  //   dispatch(CLEAR_CART());
+  // };
 
   useEffect(() => {
     dispatch(CALCULATE_SUB_TOTAL());
-    dispatch(CALCULATE_TOTAL_QUANTITY());
+    dispatch(CALCULATE_TOTAL_COUNT());
     dispatch(SAVE_URL(""));
-  }, []);
+  }, [dispatch]);
 
+  const productTotal = item?.price * item?.count
+  
+  const formattedProductTotal = new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(productTotal);
   return (
     <MyCart>
       <div className="store-wrapper py-5 home-wrapper">
@@ -37,16 +50,21 @@ const CartItem = ({ addCount, reduceCount, count, item }) => {
             <div className="list-body">
               <div className="the-product ">
                 <div className="prod-image">
-                  <img src={item?.image} alt="prode-img" />{" "}
+                  <img src={item?.images[0].url} alt="prode-img" />{" "}
                 </div>
                 <div className="the-product-content ">
                   <p>{item?.name}</p>
                   <p>
-                    Brand : <span>{item?.brand}</span>
+                    Brand :{" "}
+                    <span>
+                      <b>{item?.brand}</b>
+                    </span>
                   </p>
                 </div>
               </div>
-              <p className="the-price">&#x20A6; {item?.price}</p>
+              <p className="the-price">
+                <b>&#x20A6; {item?.price}</b>
+              </p>
               <div className="the-quantity">
                 <div className="counter">
                   <div className="signs">
@@ -56,7 +74,7 @@ const CartItem = ({ addCount, reduceCount, count, item }) => {
                     >
                       -
                     </button>
-                    <p className="count">{count}</p>
+                    <p className="count">{item.count}</p>
                     <button
                       className="add-reduce"
                       onClick={() => increaseCart(item)}
@@ -65,11 +83,11 @@ const CartItem = ({ addCount, reduceCount, count, item }) => {
                     </button>
                   </div>
                 </div>
-                <button className="trash-can">
+                <button className="trash-can" onClick={() => removeFromCart(item)}>
                   <FaRegTrashCan />
                 </button>
               </div>
-              <p className="the-total">&#x20A6; 250,000</p>
+              <p className="the-total">&#x20A6; {formattedProductTotal}</p>
             </div>
           </div>
         </div>

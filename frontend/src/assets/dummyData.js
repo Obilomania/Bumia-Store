@@ -34,7 +34,7 @@ export const featuredProducts = [
 
 export const specialProducts = [
   {
-    id: 1,
+    id: 13,
     name: "Bluetooth Speaker",
     brand: "Jabra",
     mainImage: "/images/bluetooth1.jpg",
@@ -43,7 +43,7 @@ export const specialProducts = [
     price: "80000",
   },
   {
-    id: 2,
+    id: 222,
     name: "Zoom Camera",
     brand: "Generic",
     mainImage: "/images/CameraZoom1.jpg",
@@ -52,7 +52,7 @@ export const specialProducts = [
     price: "245000",
   },
   {
-    id: 3,
+    id: 233,
     name: "USB Charger",
     brand: "Generic",
     mainImage: "/images/charger1.jpg",
@@ -61,7 +61,7 @@ export const specialProducts = [
     price: "15000",
   },
   {
-    id: 4,
+    id: 444,
     name: "Hair Clipper",
     brand: "Generic",
     mainImage: "/images/clipper1.jpg",
@@ -70,7 +70,7 @@ export const specialProducts = [
     price: "38000",
   },
   {
-    id: 5,
+    id: 534,
     name: "Samsung Galaxy Tab",
     brand: "Samsung",
     mainImage: "/images/galaxy1.jpg",
@@ -88,7 +88,7 @@ export const specialProducts = [
     price: "208000",
   },
   {
-    id: 7,
+    id:2347,
     name: "Mechanic Keyboard",
     brand: "Generic",
     mainImage: "/images/keys1.jpg",
@@ -97,7 +97,7 @@ export const specialProducts = [
     price: "68090",
   },
   {
-    id: 8,
+    id: 348,
     name: "Rog Strix Laptop",
     brand: "Rog",
     mainImage: "/images/lappy1.jpg",
@@ -106,7 +106,7 @@ export const specialProducts = [
     price: "1068090",
   },
   {
-    id: 9,
+    id: 2349,
     name: "Laptop Bag",
     brand: "RoSexy Flexy",
     mainImage: "/images/lappyBag1.jpg",
@@ -115,7 +115,7 @@ export const specialProducts = [
     price: "1068090",
   },
   {
-    id: 10,
+    id: 1440,
     name: "Lenovo Laptop",
     brand: "Lenovo",
     mainImage: "/images/lenovo1.jpg",
@@ -124,7 +124,7 @@ export const specialProducts = [
     price: "2068090",
   },
   {
-    id: 11,
+    id: 1211,
     name: "Microwave",
     brand: "Simbian",
     mainImage: "/images/microWave1.jpg",
@@ -133,7 +133,7 @@ export const specialProducts = [
     price: "88090",
   },
   {
-    id: 12,
+    id: 123455,
     name: "Military Wrist Watch",
     brand: "Dynamo",
     mainImage: "/images/military1.jpg",
@@ -142,7 +142,7 @@ export const specialProducts = [
     price: "168090",
   },
   {
-    id: 13,
+    id: 12343,
     name: "Mini Keyboard",
     brand: "Dynamo",
     mainImage: "/images/miniKeys1.jpg",
@@ -151,7 +151,7 @@ export const specialProducts = [
     price: "59090",
   },
   {
-    id: 14,
+    id: 12342344,
     name: "Sexy Camera",
     brand: "Generic",
     mainImage: "/images/pinkCam1.jpg",
@@ -160,7 +160,7 @@ export const specialProducts = [
     price: "70000",
   },
   {
-    id: 15,
+    id: 123565,
     name: "Playstation 5",
     brand: "Sony",
     mainImage: "/images/PS1.jpg",
@@ -169,7 +169,7 @@ export const specialProducts = [
     price: "650000",
   },
   {
-    id: 16,
+    id: 1612775,
     name: "Security Camera",
     brand: "Deeman",
     mainImage: "/images/security1.jpg",
@@ -178,7 +178,7 @@ export const specialProducts = [
     price: "178000",
   },
   {
-    id: 17,
+    id: 11937,
     name: "Groove Sound System",
     brand: "Deeman",
     mainImage: "/images/soundSystem1.jpg",
@@ -187,7 +187,7 @@ export const specialProducts = [
     price: "350000",
   },
   {
-    id: 18,
+    id: 113487908,
     name: "Spectre Monitor",
     brand: "Spectre",
     mainImage: "/images/spectre1.jpg",
@@ -196,7 +196,7 @@ export const specialProducts = [
     price: "458200",
   },
   {
-    id: 19,
+    id: 113454659,
     name: "Whooty Smart Watch",
     brand: "Spectre",
     mainImage: "/images/whoop1.jpg",

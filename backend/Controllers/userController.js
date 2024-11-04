@@ -282,6 +282,7 @@ const getOneParticularUser = asyncHandler(async (req, res) => {
   }
 });
 
+
 //DELETE A SINGLE USER
 const deleteUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -417,70 +418,8 @@ const adminUnBlockUser = asyncHandler(async (req, res) => {
   }
 });
 
-//HANDLE THE USER`S CART
-const userCart = asyncHandler(async (req, res) => {
-  const { cart } = req.body;
-  const { _id } = req.user;
 
-  const user = await User.findById(_id);
-  if (!user) {
-    return res.status(404).json({ error: "User not found" });
-  }
-  let products = [];
-  //Check if user already have product in Cart
-  const alreadyExistInCart = await Cart.findOne({ user: user._id });
-  if (alreadyExistInCart) {
-    alreadyExistInCart.remove();
-  }
 
-  for (let i = 0; i < cart.length; i++) {
-    let cartObject = {};
-    cartObject.product = cart[i]._id;
-    cartObject.count = cart[1].count;
-    cartObject.color = cart[i].color;
-    let getPrice = await Product.findById(cart[i]._id).select("price").exec();
-    cartObject.price = getPrice.price;
-    products.push(cartObject);
-  }
-
-  let cartTotal = 0;
-  for (let i = 0; i < products.length; i++) {
-    cartTotal = cartTotal + products[i].price * products[i].count;
-  }
-
-  let newCart = await new Cart({
-    products,
-    cartTotal,
-    user: user._id,
-  }).save();
-  res.status(201).json({ success: true, message: "successful", newCart });
-});
-
-//Controller to Empty User`s Cart
-const emptyCart = asyncHandler(async (req, res) => {
-  const { _id } = req.user;
-  const user = await User.findOne({ _id });
-  if (!user) {
-    res.status(404);
-    throw new Error("User Not Found!!!");
-  }
-  const myCart = await Cart.findOneAndRemove({ user: user._id });
-  if (!myCart) {
-    res.status(400);
-    throw new Error("Unable to delete cart, Please try again!");
-  }
-  return res.status(200).json({ success: true, message: "Cart is empty" });
-});
-
-//Controller to get User`s Cart
-const getUserCart = asyncHandler(async (req, res) => {
-  const { _id } = req.user;
-  const myCart = await Cart.findOne({ user: _id }).populate("products.product");
-  if (!myCart) {
-    res.status(400);
-  }
-  return res.status(200).json(myCart);
-});
 
 //Controller to apply coupon
 const applyCoupon = asyncHandler(async (req, res) => {
@@ -602,9 +541,6 @@ module.exports = {
   logOut,
   adminBlockUser,
   adminUnBlockUser,
-  userCart,
-  getUserCart,
-  emptyCart,
   applyCoupon,
   createOrder,
   getOrders,

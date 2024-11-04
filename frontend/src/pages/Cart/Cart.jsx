@@ -6,17 +6,25 @@ import CartItem from "./CartItem";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+
+
 const Cart = () => {
-  //  const cartTotalAmount = useSelector(
-  //    (state) => state.PersistedReducer.cart.cartTotalAmount
-  //  );
-  //  const cartQuantity = useSelector(
-  //    (state) => state.persistedReducer.cart.cartTotalQuantity
-  //  );
+  const cartTotalAmount = useSelector(
+    (state) => state.persistedReducer.cart.cartTotalAmount
+  );
+ 
+
+  const formattedTotal = new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(cartTotalAmount);
+
+  const allCartProducts = useSelector(
+    (state) => state.persistedReducer.cart.cartItems
+  );
+
   const navigate = useNavigate();
-    const ItemInCart = useSelector(
-      (state) => state.persistedReducer.cart.cartItems
-    );
+
   const [count, setCount] = useState(1);
   const addCount = () => {
     setCount(count + 1);
@@ -35,42 +43,49 @@ const Cart = () => {
         <meta name="description" content="Cart" />
       </Helmet>
       <BreadCrumb title="Cart" />
-      <div className="page-container">
-        <div className="cart-list">
-          <div className="list-headings">
-            <p className="the-title">PRODUCT</p>
-            <p className="the-price">PRICE</p>
-            <p className="the-quantity">QUANTITY</p>
-            <p className="the-total">TOTAL</p>
-          </div>
-          {ItemInCart.map((item, index) => (
-            <div key={index} className="cart-component">
-              <CartItem
-                addCount={addCount}
-                reduceCount={reduceCount}
-                count={count}
-                item={item}
-              />
+      {allCartProducts?.length === 0 || !allCartProducts ? (
+        <div className="empty-cart-container">
+          <p className="empty-cart">Your cart is empty</p>
+          <Link to={"/"}>Continue Shopping</Link>
+        </div>
+      ) : (
+        <div className="page-container">
+          <div className="cart-list">
+            <div className="list-headings">
+              <p className="the-title">PRODUCT</p>
+              <p className="the-price">PRICE</p>
+              <p className="the-quantity">QUANTITY</p>
+              <p className="the-total">TOTAL</p>
             </div>
-          ))}
-        </div>
-        <div className="checkout-to-action">
-          <Link to={"/"} className="left-checkout">
-            Continue Shopping
-          </Link>
-          <div className="right-checkout">
-            <p className="sub-total">
-              Subtotal : <span>&#x20A6; 250,000</span>
-            </p>
-            <p className="taxes">
-              Taxes and Shipping are calculated at Checkout
-            </p>
-            <button onClick={() => navigate("/shipping-information")}>
-              Checkout
-            </button>
+            {allCartProducts?.map((item, index) => (
+              <div key={index} className="cart-component">
+                <CartItem
+                  addCount={addCount}
+                  reduceCount={reduceCount}
+                  count={count}
+                  item={item}
+                />
+              </div>
+            ))}
+          </div>
+          <div className="checkout-to-action">
+            <Link to={"/"} className="left-checkout">
+              Continue Shopping
+            </Link>
+            <div className="right-checkout">
+              <p className="sub-total">
+                Subtotal : <span>&#x20A6; {formattedTotal}</span>
+              </p>
+              <p className="taxes">
+                Taxes and Shipping are calculated at Checkout
+              </p>
+              <button onClick={() => navigate("/shipping-information")}>
+                Checkout
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </TheMainCart>
   );
 };
@@ -80,12 +95,30 @@ const TheMainCart = styled.div`
   min-height: 70vh;
   height: fit-content;
   background: var(--bg-grey);
+  .empty-cart-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .empty-cart {
+      margin: 3rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    a {
+      background: var(--bg-two);
+      color: white;
+      padding: 0.5rem 2rem;
+    }
+  }
   .page-container {
     width: 100%;
     padding: 0rem 8rem;
   }
-  .cart-component{
-    width:100%;
+  .cart-component {
+    width: 100%;
   }
   .cart-list {
     padding-top: 1rem;

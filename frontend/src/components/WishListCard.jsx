@@ -1,19 +1,27 @@
 import React from "react";
 import { IoClose } from "react-icons/io5";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { REMOVE_FROM_WISHLIST } from "../redux/reducers/wishListSlice";
 
 const WishListCard = ({ prod }) => {
+  
+  const dispatch = useDispatch();
+
+  const removeFromWishList = (prod) => {
+    dispatch(REMOVE_FROM_WISHLIST(prod));
+  };
   return (
     <WishCard>
       <div className="compare-image">
-        <img src={prod.mainImage} alt="eosImg" />
-        <span className="close">
+        <img src={prod.images[0]?.url} alt="eosImg" />
+        <span className="close" onClick={() => removeFromWishList(prod)}>
           <IoClose />
         </span>
       </div>
       <div className="compare-content">
-        <p className="compare-heading">{prod.name}</p>
-        <p className="compare-price">&#x20A6; {prod.price}</p>
+        <p className="compare-heading">{prod?.title}</p>
+        <p className="compare-price">&#x20A6; {prod?.price}</p>
       </div>
     </WishCard>
   );

@@ -12,9 +12,6 @@ const {
   getUser,
   adminBlockUser,
   adminUnBlockUser,
-  userCart,
-  getUserCart,
-  emptyCart,
   applyCoupon,
   createOrder,
   getOrders,
@@ -27,10 +24,7 @@ const { createAddress, getAddress, updateAddress } = require("../Controllers/add
 const router = express.Router();
 
 
-//Cart Routes
-router.post("/cart", protect, userCart);
-router.delete("/emptycart", protect, emptyCart);
-router.get("/mycart", protect, getUserCart);
+
 
 
 //Authentication

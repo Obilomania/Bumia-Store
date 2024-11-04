@@ -45,6 +45,21 @@ const authAPI = createApi({
       }),
       providesTags: ["authAPI"],
     }),
+    getUserCart: builder.query({
+      query: () => ({
+        url: "cart/",
+        credentials: "include",
+      }),
+      providesTags: ["authAPI"],
+    }),
+    emptyUserCart: builder.mutation({
+      query: () => ({
+        url: "cart/",
+        method: "DELETE",
+        credentials: "include",
+      }),
+      providesTags: ["authAPI"],
+    }),
     editUserProfile: builder.mutation({
       query: ( userInput ) => ({
         url: `user/updateuser`,
@@ -107,6 +122,8 @@ export const {
   useRegisterUserMutation,
   useLoginUserMutation,
   useGetUserProfileQuery,
+  useGetUserCartQuery,
+  emptyUserCart,
   useEditUserProfileMutation,
   useUserChangePasswordMutation,
   useUserLogOutQuery,

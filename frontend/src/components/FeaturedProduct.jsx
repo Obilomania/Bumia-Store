@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { FaHeart, FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { FaRegEye } from "react-icons/fa6";
 import { LiaShoppingBagSolid } from "react-icons/lia";
@@ -8,19 +8,18 @@ import { IoIosShuffle } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
 
-const FeaturedProduct = ({ product, addItem }) => {
+const FeaturedProduct = ({ product, addItem, addItemToWishList }) => {
   const navigate = useNavigate()
-
   return (
     <FeaturedProductCard>
       <div key={product.id} className="main-card-content">
         <div className="product-image">
           {" "}
-          <img src={product.image} alt="" />
+          <img src={product.images[0].url} alt="" />
         </div>
         <div className="card-content">
           <p className="product-brand">{product.brand}</p>
-          <h6 className="product-title">{product?.name}</h6>
+          <h6 className="product-title">{product?.title}</h6>
           <div className="star-rating d-flex align-items-center gap-1">
             <FaStar />
             <FaStar />
@@ -32,15 +31,16 @@ const FeaturedProduct = ({ product, addItem }) => {
         </div>
         <div className="discount-favourite ">
           <p className="percentage">-50%</p>
-          <p>
-            <FiHeart />
+          <p onClick={() => addItemToWishList(product)} style={{ cursor: "pointer" }}>
+            {/* {!loveToRed ? <FiHeart /> : <FaHeart style={{ color: "red" }} />} */}
+            <FiHeart/>
           </p>
         </div>
         <div className="add-to-cart">
           <p className="one">
             <IoIosShuffle />
           </p>
-          <p className="two" onClick={() => navigate(`/product/detail/${product.id}`)}>
+          <p className="two" onClick={() => navigate(`/product/detail/${product._id}`)}>
             <FaRegEye />
           </p>
           <p className="three" onClick={() =>addItem(product)}>

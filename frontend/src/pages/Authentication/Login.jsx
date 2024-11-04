@@ -22,6 +22,7 @@ import {
   user_wishList,
 } from "../../redux/reducers/authSlice";
 import withoutAuth from "../../HOC/withoutAuth";
+import { CART_ITEMS } from "../../redux/reducers/cartSlice";
 
 const Login = () => {
   const [loginUser, { isLoading }] = useLoginUserMutation();
@@ -67,6 +68,7 @@ const Login = () => {
         address,
         cart,
       } = response?.data;
+      console.log(cart);
 
       dispatch(user_firstName(firstname));
       dispatch(user_lastName(lastname));
@@ -79,7 +81,7 @@ const Login = () => {
       dispatch(user_memberSince(registrationDate));
       dispatch(user_wishList(wishList));
       dispatch(user_address(address));
-      dispatch(user_cart(cart));
+      dispatch(CART_ITEMS(cart));
       localStorage.setItem("userRole", role);
       localStorage.setItem("userName", firstname);
 

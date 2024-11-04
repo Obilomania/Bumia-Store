@@ -70,7 +70,7 @@ const SidebarAdmin = ({ sideBaOpen, toggleSideBar, setSideBarOpen }) => {
 
   return (
     <SidyBar>
-      <div className="logo" onClick={() => navigate("/admin-dashboard")}>
+      <div className="logo" onClick={() => navigate("/")}>
         <h3>
           Bumia<span>Store</span>.
         </h3>

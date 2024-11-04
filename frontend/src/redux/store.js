@@ -5,7 +5,8 @@ import { userAuthReducer } from "./reducers/authSlice";
 import authAPI from "./rtk-queries/authAPI";
 import {orderReducer} from "./reducers/orderSlice";
 import { adminReducer } from "./reducers/adminSlice";
-import {cartReducer} from "./reducers/cartSlice";
+import { cartReducer } from "./reducers/cartSlice";
+import { wishListReducer } from "./reducers/wishListSlice";
 import adminAPI from "./rtk-queries/adminAPI";
 
 const persistConfig = {
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   auth: userAuthReducer,
   admin: adminReducer,
   cart: cartReducer,
+  wishlist: wishListReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

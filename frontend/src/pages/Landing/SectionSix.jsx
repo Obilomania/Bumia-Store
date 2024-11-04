@@ -6,6 +6,7 @@ import { featuredProducts } from "../../assets/dummyData";
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_CART_ITEM } from "../../redux/reducers/cartSlice";
 import toast from "react-hot-toast";
+import { ADD_TO_WISHLIST } from "../../redux/reducers/wishListSlice";
 
 
 const SectionSix = () => {
@@ -14,7 +15,7 @@ const SectionSix = () => {
     const ItemInCart = useSelector(
       (state) => state.persistedReducer.cart.cartItems
   );
-  
+  const allAppProducts = useSelector(state => state.persistedReducer.admin.allProducts)
   const dispatch = useDispatch();
   const handleNext = () => {
     setCurrentSlide(currentSlide === productLength - 6 ? 0 : currentSlide + 1);
@@ -25,13 +26,19 @@ const SectionSix = () => {
   };
 
   const addItem = (product) => {
-    const theCartItem = ItemInCart.find((item) => item.id === product.id);
+    const theCartItem = ItemInCart?.find((item) => item._id === product._id);
     if (theCartItem) {
       toast.error("Item Already In Cart"); 
       return
     }
      dispatch(ADD_CART_ITEM(product));
-   };
+  };
+  
+
+  const addItemToWishList = (product) => {
+    dispatch(ADD_TO_WISHLIST(product));
+  };
+  
   return (
     <SixthSection>
       <section className="blog-wrapper py-5 home-wrapper-2">
@@ -48,17 +55,27 @@ const SectionSix = () => {
             </div>
           </div>
           <div className="featured-cards-lg-scrren">
-            {featuredProducts
+            {allAppProducts
               .slice(currentSlide, currentSlide + 6)
               .map((product) => (
-                <FeaturedProduct product={product} key={product.id} addItem={addItem}/>
+                <FeaturedProduct
+                  product={product}
+                  key={product._id}
+                  addItem={addItem}
+                  addItemToWishList={addItemToWishList}
+                />
               ))}
           </div>
           <div className="featured-cards-mobile-scrren">
-            {featuredProducts
+            {allAppProducts
               .slice(currentSlide, currentSlide + 2)
               .map((product) => (
-                <FeaturedProduct product={product} key={product.id} />
+                <FeaturedProduct
+                  product={product}
+                  key={product._id}
+                  addItem={addItem}
+                  addItemToWishList={addItemToWishList}
+                />
               ))}
           </div>
         </div>
