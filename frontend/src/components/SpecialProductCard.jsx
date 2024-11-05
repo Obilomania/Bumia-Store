@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 const SpecialProductCard = ({ product }) => {
   const navigate = useNavigate()
+    const userName = localStorage.getItem("userName");
+
   return (
     <SpecialProduct>
       <div className="special-product-card">
@@ -27,9 +29,7 @@ const SpecialProductCard = ({ product }) => {
           </div>
           <div className="discount-favourite ">
             <p className="percentage">-50%</p>
-            <p>
-              <FiHeart />
-            </p>
+           {userName && <FiHeart />}
           </div>
           <div className="add-to-cart">
             <p className="one">

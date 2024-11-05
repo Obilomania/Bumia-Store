@@ -313,6 +313,29 @@ const deleteProductImage = asyncHandler(async (req, res) => {
 });
 
 //Add Product to wishList
+// const addToWishList = asyncHandler(async (req, res) => {
+//   const { _id } = req.user;
+//   const { prodId } = req.body;
+
+//   const user = await User.findById(_id);
+//   const alreadyAdded = user.wishList.find((id) => id.toString() === prodId);
+//   if (alreadyAdded) {
+//     let user = await User.findByIdAndUpdate(
+//       _id,
+//       { $pull: { wishList: prodId } },
+//       { new: true }
+//     );
+//     res.json(user);
+//   } else {
+//     let user = await User.findByIdAndUpdate(
+//       _id,
+//       { $push: { wishList: prodId } },
+//       { new: true }
+//     );
+//     return res.status(200).json({ success: true, user });
+//   }
+// });
+
 const addToWishList = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   const { prodId } = req.body;

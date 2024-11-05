@@ -8,7 +8,8 @@ const initialState = {
     cartItems: localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems") || "null") : [],
     cartTotalcount: 0,
     cartTotalAmount: 0,
-    previousURL:""
+    previousURL: "",
+    estTax: 0,
 };
 
 const cartSlice = createSlice({
@@ -83,16 +84,31 @@ const cartSlice = createSlice({
         SAVE_URL: (state, action) => {
             state.previousURL = action.payload
         }, 
+        ESTIMATAD_TAX: (state, action) => {
+            const array = [];
+            state.cartItems.map((item) => {
+              const { price, count } = item;
+              const cartItemAmount = price * count;
+              return array.push(cartItemAmount);
+            });
+            const totalAmount = array.reduce((a, b) => {
+              return a + b;
+            }, 0);
+            let tax = (totalAmount * 7.5) / 100;
+            state.estTax = tax
+        },
         resetCartSlice: (state) => {
             state.cartItems = []
             state.cartTotalcount = 0
             state.cartTotalAmount = 0
+            state.previousURL = ""
+            state.estTax = 0
         }
         
     }
 });
 
-export const {CART_ITEMS, ADD_CART_ITEM, DELETE_CART_ITEM, DECREASE_CART_ITEM, CLEAR_CART, CALCULATE_SUB_TOTAL, CALCULATE_TOTAL_COUNT, SAVE_URL, resetCartSlice } = cartSlice.actions
+export const {CART_ITEMS, ADD_CART_ITEM, DELETE_CART_ITEM, DECREASE_CART_ITEM, CLEAR_CART, CALCULATE_SUB_TOTAL, CALCULATE_TOTAL_COUNT, SAVE_URL,ESTIMATAD_TAX, resetCartSlice } = cartSlice.actions
 
 export const cartReducer = cartSlice.reducer;
 

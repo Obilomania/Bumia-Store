@@ -3,19 +3,21 @@ import styled from "styled-components";
 import FeaturedProduct from "../../components/FeaturedProduct";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import { featuredProducts } from "../../assets/dummyData";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import { ADD_CART_ITEM } from "../../redux/reducers/cartSlice";
 import toast from "react-hot-toast";
 import { ADD_TO_WISHLIST } from "../../redux/reducers/wishListSlice";
-
+import { addProductToWishList } from "../../redux/axiosCalls/productAPI";
 
 const SectionSix = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const productLength = featuredProducts.length;
-    const ItemInCart = useSelector(
-      (state) => state.persistedReducer.cart.cartItems
+  const ItemInCart = useSelector(
+    (state) => state.persistedReducer.cart.cartItems
   );
-  const allAppProducts = useSelector(state => state.persistedReducer.admin.allProducts)
+  const allAppProducts = useSelector(
+    (state) => state.persistedReducer.admin.allProducts
+  );
   const dispatch = useDispatch();
   const handleNext = () => {
     setCurrentSlide(currentSlide === productLength - 6 ? 0 : currentSlide + 1);
@@ -28,17 +30,17 @@ const SectionSix = () => {
   const addItem = (product) => {
     const theCartItem = ItemInCart?.find((item) => item._id === product._id);
     if (theCartItem) {
-      toast.error("Item Already In Cart"); 
-      return
+      toast.error("Item Already In Cart");
+      return;
     }
-     dispatch(ADD_CART_ITEM(product));
+    dispatch(ADD_CART_ITEM(product));
   };
-  
 
-  const addItemToWishList = (product) => {
+  const addItemToWishList = async (product) => {
+    await addProductToWishList({ prodId: product._id });
     dispatch(ADD_TO_WISHLIST(product));
   };
-  
+
   return (
     <SixthSection>
       <section className="blog-wrapper py-5 home-wrapper-2">

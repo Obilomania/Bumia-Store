@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 const FeaturedProduct = ({ product, addItem, addItemToWishList }) => {
   const navigate = useNavigate()
+  const userName = localStorage.getItem("userName");
+
   return (
     <FeaturedProductCard>
       <div key={product.id} className="main-card-content">
@@ -33,7 +35,7 @@ const FeaturedProduct = ({ product, addItem, addItemToWishList }) => {
           <p className="percentage">-50%</p>
           <p onClick={() => addItemToWishList(product)} style={{ cursor: "pointer" }}>
             {/* {!loveToRed ? <FiHeart /> : <FaHeart style={{ color: "red" }} />} */}
-            <FiHeart/>
+           {userName && <FiHeart />}
           </p>
         </div>
         <div className="add-to-cart">

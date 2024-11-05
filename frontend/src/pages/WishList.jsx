@@ -7,10 +7,27 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const WishList = () => {
+  const userName = localStorage.getItem("userName");
+
   const wishList = useSelector(
     (state) => state.persistedReducer.wishlist.wishList
   );
 
+  if (!userName) {
+    return (
+      <WishlistPage>
+        <Helmet>
+          <title>Wish List</title>
+          <meta name="description" content="Our Store" />
+        </Helmet>
+        <BreadCrumb title="Wishlist" />
+        <div className="not-logged-in">
+          <h3>You need to be logged in to view your wishlist</h3>
+          <Link to="/login">Login</Link>
+        </div>
+      </WishlistPage>
+    );
+  }
   return (
     <WishlistPage>
       <Helmet>
@@ -25,12 +42,12 @@ const WishList = () => {
             {wishList.length === 0 ? (
               <>
                 <h3>No Items In Your Wishlist</h3>
-                <Link to="/" >Continue Shopping</Link>
+                <Link to="/">Continue Shopping</Link>
               </>
             ) : (
               <>
                 {wishList.map((prod) => (
-                  <div className="col-3 the-card" key={prod.id}>
+                  <div className="col-3 the-card" key={prod._id}>
                     <WishListCard prod={prod} />
                   </div>
                 ))}
@@ -53,12 +70,12 @@ const WishlistPage = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 3rem;
-    h3{
+    h3 {
       width: 100%;
       text-align: center;
       font-size: 1.5rem;
     }
-    a{
+    a {
       width: fit-content;
       text-align: center;
       font-size: 1rem;
@@ -72,7 +89,22 @@ const WishlistPage = styled.div`
   }
   .the-card {
     width: 22.2%;
-    
+  }
+  .not-logged-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 3rem auto;
+    a{
+      width:fit-content;
+      background:var(--bg-one);
+      color:white;
+      padding:0.5rem 3rem;
+      border-radius:5px;
+      cursor:pointer;
+    }
   }
   @media screen and (max-width: 1200px) {
   }

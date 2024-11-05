@@ -1,14 +1,28 @@
 import React from "react";
 import { IoClose } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { REMOVE_FROM_WISHLIST } from "../redux/reducers/wishListSlice";
+import { LiaShoppingBagSolid } from "react-icons/lia";
+import { ADD_CART_ITEM } from "../redux/reducers/cartSlice";
+import toast from "react-hot-toast";
+import { addProductToWishList } from "../redux/axiosCalls/productAPI";
 
 const WishListCard = ({ prod }) => {
-  
   const dispatch = useDispatch();
-
-  const removeFromWishList = (prod) => {
+  const ItemInCart = useSelector(
+    (state) => state.persistedReducer.cart.cartItems
+  );
+  const addItem = (product) => {
+    const theCartItem = ItemInCart?.find((item) => item._id === product._id);
+    if (theCartItem) {
+      toast.error("Item Already In Cart");
+      return;
+    }
+    dispatch(ADD_CART_ITEM(product));
+  };
+  const removeFromWishList = async (prod) => {
+    await addProductToWishList({ prodId: prod._id });
     dispatch(REMOVE_FROM_WISHLIST(prod));
   };
   return (
@@ -20,8 +34,13 @@ const WishListCard = ({ prod }) => {
         </span>
       </div>
       <div className="compare-content">
-        <p className="compare-heading">{prod?.title}</p>
-        <p className="compare-price">&#x20A6; {prod?.price}</p>
+        <div>
+          <p className="compare-heading">{prod?.title}</p>
+          <p className="compare-price">&#x20A6; {prod?.price}</p>
+        </div>
+        <p className="three" onClick={() => addItem(prod)} style={{ cursor: "pointer" }}>
+        <LiaShoppingBagSolid />
+        </p>
       </div>
     </WishCard>
   );
@@ -61,9 +80,9 @@ const WishCard = styled.div`
   .compare-content {
     padding: 1rem;
     display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: space-between;
     gap: 0rem;
     width: 100%;
     background: var(--bg-grey);

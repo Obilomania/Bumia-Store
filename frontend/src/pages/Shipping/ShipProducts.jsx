@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import productImG from "../../assets/images/tab.jpg";
 
-const ShipProducts = () => {
+const ShipProducts = ({ item }) => {
+  
   return (
     <ShipProd>
       <div className="img-page-container">
-        <span className="amount">2</span>
+        <span className="amount">{item?.count}</span>
         <div className="p-image">
-          <img src={productImG} alt="prod-img" />
+          <img src={item?.images[0]?.url} alt="prod-img" />
         </div>
-        <p className="title mb-0">Samsung Tab 2024</p>
+        <p className="title mb-0">{item?.title}</p>
       </div>
-      <p className="price mb-0">&#x20A6; 250,000</p>
+      <p className="price mb-0">&#x20A6; {item?.price}</p>
     </ShipProd>
   );
 };

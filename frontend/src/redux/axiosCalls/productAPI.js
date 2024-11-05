@@ -30,19 +30,12 @@ export const createNewProduct = async (formData) => {
   }
 };
 
-
-
 export const editProduct = async (formData, _id) => {
   try {
-    const response = await axios.put(
-      `${baseURL}product/${_id}`,
-      formData,
-      {
-        withCredentials: true,
-        headers: { "Content-Type": "multipart/form-data" },
-      }
-    );
-    console.log(response)
+    const response = await axios.put(`${baseURL}product/${_id}`, formData, {
+      withCredentials: true,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
     if (response.data) {
       toast.success(response.data.message);
     }
@@ -56,15 +49,35 @@ export const editProduct = async (formData, _id) => {
   }
 };
 
-
 export const getOneProductByAdmin = async (_id) => {
   try {
-    const response = await axios.get(`${baseURL}product/${_id}`, {
-      withCredentials: true,
-    }).then((response) => {
-      return response.data;
-    });
-    
+    const response = await axios
+      .get(`${baseURL}product/${_id}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        return response.data;
+      });
+
+    return response;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    console.log(message);
+  }
+};
+
+export const addProductToWishList = async (productId) => {
+  try {
+    const response = await axios
+      .put(`${baseURL}product/wishlist`, productId, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        return response.data;
+      });
     return response;
   } catch (error) {
     const message =

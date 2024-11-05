@@ -50,14 +50,14 @@ const MyProfile = () => {
             Local Government :{" "}
             <span>{userInfo?.address?.localGovernmentArea}</span>
           </p>
-          <p>
+          {/* <p>
             Zip Code :{" "}
             {userInfo?.address?.zipCode === 0 ? (
               ""
             ) : (
               <span>{userInfo?.address?.zipCode}</span>
             )}
-          </p>
+          </p> */}
           <p>
             State : <span>{userInfo?.address?.state}</span>
           </p>

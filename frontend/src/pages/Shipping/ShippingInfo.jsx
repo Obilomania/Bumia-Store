@@ -3,10 +3,29 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ShipProducts from "./ShipProducts";
+import { useSelector } from "react-redux";
+import { useGetUserAddressQuery } from "../../redux/rtk-queries/authAPI";
 
 const ShippingInfo = () => {
   const [editShippingInfo, setEditShippingInfo] = useState(false);
   const togglePage = () => setEditShippingInfo(!editShippingInfo);
+  const [isChecked, setIsChecked] = useState(false);
+  const cartInfo = useSelector((state) => state.persistedReducer.cart);
+  const userInfo = useSelector((state) => state.persistedReducer.auth);
+  const { data } = useGetUserAddressQuery(userInfo.id);
+  const [newShipAddress, setNewShipAddress] = useState({
+    address: "",
+    localGovernmentArea: "",
+    state: "",
+  })
+   const handleInput = (e) => {
+     const { name, value } = e.target;
+     setNewShipAddress({ ...newShipAddress, [name]: value });
+   };
+
+  const handleCheckboxClick = (event) => {
+    setIsChecked(event.target.checked); // Update state based on checkbox status
+  };
   return (
     <ShippingAddress>
       <Helmet>
@@ -23,46 +42,50 @@ const ShippingInfo = () => {
           <div className="contact-info">
             <h5 className="info-heading mb-4">Contact Information</h5>
             <p className="info-content">
-              Full Name : <span>Obinna Ishmael Iloanya</span>
+              Full Name :{" "}
+              <span>{userInfo.firstName + " " + userInfo.lastName}</span>
             </p>
             <p className="info-content">
-              Phone Number : <span>+2348033954540</span>
+              Phone Number : <span>{userInfo.phone}</span>
             </p>
             <p className="info-content">
-              Email : <span>obilomania@gmail.com</span>
+              Email : <span>{userInfo.email}</span>
             </p>
             <p className="info-content">
               Country : <span>Nigeria</span>
             </p>
             <p className="info-content">
-              State : <span>Lagos</span>
+              State : <span>{data?.addresses[0]?.state}</span>
             </p>
             <p className="info-content">
-              Local Govt. : <span>Alimosho</span>
+              Local Govt. :{" "}
+              <span>{data?.addresses[0]?.localGovernmentArea}</span>
             </p>
             <p className="info-content">
-              Street Address :{" "}
-              <span>
-                16 Jegede street Shagari Estate, Akinogun Bus-stop, Ipaja.
-              </span>
+              Street Address : <span>{data?.addresses[0]?.address}</span>
             </p>
             <div className="shipping-info">
               <h5 className="info-heading mb-4 mt-4">Shipping Information</h5>
               <div className="address-thesame">
-                <input type="checkbox" name="" id="myCheckbox" />
+                <input
+                  type="checkbox"
+                  name=""
+                  id="myCheckbox"// Set checked status based on state
+                  onChange={handleCheckboxClick}
+                />
                 <p>Click if contact is thesame as shipping address</p>
               </div>
               <form action="">
-                <input type="text" placeholder="Street Address" />
+                <input type="text" placeholder="Street Address" value={isChecked ? data?.addresses[0]?.address : newShipAddress.address} onChange={(e) => handleInput(e)}/>
                 <div className="form-split">
-                  <input type="text" placeholder="Local Government Area" />
-                  <input type="text" placeholder="State " />
+                  <input type="text" placeholder="Local Government Area" value={isChecked ? data?.addresses[0]?.localGovernmentArea : newShipAddress.localGovernmentArea} onChange={(e) => handleInput(e)}/>
+                  <input type="text" placeholder="State "  value={isChecked ? data?.addresses[0]?.state : newShipAddress.state} onChange={(e) => handleInput(e)}/>
                 </div>
-                <div className="form-split">
+                {/* <div className="form-split">
                   <input type="text" placeholder="Email Address " />
                   <input type="text" placeholder="Phone Number " />
-                </div>
-                <input type="text" placeholder="Country " />
+                </div> */}
+                {/* <input type="text" placeholder="Country " /> */}
                 <div className="call-to-action mb-5">
                   <Link to={"/cart"}> &larr; &nbsp; Back to Cart </Link>
                   <button onClick={togglePage}>Continue To shipping</button>
@@ -74,57 +97,63 @@ const ShippingInfo = () => {
           <div className="confirm-shipping">
             <div className="confirm-shipping-info">
               <p>
-                Contact : &nbsp; &nbsp; obilomania@gmail.com{" "}
+                Contact : &nbsp; &nbsp; {userInfo.email}
                 <span onClick={togglePage} className="change-btn">
                   change
                 </span>
               </p>
               <p>
-                Ship to : &nbsp; &nbsp; Lorem ipsum, dolor sit amet consectetur
-                adipisicing elit.{" "}
+                Ship to : &nbsp; &nbsp; {data?.addresses[0]?.address}
                 <span onClick={togglePage} className="change-btn">
                   change
                 </span>
               </p>
             </div>
             <br />
-            <div className="confirm-shipping-info">
+            {/* <div className="confirm-shipping-info">
               <div className="type-shipping d-flex align-items-center gap-2">
-                <input type="radio" className="radio-shipping"/> &nbsp; &nbsp;{" "}
+                <input type="radio" className="radio-shipping" /> &nbsp; &nbsp;{" "}
                 <p>
                   Standard <span>&#x20A6; 15,000</span>
                 </p>
               </div>
-            </div>
+            </div> */}
             <div className="call-to-action mt-3">
               <button onClick={togglePage} className="goBack">
                 {" "}
                 &larr; &nbsp; Back to Information{" "}
               </button>
-              <button >Continue To Payment</button>
+              <button>Continue To Payment</button>
             </div>
           </div>
         )}
         <div className="product-info">
-          <div className="about-product">
-            <ShipProducts />
-            <ShipProducts />
-            <ShipProducts />
-            <ShipProducts />
-          </div>
+          {cartInfo.cartItems.map((item, index) => (
+            <div className="about-product" key={index}>
+              <ShipProducts item={item} />
+            </div>
+          ))}
           <div className="dub-total">
             <p>
-              Subtotal <span>&#x20A6; 250,000</span>
+              Subtotal <span>&#x20A6; {cartInfo.cartTotalAmount}</span>
             </p>
             <p>
-              Shipping <span>Calculated at checkout</span>
+              Shipping{" "}
+              <span>
+                {cartInfo.cartTotalAmount > 200000 ? (
+                  "Free"
+                ) : (
+                  <> &#x20A6; 15,000</>
+                )}
+              </span>
             </p>
             <p>
-              Estimated taxes <span>&#x20A6; 15,050</span>
+              Estimated taxes <span>&#x20A6; {cartInfo.estTax}</span>
             </p>
           </div>
           <p className="product-total">
-            Total <span>&#x20A6; 256,050</span>
+            Total{" "}
+            <span>&#x20A6; {cartInfo.cartTotalAmount + cartInfo.estTax}</span>
           </p>
         </div>
       </div>
@@ -137,6 +166,7 @@ const ShippingAddress = styled.div`
   min-height: 70vh;
   height: fit-content;
   background: var(--bg-grey);
+  padding: 2rem 8rem;
   .shipping-page-container {
     width: 100%;
     display: flex;
@@ -359,8 +389,8 @@ const ShippingAddress = styled.div`
     /* Checked style */
     input[type="radio"]:checked {
       background-color: var(--bg-logo);
-      border:2px solid var(bg-one);
-      padding:2px;
+      border: 2px solid var(bg-one);
+      padding: 2px;
     }
     .confirm-shipping-info {
       width: 100%;

@@ -11,7 +11,7 @@ import {
   SAVE_URL,
 } from "../../redux/reducers/cartSlice";
 
-const CartItem = ({ addCount, reduceCount, count, item }) => {
+const CartItem = ({ item }) => {
   const dispatch = useDispatch();
 
   // const url = window.location.href;
@@ -34,7 +34,7 @@ const CartItem = ({ addCount, reduceCount, count, item }) => {
     dispatch(CALCULATE_SUB_TOTAL());
     dispatch(CALCULATE_TOTAL_COUNT());
     dispatch(SAVE_URL(""));
-  }, [dispatch]);
+  }, [dispatch,item]);
 
   const productTotal = item?.price * item?.count
   

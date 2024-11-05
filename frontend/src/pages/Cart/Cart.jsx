@@ -1,18 +1,19 @@
-import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import BreadCrumb from "../../components/BreadCrumb";
 import CartItem from "./CartItem";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { ESTIMATAD_TAX } from "../../redux/reducers/cartSlice";
 
 const Cart = () => {
+  const dispatch = useDispatch();
+  const userName = localStorage.getItem("userName");
+
   const cartTotalAmount = useSelector(
     (state) => state.persistedReducer.cart.cartTotalAmount
   );
- 
 
   const formattedTotal = new Intl.NumberFormat("en-US", {
     minimumFractionDigits: 2,
@@ -22,20 +23,11 @@ const Cart = () => {
   const allCartProducts = useSelector(
     (state) => state.persistedReducer.cart.cartItems
   );
-
+  useEffect(() => {
+    dispatch(ESTIMATAD_TAX(allCartProducts));
+  }, [allCartProducts, dispatch]);
   const navigate = useNavigate();
 
-  const [count, setCount] = useState(1);
-  const addCount = () => {
-    setCount(count + 1);
-  };
-  const reduceCount = () => {
-    if (count <= 1) {
-      setCount(1);
-      return;
-    }
-    setCount(count - 1);
-  };
   return (
     <TheMainCart>
       <Helmet>
@@ -59,12 +51,7 @@ const Cart = () => {
             </div>
             {allCartProducts?.map((item, index) => (
               <div key={index} className="cart-component">
-                <CartItem
-                  addCount={addCount}
-                  reduceCount={reduceCount}
-                  count={count}
-                  item={item}
-                />
+                <CartItem item={item} />
               </div>
             ))}
           </div>
@@ -79,9 +66,15 @@ const Cart = () => {
               <p className="taxes">
                 Taxes and Shipping are calculated at Checkout
               </p>
-              <button onClick={() => navigate("/shipping-information")}>
-                Checkout
-              </button>
+              {userName ? (
+                <button onClick={() => navigate("/shipping-information")}>
+                  Checkout
+                </button>
+              ) : (
+                <button onClick={() => navigate("/login")}>
+                  Login to Checkout
+                </button>
+              )}
             </div>
           </div>
         </div>

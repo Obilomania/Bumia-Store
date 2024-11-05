@@ -45,7 +45,6 @@ const EditAddress = () => {
       _id: data?.addresses[0]._id,
       userInput: addressInfo,
     });
-    console.log(res);
     if (res?.data) {
       toast.success("Address Updated Succesfully");
       dispatch(user_address(res?.data?.updateAddress));
@@ -90,13 +89,13 @@ const EditAddress = () => {
               value={addressInfo.state}
               onChange={(e) => handleInput(e)}
             />
-            <input
+            {/* <input
               type="text"
               placeholder="Zip Code"
               name="zipcode"
               value={addressInfo.zipcode}
               onChange={(e) => handleInput(e)}
-            />
+            /> */}
           </div>
         </div>
         <div className="form-bottons mt-4">
