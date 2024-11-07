@@ -34,10 +34,10 @@ const CartItem = ({ item }) => {
     dispatch(CALCULATE_SUB_TOTAL());
     dispatch(CALCULATE_TOTAL_COUNT());
     dispatch(SAVE_URL(""));
-  }, [dispatch,item]);
+  }, [dispatch, item]);
 
-  const productTotal = item?.price * item?.count
-  
+  const productTotal = item?.price * item?.count;
+
   const formattedProductTotal = new Intl.NumberFormat("en-US", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
@@ -83,7 +83,10 @@ const CartItem = ({ item }) => {
                     </button>
                   </div>
                 </div>
-                <button className="trash-can" onClick={() => removeFromCart(item)}>
+                <button
+                  className="trash-can"
+                  onClick={() => removeFromCart(item)}
+                >
                   <FaRegTrashCan />
                 </button>
               </div>
@@ -105,7 +108,6 @@ const MyCart = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
     .list-body {
       width: 100%;
       display: flex;
@@ -157,9 +159,6 @@ const MyCart = styled.div`
         justify-content: start;
         border: 2px solid var(--bg-grey);
         .counter {
-          /* background: white; */
-          /* width: 5rem;
-          height: 3rem; */
           padding: 0 1rem 0 0.5em;
           display: flex;
           align-items: center;
@@ -214,6 +213,139 @@ const MyCart = styled.div`
         text-align: end;
       }
     }
+  }
+  @media screen and (max-width: 1300px) {
+  }
+  @media screen and (max-width: 1200px) {
+  }
+  @media screen and (max-width: 900px) {
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    margin-top: -3rem;
+    margin-bottom: -3rem;
+    .cart-list {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .list-body {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 0;
+        padding-bottom: 1rem;
+        box-shadow: 0 4px 6px -2px #0000001a;
+        margin: 0;
+        p {
+          margin-bottom: 0;
+          font-size: 0.8rem;
+          font-weight: 500;
+          color: grey;
+        }
+        .the-product {
+          width: 40%;
+          display: flex;
+          align-items: center;
+          justify-content: star1;
+          gap: 2rem;
+          .prod-image {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+          .the-product-content {
+            display: flex;
+            align-items: start;
+            justify-content: start;
+            flex-direction: column;
+            gap: 0.3rem;
+          }
+        }
+        .the-price {
+          width: 15%;
+        }
+        .the-quantity {
+          width: 15%;
+          height: fit-content;
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+          justify-content: center;
+          border: 2px solid var(--bg-grey);
+          .counter {
+            padding: 0 1rem 0 0.5em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            .signs {
+              font-size: 1rem;
+              display: flex;
+              align-items: start;
+              justify-content: start;
+              gap: 1rem;
+              button {
+                width: 2rem;
+                margin-bottom: 0.3rem;
+                border: 1px solid var(--bg-one);
+                padding: 0rem 0.5rem;
+
+                cursor: pointer;
+                transition: var(--transition);
+                p {
+                  font-size: 0.8rem;
+                }
+                &:hover {
+                  background: var(--bg-logo);
+                  transition: var(--transition);
+                }
+              }
+            }
+            .count {
+              font-size: 0.8rem;
+            }
+          }
+          .trash-can {
+            color: white;
+            background: var(--bg-one);
+            width: 2.2rem;
+            height: 2.2rem;
+            font-size: 0.8rem;
+            border-radius: 100%;
+            transition: var(--transition);
+            border: none;
+            display: none;
+            &:hover {
+              background: var(--bg-logo);
+              transition: var(--transition);
+              color: var(--bg-one);
+              border: none;
+            }
+          }
+        }
+        .the-price {
+          display: none;
+        }
+        .the-total {
+          width: 25%;
+          text-align: end;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 420px) {
+  }
+  @media screen and (max-width: 350px) {
   }
 `;
 export default CartItem;

@@ -58,7 +58,7 @@ const registerUser = asyncHandler(async (req, res) => {
   res.cookie("token", token, {
     path: "/",
     httpOnly: true,
-    expires: 30 * 24 * 60 * 60 * 1000, //30days
+    maxAge: 30 * 24 * 60 * 60 * 1000, //30days
     sameSite: "none",
     secure: true,
   });
@@ -136,7 +136,7 @@ const loginUser = asyncHandler(async (req, res) => {
   res.cookie("token", token, {
     path: "/",
     httpOnly: true,
-    expires: new Date(Date.now() + 7000 * 86400), //One Day
+    maxAge: 30 * 24 * 60 * 60 * 1000, //One Day
     sameSite: "none",
     secure: true,
   });

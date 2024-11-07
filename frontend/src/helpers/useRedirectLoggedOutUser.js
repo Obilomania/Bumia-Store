@@ -4,13 +4,17 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { base_Url } from "../components/Layout/BottomeHeader";
-import { user_auth_status } from "../redux/reducers/authSlice";
-import { set } from "mongoose";
+import { resetUserState, user_auth_status } from "../redux/reducers/authSlice";
+import store from "../redux/store";
+import { resetAdminSlice } from "../redux/reducers/adminSlice";
+import { resetOrderState } from "../redux/reducers/orderSlice";
+import { resetCartSlice } from "../redux/reducers/cartSlice";
 
 
 const useRedirectLoggedOutUser = (path) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userName = localStorage.getItem("userName");
   const [LoggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
     const redirectLoggedOutUser = async () => {
@@ -35,13 +39,18 @@ const useRedirectLoggedOutUser = (path) => {
       authStatus();
 
       if (!LoggedIn) {
-        toast.info("Session expired, Please log in to continue.");
+        toast.error("Session expired, Please log in to continue.");
+        store.dispatch(resetUserState());
+        store.dispatch(resetAdminSlice());
+        store.dispatch(resetOrderState());
+        store.dispatch(resetCartSlice());
+        localStorage.clear();
         navigate(path);
         return;
       }
     };
     redirectLoggedOutUser();
-  }, [navigate, path, dispatch]);
+  }, [navigate, path, dispatch, LoggedIn, userName]);
 };
 
 

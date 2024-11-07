@@ -150,7 +150,7 @@ const MiddleHeader = ({ toggleNavReveal }) => {
               alt="nav-ions"
               onClick={() => navigate("/cart")}
             />
-            <span>0</span>
+            <span> {ItemInCart ? ItemInCart.length : 0}</span>
           </div>
           {userName && (
             <span className="logOffMobile" onClick={logOutUser}>

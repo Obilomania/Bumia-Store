@@ -5,8 +5,10 @@ import { Outlet } from "react-router-dom";
 import AdminFooter from "./AdminFooter";
 import SidebarAdmin from "./SidebarAdmin";
 import WithAdminAuth from "../../../HOC/withAdminAuth";
+import useRedirectLoggedOutUser from "../../../helpers/useRedirectLoggedOutUser";
 
 const AdminLayout = () => {
+  useRedirectLoggedOutUser("/account/login");
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const toggleSideBar = () => {
     setSideBarOpen(!sideBarOpen);

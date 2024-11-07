@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FaHeart, FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import {  FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import { FaRegEye } from "react-icons/fa6";
 import { LiaShoppingBagSolid } from "react-icons/lia";

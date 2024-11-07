@@ -69,7 +69,7 @@ function App() {
             error.response.data.message) ||
           error.message ||
           error.toString();
-        console.log(message); // Add this line to log the message;
+        console.log(message); 
       }
     }
     authStatus();

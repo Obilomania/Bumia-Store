@@ -8,8 +8,14 @@ import { useEffect } from "react";
 import { ESTIMATAD_TAX } from "../../redux/reducers/cartSlice";
 
 const Cart = () => {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const userName = localStorage.getItem("userName");
+
+  if (!userName) {
+    navigate("/account/login");
+  }
 
   const cartTotalAmount = useSelector(
     (state) => state.persistedReducer.cart.cartTotalAmount
@@ -26,7 +32,6 @@ const Cart = () => {
   useEffect(() => {
     dispatch(ESTIMATAD_TAX(allCartProducts));
   }, [allCartProducts, dispatch]);
-  const navigate = useNavigate();
 
   return (
     <TheMainCart>
@@ -201,6 +206,7 @@ const TheMainCart = styled.div`
     min-height: 70vh;
     height: fit-content;
     background: var(--bg-grey);
+    position: relative;
     .page-container {
       width: 100%;
       padding: 0 1rem;
@@ -230,13 +236,14 @@ const TheMainCart = styled.div`
         }
         .the-price {
           width: 15%;
+          display: none;
         }
         .the-quantity {
           width: 20%;
         }
         .the-total {
-          width: 15%;
-          text-align: end;
+          width: 25%;
+          text-align: center;
         }
       }
     }
@@ -245,6 +252,8 @@ const TheMainCart = styled.div`
       display: flex;
       align-items: start;
       justify-content: space-between;
+      flex-direction: column-reverse;
+      gap: 1rem;
       padding: 2rem 0;
       p {
         font-size: 0.8rem;
@@ -255,11 +264,13 @@ const TheMainCart = styled.div`
         }
       }
       a {
+        width: 100%;
         color: white;
         background: var(--bg-one);
         font-size: 0.8rem;
-        padding: 0.4rem 1.5rem;
+        text-align: center;
         border-radius: 1rem;
+        padding: 0.6rem 1.5rem;
         transition: var(--transition);
         border: none;
         &:hover {
@@ -268,19 +279,22 @@ const TheMainCart = styled.div`
           transition: var(--transition);
         }
       }
-      button {
+      .right-checkout {
         width: 100%;
-        color: black;
-        background: var(--bg-logo);
-        font-size: 0.8rem;
-        padding: 0.4rem 1.5rem;
-        border-radius: 1rem;
-        transition: var(--transition);
-        border: none;
-        &:hover {
-          color: white;
-          background: var(--bg-two);
+        button {
+          width: 100%;
+          color: black;
+          background: var(--bg-logo);
+          font-size: 0.8rem;
+          padding: 0.4rem 1.5rem;
+          border-radius: 1rem;
           transition: var(--transition);
+          border: none;
+          &:hover {
+            color: white;
+            background: var(--bg-two);
+            transition: var(--transition);
+          }
         }
       }
     }
