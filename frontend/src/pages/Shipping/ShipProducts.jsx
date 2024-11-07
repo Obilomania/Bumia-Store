@@ -27,7 +27,7 @@ const ShipProd = styled.div`
   justify-content: space-between;
   position: relative;
   box-shadow: 0 4px 6px -2px #0000001a;
-  padding-right:1rem;
+  padding-right: 1rem;
   .img-page-container {
     display: flex;
     align-items: center;
@@ -63,6 +63,19 @@ const ShipProd = styled.div`
       object-fit: center;
     }
     overflow: hidden;
+  }
+
+  @media screen and (max-width: 1300px) {
+  }
+  @media screen and (max-width: 1200px) {
+  }
+  @media screen and (max-width: 900px) {
+  }
+  @media screen and (max-width: 600px) {
+  }
+  @media screen and (max-width: 420px) {
+  }
+  @media screen and (max-width: 350px) {
   }
 `;
 export default ShipProducts;

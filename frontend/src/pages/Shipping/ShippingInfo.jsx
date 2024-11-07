@@ -402,5 +402,260 @@ const ShippingAddress = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 1300px) {
+  }
+  @media screen and (max-width: 1200px) {
+  }
+  @media screen and (max-width: 900px) {
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    min-height: 70vh;
+    height: fit-content;
+    background: var(--bg-grey);
+    padding: 1rem;
+    .shipping-page-container {
+      width: 100%;
+      display: flex;
+      align-items: start;
+      flex-direction:column-reverse;
+      justify-content:center;
+
+      .contact-info,
+      .confirm-shipping {
+        width: 100%;
+        padding-right: 0rem;
+        display: flex;
+        flex-direction: column;
+        p {
+          width: 100%;
+          font-size: 0.8rem;
+          margin-bottom: 0.2rem;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          /* border-bottom: 1px solid grey;
+        padding-bottom: 0.5rem; */
+          background: rgba(211, 211, 211, 0.475);
+          padding: 0.8rem;
+          span {
+            font-weight: 400;
+          }
+        }
+      }
+      .shipping-info {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        width: 100%;
+        .address-thesame {
+          display: flex;
+          align-items: center;
+          p {
+            background: none;
+            margin-bottom: 0;
+          }
+        }
+        form {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          gap: 0.3rem;
+          .form-split,
+          .call-to-action {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            width: 100%;
+            a {
+              width: 100%;
+              color: var(--bg-one);
+              color: white;
+              background: var(--bg-one);
+              font-size: 0.8rem;
+              padding: 0.8rem 1.5rem;
+              border-radius: 0.2rem;
+              transition: var(--transition);
+              border: none;
+              text-align: center;
+              &:hover {
+                color: white;
+                background: var(--bg-two);
+                transition: var(--transition);
+              }
+            }
+            button {
+              width: 100%;
+              color: black;
+              background: var(--bg-logo);
+              font-size: 0.8rem;
+              padding: 0.8rem 1.5rem;
+              border-radius: 0.2rem;
+              transition: var(--transition);
+              border: none;
+              &:hover {
+                color: white;
+                background: var(--bg-two);
+                transition: var(--transition);
+              }
+            }
+          }
+          input {
+            width: 100%;
+            border: none;
+            background: lightgray;
+            outline: none;
+            padding: 0.8rem;
+            font-size: 0.8rem;
+            resize: none;
+            border-radius: 0.2rem;
+            opacity: 0.7;
+            &::placeholder {
+              opacity: 0.7;
+              color: var(--bg-one);
+            }
+          }
+        }
+      }
+      //***********Product Info********** */
+      .product-info {
+        width: 100%;
+        height: 100%;
+        padding-left: 2rem;
+        border-left: 1.5px solid grey;
+        p {
+          font-size: 0.8rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          span {
+            font-weight: 500;
+          }
+        }
+        .about-product {
+          border-bottom: 1px solid lightgrey;
+          padding-bottom: 2rem;
+        }
+        .dub-total {
+          padding: 1.5rem 0 0.8rem 0;
+          border-bottom: 1px solid lightgrey;
+        }
+        .product-total {
+          padding: 1.3rem 0 0.8rem 0;
+          font-size: 1rem;
+        }
+      }
+    }
+    .confirm-shipping {
+      .call-to-action {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        width: 100%;
+        a {
+          width: 100%;
+          color: var(--bg-one);
+          color: white;
+          background: var(--bg-one);
+          font-size: 0.8rem;
+          padding: 0.8rem 1.5rem;
+          border-radius: 0.2rem;
+          transition: var(--transition);
+          border: none;
+          text-align: center;
+          &:hover {
+            color: white;
+            background: var(--bg-two);
+            transition: var(--transition);
+          }
+        }
+        button {
+          width: 100%;
+          color: black;
+          background: var(--bg-logo);
+          font-size: 0.8rem;
+          padding: 0.8rem 1.5rem;
+          border-radius: 0.2rem;
+          transition: var(--transition);
+          border: none;
+          &:hover {
+            color: white;
+            background: var(--bg-two);
+            transition: var(--transition);
+          }
+        }
+      }
+      .call-to-action {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        width: 100%;
+        .goBack {
+          width: 100%;
+          color: var(--bg-one);
+          color: white;
+          background: var(--bg-one);
+          font-size: 0.8rem;
+          padding: 0.8rem 1.5rem;
+          border-radius: 0.2rem;
+          transition: var(--transition);
+          border: none;
+          text-align: center;
+          &:hover {
+            color: white;
+            background: var(--bg-two);
+            transition: var(--transition);
+          }
+        }
+        button {
+          width: 100%;
+          color: black;
+          background: var(--bg-logo);
+          font-size: 0.8rem;
+          padding: 0.8rem 1.5rem;
+          border-radius: 0.2rem;
+          transition: var(--transition);
+          border: none;
+          &:hover {
+            color: white;
+            background: var(--bg-two);
+            transition: var(--transition);
+          }
+        }
+      }
+      input[type="radio"] {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--bg-one);
+        border-radius: 50%;
+        background-color: white;
+        cursor: pointer;
+        position: relative;
+      }
+      /* Checked style */
+      input[type="radio"]:checked {
+        background-color: var(--bg-logo);
+        border: 2px solid var(bg-one);
+        padding: 2px;
+      }
+      .confirm-shipping-info {
+        width: 100%;
+        border: 1px solid grey;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        .change-btn {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 420px) {
+  }
+  @media screen and (max-width: 350px) {
+  }
 `;
 export default ShippingInfo;
