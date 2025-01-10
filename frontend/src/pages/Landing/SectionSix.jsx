@@ -41,6 +41,8 @@ const SectionSix = () => {
     dispatch(ADD_TO_WISHLIST(product));
   };
 
+
+  
   return (
     <SixthSection>
       <section className="blog-wrapper py-5 home-wrapper-2">
